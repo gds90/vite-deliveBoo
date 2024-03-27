@@ -14,6 +14,6 @@ export default {
   <router-view></router-view>
   <AppFooter/>
 </template>
-<style lang="">
-
+<style lang="scss">
+@use './styles/general.scss' as *;
 </style>

@@ -7,13 +7,13 @@ export const store = reactive({
             name: 'home',
             label: 'Home'
         },
-        {
-            name: 'login',
-            label: 'Accedi'
-        },
-        {
-            name: 'contacts',
-            label: 'Contatti'
-        }
+        // {
+        //     name: 'login',
+        //     label: 'Accedi'
+        // },
+        // {
+        //     name: 'contacts',
+        //     label: 'Contatti'
+        // }
     ]
 });
