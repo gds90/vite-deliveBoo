@@ -7,35 +7,35 @@
         </div>
         <div class="row justify-content-center align-items-stretch mb-5">
             <!-- Single Service -->
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-sm-6 col-xl-4">
                 <div class="service pb-3">
-                    <div class="card">
+                    <div class="card text-center">
                         <div class="card-info d-flex flex-column ">
                           <p class="title fs-3 font-1 fw-light ">Consegna ultra-veloce</p>
                           <img src="/img/services/delivery.png" alt="Delivery" class="w-25"/>
-                          <p class="description text-white">Consegna del cibo in pochi minuti.</p>
+                          <p class="description text-white fw-bold mt-3 ">Consegna del cibo in pochi minuti.</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-sm-6 col-xl-4">
                 <div class="service pb-3">
-                    <div class="card">
+                    <div class="card text-center">
                         <div class="card-info d-flex flex-column ">
-                            <p class="title fs-3 font-1 fw-light text-center ">Pagamenti sicuri</p>
+                            <p class="title fs-3 font-1 fw-light ">Pagamenti sicuri</p>
                             <img src="/img/services/payment.png" alt="Payment" class="w-25 ps-2 mb-2"/>
-                            <p class="description text-white">Tranquillità nell'ordine con pagamenti sicuri.</p>
+                            <p class="description text-white fw-bold mt-3 ">Tranquillità nell'ordine con pagamenti sicuri.</p>
                           </div>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-sm-6 col-xl-4">
                 <div class="service pb-3">
-                    <div class="card">
+                    <div class="card text-center">
                         <div class="card-info d-flex flex-column ">
-                            <p class="title fs-3 font-1 fw-light text-center">Assistenza clienti 24/7</p>
+                            <p class="title fs-3 font-1 fw-light">Assistenza clienti 24/7</p>
                             <img src="/img/services/assistance.png" alt="Assistance" class="w-25"/>
-                            <p class="description text-white">Supporto clienti sempre disponibile.</p>
+                            <p class="description text-white fw-bold mt-3 ">Supporto clienti sempre disponibile.</p>
                           </div>
                     </div>
                 </div>
