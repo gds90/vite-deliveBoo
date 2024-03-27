@@ -60,6 +60,7 @@ export default {
         },
         // selezione/deselezione di una tipologia
         toggleType(type) {
+            console.log(this.selectedTypes);
             if (this.selectedTypes.includes(type.id)) {
                 // rimuovere la tipologia selezionata dall'array
                 const index = this.selectedTypes.indexOf(type.id);
@@ -79,7 +80,7 @@ export default {
             } else {
                 // Altrimenti, mostra solo i ristoranti che hanno tutte le tipologie selezionate
                 return this.restaurants.filter(restaurant => {
-                    return this.selectedTypes.every(type => restaurant.tipologie.includes(type));
+                    return this.selectedTypes.every(type => restaurant.types.includes(type));
                 });
             }
         }
@@ -103,7 +104,7 @@ export default {
        
         <div class="types my-4">
             <div class="container-fluid d-flex justify-content-between">
-                <AppTypeCard v-for="type, index in types" :key="index" :type="type"/>
+                <AppTypeCard v-for="type, index in types" :key="index" :type="type" @click="toggleType(type)"/>
             </div>
         </div>
 
@@ -118,7 +119,7 @@ export default {
        
         <div class="restaurants my-4">
             <div class="container-fluid d-flex justify-content-between">
-                <AppRestaurantCard v-for="restaurant, index in restaurants" :key="index" :restaurant="restaurant"/>
+                <AppRestaurantCard v-for="restaurant, index in filteredRestaurants" :key="index" :restaurant="restaurant"/>
             </div>
         </div>
     </main>
