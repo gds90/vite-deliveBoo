@@ -16,6 +16,7 @@ export default {
         return {
             store,
             restaurants: [],
+            selectedTypes: [],
             types: [],
             currentPage: 1,
             lastPage: null,
@@ -27,6 +28,7 @@ export default {
         this.getTypes();
     },
     methods: {
+        // chiamata API che recupera i ristoranti
         getRestaurants(page_num) {
             axios.get(`${this.store.baseUrl}/api/restaurant`, {
                 params: {
@@ -39,17 +41,6 @@ export default {
                     console.log(this.restaurants)
                     this.currentPage = response.data.results.current_page;
                     this.lastPage = response.data.results.last_page;
-                    this.success = response.data.success;
-                }, 500);
-                this.success = false
-            })
-        },
-        getTypes() {
-            axios.get(`${this.store.baseUrl}/api/type`
-            ).then((response) => {
-                setTimeout(() => {
-                    console.log(response);
-                    this.types = response.data.results;
                     this.success = response.data.success;
                 }, 500);
                 this.success = false

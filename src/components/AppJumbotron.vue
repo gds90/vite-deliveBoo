@@ -46,7 +46,7 @@ export default {
     position: relative;
     width: 100%;
     height: 700.63px;
-    top: -91px;
+    top: -70px;
     border-top-right-radius: 0;
     background: rgb(28, 48, 93);
     background: linear-gradient(0deg, rgba(28, 48, 93, 1) 0%, rgba(245, 195, 68, 1) 62%);
@@ -70,6 +70,44 @@ export default {
                 -3px -3px 0 rgb(21, 49, 96),
                 3px -3px 0 rgb(21, 49, 96);
         }
+    }
+
+    .group {
+        display: flex;
+        line-height: 28px;
+        align-items: center;
+        position: relative;
+        max-width: 400px;
+
+        left: 180px;
+        top: 50px;
+    }
+
+    .input {
+        height: 40px;
+        line-height: 28px;
+        padding: 0 1rem;
+        width: 100%;
+        padding-left: 2.5rem;
+        border: 2px solid transparent;
+        border-radius: 8px;
+        outline: none;
+        background-color: #fff;
+        color: #0d0c22;
+        box-shadow: 0 0 5px #C1D9BF, 0 0 0 10px #f5f5f5eb;
+        transition: .3s ease;
+    }
+
+    .input::placeholder {
+        color: #777;
+    }
+
+    .icon {
+        position: absolute;
+        left: 1rem;
+        fill: #777;
+        width: 1rem;
+        height: 1rem;
     }
 }
 </style>
