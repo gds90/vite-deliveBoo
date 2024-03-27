@@ -90,6 +90,7 @@ export default {
         <!-- <div v-if="!success" class="centered-loader">
             <AppLoader />
         </div> -->
+         <!-- Types section -->
         <div class="container-fluid my-5 pt-2">
             <div class="row m-5">
                 <div class="col-12 text-center text-white font-1 m-5">
@@ -97,10 +98,25 @@ export default {
                 </div>
             </div>
         </div>
-        <!-- Types section -->
+       
         <div class="types my-4">
             <div class="container-fluid d-flex justify-content-between">
                 <AppTypeCard v-for="type, index in types" :key="index" :type="type"/>
+            </div>
+        </div>
+
+        <!--  Restaurants section -->
+        <div class="container-fluid my-5 pt-2">
+            <div class="row m-5">
+                <div class="col-12 text-center text-white font-1 ms-5">
+                    <h2 class="">RISTORANTI DISPONIBILI</h2>
+                </div>
+            </div>
+        </div>
+       
+        <div class="restaurants my-4">
+            <div class="container-fluid d-flex justify-content-between">
+                <AppRestaurantCard v-for="restaurant, index in restaurants" :key="index" :restaurant="restaurant"/>
             </div>
         </div>
     </main>

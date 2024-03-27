@@ -17,13 +17,13 @@ export default {
 }
 </script>
 <template>
-    <div class="type-container text-center">
+    <div class="type-container text-center me-5">
         <div class="image-button" @click="toggleHighlight">
             <img :class="{ 'highlighted': isHighlighted }" class="rounded-image"
                 :src="`/img/type-image/${type.slug}.jpeg`">
         </div>
 
-        <div class="text-dark">
+        <div class="text-white mt-2">
             {{ type.name }}
         </div>
     </div>
@@ -31,8 +31,8 @@ export default {
 <style lang="scss">
 .rounded-image {
     position: relative;
-    width: 60px; // Larghezza del contenitore circolare
-    height: 60px; // Altezza del contenitore circolare
+    width: 100px; // Larghezza del contenitore circolare
+    height: 100px; // Altezza del contenitore circolare
     border-radius: 50%;
     overflow: hidden; // Assicura che l'immagine venga visualizzata correttamente all'interno del bordo arrotondato
     transition: border-color 0.3s ease; // Aggiungi una transizione per il cambio di colore del bordo
