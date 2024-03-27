@@ -3,16 +3,20 @@ import axios from 'axios';
 import { store } from '../store.js';
 
 import AppLoader from '../components/AppLoader.vue';
+import AppTypeCard from '../components/AppTypeCard.vue';
+
 
 export default {
     name: 'RestaurantsList',
     components: {
-        AppLoader
+        AppTypeCard,
+        AppLoader,
     },
     data() {
         return {
             store,
             restaurants: [],
+            types: [],
             currentPage: 1,
             lastPage: null,
             success: false
@@ -20,18 +24,32 @@ export default {
     },
     created() {
         this.getRestaurants();
+        this.getTypes();
     },
     methods: {
         getRestaurants(page_num) {
-            axios.get(`${this.store.baseUrl}/api/restaurants`, {
+            axios.get(`${this.store.baseUrl}/api/restaurant`, {
                 params: {
                     page: page_num
                 }
             }).then((response) => {
                 setTimeout(() => {
+
                     this.restaurants = response.data.results.data;
+                    console.log(this.restaurants)
                     this.currentPage = response.data.results.current_page;
                     this.lastPage = response.data.results.last_page;
+                    this.success = response.data.success;
+                }, 500);
+                this.success = false
+            })
+        },
+        getTypes() {
+            axios.get(`${this.store.baseUrl}/api/type`
+            ).then((response) => {
+                setTimeout(() => {
+                    console.log(response);
+                    this.types = response.data.results;
                     this.success = response.data.success;
                 }, 500);
                 this.success = false
@@ -54,7 +72,8 @@ export default {
         </div>
         <!-- Types section -->
         <div class="types my-4">
-            <div class="container-fluid ">
+            <div class="container-fluid d-flex justify-content-between">
+                <AppTypeCard v-for="type, index in types" :key="index" :type="type"/>
             </div>
         </div>
     </main>
