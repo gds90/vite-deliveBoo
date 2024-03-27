@@ -20,6 +20,7 @@ export default {
             restaurants: [],
             selectedTypes: [],
             types: [],
+            filteredRestaurants: [],
             currentPage: 1,
             lastPage: null,
             success: false
@@ -46,6 +47,8 @@ export default {
                 }, 500);
                 this.success = false
             })
+
+            console.log(this.restaurants);
         },
         getTypes() {
             axios.get(`${this.store.baseUrl}/api/type`
@@ -73,17 +76,16 @@ export default {
     },
     computed: {
         filteredRestaurants() {
-            // Filtra i ristoranti in base alle tipologie selezionate
-            if (this.selectedTypes.length === 0) {
-                // Se nessuna tipologia è selezionata, mostra tutti i ristoranti
-                return this.restaurants;
-            } else {
-                // Altrimenti, mostra solo i ristoranti che hanno tutte le tipologie selezionate
-                return this.restaurants.filter(restaurant => {
-                    return this.selectedTypes.every(type => restaurant.types.includes(type));
-                });
-            }
+        let filtered = this.restaurants;
+
+        for (const typeId of this.selectedTypes) {
+            filtered = filtered.filter(restaurant => {
+                return restaurant.types.some(type => type.id === typeId);
+            });
         }
+
+        return filtered;
+    }
     }
 
 }
