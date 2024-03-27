@@ -1,8 +1,12 @@
 <script>
+import AppBecomePartner from '../components/AppBecomePartner.vue';
 export default {
     name: 'AppHome',
     methods: {
     },
+    components: {
+        AppBecomePartner
+    }
 }
 </script>
 <template lang="">
@@ -39,6 +43,7 @@ export default {
             </div>
         </div>
     </div>
+    <AppBecomePartner />
 </template>
 <style lang="scss">
 @use '../styles/partials/variables' as *;
