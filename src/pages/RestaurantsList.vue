@@ -40,30 +40,24 @@ export default {
             }).then((response) => {
                 setTimeout(() => {
                     this.restaurants = response.data.results.data;
-                    console.log(this.restaurants)
                     this.currentPage = response.data.results.current_page;
                     this.lastPage = response.data.results.last_page;
                     this.success = response.data.success;
-                }, 500);
+                },);
                 this.success = false
             })
 
-            console.log(this.restaurants);
         },
         getTypes() {
             axios.get(`${this.store.baseUrl}/api/type`
             ).then((response) => {
-                setTimeout(() => {
-                    console.log(response);
-                    this.types = response.data.results;
-                    this.success = response.data.success;
-                }, 500);
-                this.success = false
+                this.types = response.data.results;
+                this.types.sort((a, b) => a.name.localeCompare(b.name))
             })
         },
         // selezione/deselezione di una tipologia
         toggleType(type) {
-            console.log(this.selectedTypes);
+
             if (this.selectedTypes.includes(type.id)) {
                 // rimuovere la tipologia selezionata dall'array
                 const index = this.selectedTypes.indexOf(type.id);
@@ -76,52 +70,54 @@ export default {
     },
     computed: {
         filteredRestaurants() {
-        let filtered = this.restaurants;
+            let filtered = this.restaurants;
 
-        for (const typeId of this.selectedTypes) {
-            filtered = filtered.filter(restaurant => {
-                return restaurant.types.some(type => type.id === typeId);
-            });
+            for (const typeId of this.selectedTypes) {
+                filtered = filtered.filter(restaurant => {
+                    return restaurant.types.some(type => type.id === typeId);
+                });
+            }
+
+            return filtered;
         }
-
-        return filtered;
-    }
     }
 
 }
 </script>
 <template lang="">
     <main class="pt-2">
-        <!-- <div v-if="!success" class="centered-loader">
+        <div v-if="!success" class="centered-loader">
             <AppLoader />
-        </div> -->
+        </div>
          <!-- Types section -->
-        <div class="container-fluid my-5 pt-2">
-            <div class="row m-5">
-                <div class="col-12 text-center text-white font-1 m-5">
-                    <h2 class="mt-5">CERCA PER TIPOLOGIA</h2>
+        <div v-else>
+            <div class="container-fluid my-5 pt-2">
+                <div class="row m-5">
+                    <div class="col-12 text-center text-white font-1 m-5">
+                        <h2 class="mt-5">CERCA PER TIPOLOGIA</h2>
+                    </div>
                 </div>
             </div>
-        </div>
-       
-        <div class="types my-4">
-            <div class="container-fluid d-flex justify-content-between">
-                <AppTypeCard v-for="type, index in types" :key="index" :type="type" @click="toggleType(type)"/>
+        
+            <div class="types my-4">
+                <div class="container-fluid d-flex justify-content-between overflow-auto">
+                    <AppTypeCard v-for="type, index in types" :key="index" :type="type" @click="toggleType(type)" class="mb-4"/>
+                </div>
             </div>
-        </div>
 
-        <!--  Restaurants section -->
-        <div class="container-fluid my-5 pt-2">
-            <div class="row m-5">
-                <div class="col-12 text-center text-white font-1 ms-5">
-                    <h2 class="">RISTORANTI DISPONIBILI</h2>
+            <!--  Restaurants section -->
+            <div class="container-fluid my-5">
+                <div class="row m-5">
+                    <div class="col-12 text-center text-white font-1 m-auto">
+                        <h2 class="">RISTORANTI DISPONIBILI</h2>
+                    </div>
                 </div>
             </div>
-        </div>
-       
-        <div class="restaurants my-4">
-            <div class="container-fluid d-flex justify-content-between">
-                <AppRestaurantCard v-for="restaurant, index in filteredRestaurants" :key="index" :restaurant="restaurant"/>
+        
+            <div class="restaurants my-4">
+                <div class="container-fluid d-flex justify-content-between overflow-auto">
+                    <AppRestaurantCard v-for="restaurant, index in filteredRestaurants" :key="index" :restaurant="restaurant"/>
+                </div>
             </div>
         </div>
     </main>
