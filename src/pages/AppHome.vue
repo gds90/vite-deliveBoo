@@ -1,12 +1,16 @@
 <script>
 import AppBecomePartner from '../components/AppBecomePartner.vue';
+import AppServices from '../components/AppServices.vue';
 export default {
     name: 'AppHome',
+
+    components: {
+        AppServices,
+        AppBecomePartner
+    },
+
     methods: {
     },
-    components: {
-        AppBecomePartner
-    }
 }
 </script>
 <template lang="">
@@ -44,6 +48,9 @@ export default {
         </div>
     </div>
     <AppBecomePartner />
+    <!-- Services section -->
+    <AppServices/>
+
 </template>
 <style lang="scss">
 @use '../styles/partials/variables' as *;
@@ -57,7 +64,7 @@ export default {
     top: -91px;
     border-top-right-radius: 0;
     background: rgb(28, 48, 93);
-    background: linear-gradient(0deg, rgba(28, 48, 93, 1) 0%, rgba(245, 195, 68, 1) 100%);
+    background: linear-gradient(0deg, rgba(28, 48, 93, 1) 0%, rgba(245, 195, 68, 1) 62%);
 
     img {
         width: 120%;
