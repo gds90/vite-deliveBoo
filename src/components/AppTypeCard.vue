@@ -23,7 +23,7 @@ export default {
                 :src="`/img/type-image/${type.slug}.jpeg`">
         </div>
 
-        <div class="text-white mt-2">
+        <div class="text-white mt-2 fw-bold ">
             {{ type.name }}
         </div>
     </div>
@@ -31,8 +31,8 @@ export default {
 <style lang="scss">
 .rounded-image {
     position: relative;
-    width: 100px; // Larghezza del contenitore circolare
-    height: 100px; // Altezza del contenitore circolare
+    width: 140px; // Larghezza del contenitore circolare
+    height: 140px; // Altezza del contenitore circolare
     border-radius: 50%;
     overflow: hidden; // Assicura che l'immagine venga visualizzata correttamente all'interno del bordo arrotondato
     transition: border-color 0.3s ease; // Aggiungi una transizione per il cambio di colore del bordo
@@ -49,7 +49,7 @@ export default {
 }
 
 .rounded-image.highlighted {
-    border: 2px solid yellow; // Cambia il colore del bordo quando l'immagine è evidenziata
+    border: 2px solid rgb(245, 195, 68); // Cambia il colore del bordo quando l'immagine è evidenziata
 }
 
 .type-container {
