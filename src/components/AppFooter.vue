@@ -52,7 +52,7 @@ export default {
                 <!-- Grid column -->
                 <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                     <!-- Content -->
-                    <h6 class="text-uppercase text-warning  mb-4 fs-5">
+                    <h6 class="text-uppercase text-warning  mb-4 fs-5 font-1">
                         <i class="fas fa-gem me-3"></i>Deliveboo S.r.L.
                     </h6>
                     <p>
@@ -65,7 +65,7 @@ export default {
                 <!-- Grid column -->
                 <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                     <!-- Links -->
-                    <h6 class="text-uppercase text-warning mb-4 fs-5">
+                    <h6 class="text-uppercase text-warning mb-4 fs-5 font-1">
                         LISTA FOOTER 1
                     </h6>
                     <ul class="list-unstyled ">
@@ -85,7 +85,7 @@ export default {
                 <!-- Grid column -->
                 <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                     <!-- Links -->
-                    <h6 class="text-uppercase text-warning fs-5 mb-4">
+                    <h6 class="text-uppercase text-warning fs-5 mb-4 font-1">
                         Link utili
                     </h6>
                     <p>
@@ -106,7 +106,7 @@ export default {
                 <!-- Grid column -->
                 <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                     <!-- Links -->
-                    <h6 class="text-uppercase text-warning mb-4 fs-5">Contatti</h6>
+                    <h6 class="text-uppercase text-warning mb-4 fs-5 font-1">Contatti</h6>
                     <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
                     <p>
                         <i class="fas fa-envelope me-3"></i>

@@ -32,7 +32,7 @@ export default {
                     <div class="float-end h-100 ">
                         <ul class="list-unstyled d-flex align-items-center h-100 fs-5">
                             <li v-for="(item, index) in store.menuItems" :key="index" class="me-3 text-uppercase ">
-                                <router-link :to="{name: item.name}" class="nav-link">
+                                <router-link :to="{name: item.name}" class="nav-link font-1 fw-light ">
                                     {{item.label}}
                                 </router-link>
                             </li>
