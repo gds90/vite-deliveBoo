@@ -4,6 +4,7 @@ import { store } from '../store.js';
 
 import AppLoader from '../components/AppLoader.vue';
 import AppTypeCard from '../components/AppTypeCard.vue';
+import AppRestaurantCard from '../components/AppRestaurantCard.vue';
 
 
 export default {
@@ -11,6 +12,7 @@ export default {
     components: {
         AppTypeCard,
         AppLoader,
+        AppRestaurantCard
     },
     data() {
         return {
