@@ -1,12 +1,14 @@
 <script>
 import AppBecomePartner from '../components/AppBecomePartner.vue';
 import AppServices from '../components/AppServices.vue';
+import AppJumbotron from '../components/AppJumbotron.vue';
 export default {
     name: 'AppHome',
 
     components: {
         AppServices,
-        AppBecomePartner
+        AppBecomePartner,
+        AppJumbotron
     },
 
     methods: {
@@ -14,79 +16,23 @@ export default {
 }
 </script>
 <template lang="">
-    <!-- Jumbotron -->
-    <div class="jumbotron">
-        <div class="container-fluid">
-            <div class="row justify-content-center text-white pt-5">
-                <div class="col-6 d-xl-block d-none">
-                    <div class="content_jumbo_left">
-                        <img src="/img/jumbo_hamburger.png" alt="Deliveboo">
-                    </div>
-                </div>
-                <div class="col-12 col-xl-6 m-auto pt-5">
-                    <div class="content_jumbo_right pt-5">
-                        <div class="jumbo_text text-center font-1 pt-5">
-                            <h2>Scopri il GUSTO</h2>
-                            <div>
-                                <h1>a portata di CLICK!</h1>
-                            </div>
-                        </div>
-                        <!-- Searchbar -->
-                        <div class="searchbar">
-                            <div class="group">
-                                <svg class="icon" aria-hidden="true" viewBox="0 0 24 24">
-                                    <g>
-                                        <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
-                                    </g>
-                                </svg>
-                                <input placeholder="Cerca ristorante o categoria" type="search" class="input">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <AppJumbotron/>
+    <!-- Order button -->
+    <div class="container order_button mb-5">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+                <!-- Router link a lista Progetti -->
+                <router-link to="/restaurants" class=""><button class="font-1 ">ORDINA SUBITO</button></router-link>
             </div>
         </div>
     </div>
-    <AppBecomePartner />
+    <!-- <AppBecomePartner /> -->
     <!-- Services section -->
     <AppServices/>
 
 </template>
 <style lang="scss">
 @use '../styles/partials/variables' as *;
-
-.jumbotron {
-    margin-top: 82px;
-    height: 400px;
-    position: relative;
-    width: 100%;
-    height: 700.63px;
-    top: -91px;
-    border-top-right-radius: 0;
-    background: rgb(28, 48, 93);
-    background: linear-gradient(0deg, rgba(28, 48, 93, 1) 0%, rgba(245, 195, 68, 1) 62%);
-
-    img {
-        width: 120%;
-
-        position: relative;
-        top: 100px;
-        left: -150px;
-    }
-
-    .jumbo_text {
-
-        h1,
-        h2 {
-            font-size: 5em;
-            padding-top: 20px;
-            text-shadow: 3px 3px 0 rgb(21, 49, 96),
-                -3px 3px 0 rgb(21, 49, 96),
-                -3px -3px 0 rgb(21, 49, 96),
-                3px -3px 0 rgb(21, 49, 96);
-        }
-    }
-}
 
 .group {
     display: flex;
@@ -124,5 +70,41 @@ export default {
     fill: #777;
     width: 1rem;
     height: 1rem;
+}
+
+button {
+    position: relative;
+    background-color: rgb(245, 195, 68);
+    border-radius: 5px;
+    box-shadow: #fff 0px 4px 0px 0px;
+    padding: 15px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 230px;
+    height: 55px;
+    color: #fff;
+    border: none;
+    font-size: 20px;
+    transition: all 0.3s ease-in-out;
+    z-index: 1;
+    overflow: hidden;
+}
+
+button::before {
+    content: "";
+    background-color: rgb(245, 173, 68);
+    width: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: width 700ms ease-in-out;
+    display: inline-block;
+}
+
+button:hover::before {
+    width: 100%;
 }
 </style>

@@ -132,9 +132,9 @@ export default {
 <!-- Footer -->
 </template>
 <style lang="scss">
-.bg_footer {
+@use '../styles/partials/variables' as *;
 
-    background: rgb(245, 195, 68);
-    background: linear-gradient(0deg, rgba(245, 195, 68, 0.9) 0%, rgba(28, 48, 93, 0.8) 38%, rgba(28, 48, 93, 1) 77%);
+.bg_footer {
+    background: $secondary_color;
 }
 </style>
