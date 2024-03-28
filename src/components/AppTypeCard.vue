@@ -49,7 +49,7 @@ export default {
     border-radius: 50%; // Assicura che l'immagine sia arrotondata
 }
 
-.rounded-image.highlighted {
+.rounded-image img.highlighted {
     border: 5px solid $secondary_color; // Cambia il colore del bordo quando l'immagine è evidenziata
 }
 
