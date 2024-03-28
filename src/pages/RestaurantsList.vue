@@ -43,8 +43,8 @@ export default {
                     this.currentPage = response.data.results.current_page;
                     this.lastPage = response.data.results.last_page;
                     this.success = response.data.success;
-                },);
-                this.success = false
+                }, 500);
+                this.success = false;
             })
 
         },
@@ -86,11 +86,11 @@ export default {
 </script>
 <template lang="">
     <main class="pt-2">
-        <div v-if="!success" class="centered-loader">
+        <!-- <div v-if="!success" class="centered-loader">
             <AppLoader />
-        </div>
+        </div> -->
          <!-- Types section -->
-        <div v-else>
+        <div>
             <div class="container-fluid my-5 pt-2">
                 <div class="row m-5">
                     <div class="col-12 text-center text-white font-1 m-5">
@@ -126,5 +126,6 @@ export default {
 main {
     background: rgb(28, 48, 93);
     background: linear-gradient(0deg, rgba(28, 48, 93, 1) 0%, rgba(245, 195, 68, 1) 62%);
+
 }
 </style>
