@@ -24,16 +24,19 @@ export default {
 
 <template>
     <div class="col-md-6 col-lg-4 col-xxl-3 my-4">
-        <div class="card rounded-top-2 shadow" style="width: 18rem;">
-            <div class="my_image_card">
-                <img class="rounded-top-2" :src="getUrlImage()" :alt="restaurant.name">
+        <router-link :to="{ name: 'single-restaurant', params: { slug: restaurant.slug } }"
+            class="text-decoration-none">
+            <div class="card rounded-top-2 shadow" style="width: 18rem;">
+                <div class="my_image_card">
+                    <img class="rounded-top-2" :src="getUrlImage()" :alt="restaurant.name">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title fw-bolder ">{{ restaurant.name }}</h5>
+                    <p class="card-text">{{ restaurant.address }}</p>
+                    <!-- <a href="#" class="btn btn-sm btn-light w-100 ">Ordina</a> -->
+                </div>
             </div>
-            <div class="card-body">
-                <h5 class="card-title fw-bolder ">{{ restaurant.name }}</h5>
-                <p class="card-text">{{ restaurant.address }}</p>
-                <!-- <a href="#" class="btn btn-sm btn-light w-100 ">Ordina</a> -->
-            </div>
-        </div>
+        </router-link>
     </div>
 </template>
 <style lang="scss">
