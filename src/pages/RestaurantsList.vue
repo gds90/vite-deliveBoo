@@ -111,10 +111,10 @@ export default {
             </div>
             
             <div class="restaurants my-4">
-                <div v-if="filteredRestaurants.length === 0" class="text-center align-items-center">
+                <div v-if="filteredRestaurants.length === 0" class="text-center">
                     <p class="text-white fs-5">Nessun ristorante disponibile le tipologie scelte.</p>
                 </div>
-                <div v-else class="container-fluid ps-5 d-flex justify-content-center overflow-auto rest">
+                <div v-else class="container-fluid ps-5 d-flex overflow-auto rest">
                     <AppRestaurantCard v-for="restaurant, index in filteredRestaurants" :key="index" :restaurant="restaurant"/>
                 </div>
             </div>
