@@ -73,14 +73,14 @@ export default {
                 <div class="col-12 restaurant_name mb-4">
                     <h1 class="font-1 text-white">{{ restaurant.name }}</h1>
                 </div>
-                <div class="col-9">
+                <div class="col-12">
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col-4">
                             <div class="restaurant_image">
-                                <img :src="getUrlImage()" :alt="restaurant.name" id="detail-img" class="w-100 rounded mb-3 shadow"/>
+                                <img :src="getUrlImage()" :alt="restaurant.name" id="detail-img" class="w-100 rounded shadow"/>
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-8">
                             <div class="restaurant_info text-start">
                                 <p><i class="fa-solid fa-location-dot me-2"></i>{{ restaurant.address }}</p>
                                 <template v-for="(type, index) in restaurant.types" :key="index">
@@ -95,35 +95,37 @@ export default {
 </div>
 </div>
 </div>
-<div class="cart col-3 bg-secondary rounded">
-    QUI CI ANDRÀ IL RIEPILOGO DEL CARRELLO
-</div>
-</div>
 
-<!-- Piatti del ristorante -->
+</div>
+<hr class="my-5">
+<!-- Piatti del ristorante e carrello -->
 <div class="row">
-    <div class="col-12 text-white my-5 dishes">
+    <div class="col-8 text-white dishes pe-5">
         <h2 class="fw-bold">Menù del ristorante</h2>
-        <hr>
+
         <ul class="list-unstyled ">
-            <li v-for="(dish, index) in restaurant.dishes" :key="index">
-                <div class="row m-4">
+            <li v-for="(dish, index) in restaurant.dishes" :key="index" class="bg-body-secondary rounded-4">
+                <div class="row my-4">
                     <div class="col-10 d-flex">
-                        <div class="dish_image  ">
+                        <div class="dish_image d-flex align-items-center justify-content-center">
                             <img :src="getDishImage(dish)" class="rounded-4" />
                         </div>
-                        <div class="ms-4">
+                        <div class="dish_infos ms-4 mt-3">
                             <h3 class="fw-bold ">{{ dish.name }}</h3>
                             <p>{{ dish.price }}€</p>
                             <p>{{ dish.description }}</p>
                         </div>
                     </div>
-                    <div class="col-2">
+                    <div class="col-2 mt-3">
                         QUI ANDRANNO I TASTI PER AGGIUNTA IN CARRELLO
                     </div>
                 </div>
             </li>
         </ul>
+    </div>
+
+    <div class="cart col-4 bg-secondary rounded">
+        QUI CI ANDRÀ IL RIEPILOGO DEL CARRELLO
     </div>
 
 </div>
@@ -160,7 +162,12 @@ export default {
 
     img {
         width: 100%;
-        object-fit: cover;
+        object-fit: contain;
+        object-position: center;
     }
+}
+
+.dish_infos {
+    color: $secondary_color;
 }
 </style>
