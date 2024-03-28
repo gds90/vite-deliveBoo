@@ -31,7 +31,7 @@ export default {
             <div class="card-body">
                 <h5 class="card-title">{{ restaurant.name }}</h5>
                 <p class="card-text">{{ restaurant.address }}</p>
-                <a href="#" class="btn btn-light">Ordina</a>
+                <a href="#" class="btn btn-light w-100 ">Ordina</a>
             </div>
         </div>
     </div>
