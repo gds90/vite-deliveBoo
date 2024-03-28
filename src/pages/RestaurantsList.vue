@@ -20,7 +20,7 @@ export default {
             restaurants: [],
             selectedTypes: [],
             types: [],
-            filteredRestaurants: [],
+            // filteredRestaurants: [],
             currentPage: 1,
             lastPage: null,
             success: false
@@ -32,21 +32,17 @@ export default {
     },
     methods: {
         // chiamata API che recupera i ristoranti
-        getRestaurants(page_num) {
-            axios.get(`${this.store.baseUrl}/api/restaurant`, {
-                params: {
-                    page: page_num
-                }
-            }).then((response) => {
+        getRestaurants() {
+            axios.get(`${this.store.baseUrl}/api/restaurant`).then((response) => {
                 setTimeout(() => {
-                    this.restaurants = response.data.results.data;
-                    this.currentPage = response.data.results.current_page;
-                    this.lastPage = response.data.results.last_page;
+                    this.restaurants = response.data.results;
+                    // this.currentPage = response.data.results.current_page;
+                    // this.lastPage = response.data.results.last_page;
                     this.success = response.data.success;
                 }, 1000);
                 this.success = false;
             })
-
+            console.log(this.restaurants);
         },
         getTypes() {
             axios.get(`${this.store.baseUrl}/api/type`
