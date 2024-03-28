@@ -124,14 +124,50 @@ export default {
         </ul>
     </div>
 
-    <div class="cart col-4 bg-secondary rounded">
-        <ul>
-            <li v-for="(cartItem, index) in store.cart.items" :key="index">
-                {{cartItem.name}}
-                <i class="btn btn-lg fas fa-xmark" @click="store.removeFromCart(index)"></i>
-            </li>
-        </ul>
-        <span id="error" class="text-danger"></span>
+
+    <div class="col-4">
+
+        <!-- Carrello -->
+        <div class="cart bg-white rounded h-50">
+            <div v-if="store.cart.items.length === 0" class="text-center p-3">
+                <span>Non ci sono articoli nel carrello!</span>
+
+            </div>
+
+            <table class="w-100 text-center" v-if="store.cart.items.length > 0">
+                <thead class="p-3 border-bottom">
+                    <tr>
+                        <th colspan="2">Articolo</th>
+                        <th>Quantità</th>
+                        <th>Prezzo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(cartItem, index) in store.cart.items" :key="index" class="p-5">
+
+
+                        <td colspan="2">
+                            <img :src="getDishImage(cartItem.cover_image)" class="rounded-4" />
+                            {{cartItem.name}}
+                        </td>
+                        <td>{{cartItem.quantity}}</td>
+                        <td>&euro; {{cartItem.price * cartItem.quantity}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- <ul class="list-unstyled">
+                <li v-for="(cartItem, index) in store.cart.items" :key="index">
+                    {{cartItem.name}}
+                    <i class="btn btn-lg fas fa-xmark" @click="store.removeFromCart(index)"></i>
+                </li>
+            </ul> -->
+            <span id="error" class="text-danger"></span>
+        </div>
+
+        <!-- Bottoni -->
+        <div class="cart-btn mt-5">
+            <button class="btn w-100 btn-warning" @click="store.clearCart()">Svuota il Carrello</button>
+        </div>
     </div>
 
 </div>
@@ -175,5 +211,22 @@ export default {
 
 .dish_infos {
     color: $secondary_color;
+}
+
+.cart {
+    border: 1px solid $secondary_color;
+
+    table tr {
+        border-bottom: 1px solid gray;
+    }
+
+    table tr:last-child {
+        border: none;
+    }
+
+    table img {
+        width: 35px;
+        height: auto;
+    }
 }
 </style>
