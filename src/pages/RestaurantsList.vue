@@ -20,7 +20,6 @@ export default {
             restaurants: [],
             selectedTypes: [],
             types: [],
-            // filteredRestaurants: [],
             currentPage: 1,
             lastPage: null,
             success: false
@@ -36,13 +35,10 @@ export default {
             axios.get(`${this.store.baseUrl}/api/restaurant`).then((response) => {
                 setTimeout(() => {
                     this.restaurants = response.data.results;
-                    // this.currentPage = response.data.results.current_page;
-                    // this.lastPage = response.data.results.last_page;
                     this.success = response.data.success;
                 }, 1000);
                 this.success = false;
             })
-            console.log(this.restaurants);
         },
         getTypes() {
             axios.get(`${this.store.baseUrl}/api/type`
