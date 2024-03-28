@@ -4,77 +4,75 @@ export default {
 }
 </script>
 <template lang="">
-    <div>
-        <span class="loader"></span>
-    </div>
+    <span class="loader"></span>
 </template>
 <style lang="scss">
 .loader {
-    display: block;
-    position: relative;
-    height: 32px;
-    width: 150px;
-    box-sizing: border-box;
-    overflow: hidden;
-    border: 2px solid #FFF;
-    border-radius: 20px;
-}
-
-.loader:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 2px;
-    width: 24px;
-    height: 24px;
+    color: #fff;
+    font-size: 10px;
+    width: 1em;
+    height: 1em;
     border-radius: 50%;
-    background: #FF3D00;
-    animation: ballbns 3s ease-in-out infinite;
+    position: relative;
+    text-indent: -9999em;
+    animation: mulShdSpin 1.3s infinite linear;
+    transform: translateZ(0);
 }
 
-@keyframes ballbns {
-    0% {
-        left: 0;
-        transform: translateX(0%);
-        box-shadow:
-            -5px 0 0 -1px rgba(255, 61, 0, 0.9),
-            -10px 0 0 -2px rgba(255, 61, 0, 0.8),
-            -15px 0 0 -4px rgba(255, 61, 0, 0.6),
-            -20px 0 0 -6px rgba(255, 61, 0, 0.4),
-            -25px 0 0 -8px rgba(255, 61, 0, 0.2);
-    }
+@keyframes mulShdSpin {
 
-    49% {
-        left: 100%;
-        transform: translateX(-100%);
-        box-shadow:
-            -5px 0 0 -1px rgba(255, 61, 0, 0.9),
-            -10px 0 0 -2px rgba(255, 61, 0, 0.8),
-            -15px 0 0 -4px rgba(255, 61, 0, 0.6),
-            -20px 0 0 -6px rgba(255, 61, 0, 0.4),
-            -25px 0 0 -8px rgba(255, 61, 0, 0.2);
-    }
-
-    51% {
-        left: 100%;
-        transform: translateX(-100%);
-        box-shadow:
-            5px 0 0 -1px rgba(255, 61, 0, 0.9),
-            10px 0 0 -2px rgba(255, 61, 0, 0.8),
-            15px 0 0 -4px rgba(255, 61, 0, 0.6),
-            20px 0 0 -6px rgba(255, 61, 0, 0.4),
-            25px 0 0 -8px rgba(255, 61, 0, 0.2);
-    }
-
+    0%,
     100% {
-        left: 0;
-        transform: translateX(0%);
-        box-shadow:
-            5px 0 0 -1px rgba(255, 61, 0, 0.9),
-            10px 0 0 -2px rgba(255, 61, 0, 0.8),
-            15px 0 0 -4px rgba(255, 61, 0, 0.6),
-            20px 0 0 -6px rgba(255, 61, 0, 0.4),
-            25px 0 0 -8px rgba(255, 61, 0, 0.2);
+        box-shadow: 0 -3em 0 0.2em,
+            2em -2em 0 0em, 3em 0 0 -1em,
+            2em 2em 0 -1em, 0 3em 0 -1em,
+            -2em 2em 0 -1em, -3em 0 0 -1em,
+            -2em -2em 0 0;
+    }
+
+    12.5% {
+        box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em,
+            3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em,
+            -2em 2em 0 -1em, -3em 0 0 -1em,
+            -2em -2em 0 -1em;
+    }
+
+    25% {
+        box-shadow: 0 -3em 0 -0.5em,
+            2em -2em 0 0, 3em 0 0 0.2em,
+            2em 2em 0 0, 0 3em 0 -1em,
+            -2em 2em 0 -1em, -3em 0 0 -1em,
+            -2em -2em 0 -1em;
+    }
+
+    37.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
+            3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em,
+            -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    }
+
+    50% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
+            3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em,
+            -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    }
+
+    62.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
+            3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0,
+            -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+    }
+
+    75% {
+        box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em,
+            3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em,
+            -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+    }
+
+    87.5% {
+        box-shadow: 0em -3em 0 0, 2em -2em 0 -1em,
+            3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em,
+            -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
     }
 }
 </style>
