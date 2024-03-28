@@ -88,7 +88,7 @@ export default {
          <!-- Types section -->
         <div v-else>
             <div class="container-fluid my-5 pt-2">
-                <div class="row m-5">
+                <div class="row mt-5">
                     <div class="col-12 text-center text-white font-1 m-auto">
                         <h2 class="mt-5">CERCA PER TIPOLOGIA</h2>
                     </div>
@@ -109,9 +109,12 @@ export default {
                     </div>
                 </div>
             </div>
-        
+            
             <div class="restaurants my-4">
-                <div class="container-fluid d-flex gap-2 justify-content-center overflow-auto rest">
+                <div v-if="filteredRestaurants.length === 0" class="text-center align-items-center">
+                    <p class="text-white fs-5">Nessun ristorante disponibile le tipologie scelte.</p>
+                </div>
+                <div v-else class="container-fluid ps-5 d-flex justify-content-center overflow-auto rest">
                     <AppRestaurantCard v-for="restaurant, index in filteredRestaurants" :key="index" :restaurant="restaurant"/>
                 </div>
             </div>

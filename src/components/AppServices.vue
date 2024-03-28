@@ -48,7 +48,7 @@ export default {
 
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .card {
     --background: linear-gradient(to left, #fff 0%, #f5c344 100%);
     height: 254px;
