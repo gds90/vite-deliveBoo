@@ -116,8 +116,8 @@ export default {
                             <p>{{ dish.description }}</p>
                         </div>
                     </div>
-                    <div class="col-2 mt-3">
-                        QUI ANDRANNO I TASTI PER AGGIUNTA IN CARRELLO
+                    <div class="col-2 mt-3 fs-1">
+                        <i class="fas fa-plus btn btn-lg" @click="store.addToCart(dish)"></i>
                     </div>
                 </div>
             </li>
@@ -125,7 +125,12 @@ export default {
     </div>
 
     <div class="cart col-4 bg-secondary rounded">
-        QUI CI ANDRÀ IL RIEPILOGO DEL CARRELLO
+        <ul>
+            <li v-for="(cartItem, index) in store.cart.items" :key="index">
+                {{cartItem.name}}
+                <i class="btn btn-lg fas fa-xmark" @click="store.removeFromCart(index)"></i>
+            </li>
+        </ul>
     </div>
 
 </div>
