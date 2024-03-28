@@ -17,10 +17,9 @@ export default {
 }
 </script>
 <template>
-    <div class="type-container text-center me-5">
-        <div class="image-button" @click="toggleHighlight">
-            <img :class="{ 'highlighted': isHighlighted }" class="rounded-image"
-                :src="`/img/type-image/${type.slug}.jpeg`">
+    <div class="type-container text-center me-5" @click="toggleHighlight">
+        <div class="image-button rounded-image">
+            <img :class="{ 'highlighted': isHighlighted }" :src="`/img/type-image/${type.slug}.jpeg`">
         </div>
 
         <div class="text-white mt-2 fw-bold ">
@@ -29,6 +28,8 @@ export default {
     </div>
 </template>
 <style lang="scss">
+@use '../styles/partials/variables' as *;
+
 .rounded-image {
     position: relative;
     width: 140px; // Larghezza del contenitore circolare
@@ -49,11 +50,12 @@ export default {
 }
 
 .rounded-image.highlighted {
-    border: 2px solid rgb(245, 195, 68); // Cambia il colore del bordo quando l'immagine è evidenziata
+    border: 5px solid $secondary_color; // Cambia il colore del bordo quando l'immagine è evidenziata
 }
 
 .type-container {
     display: inline-block;
+    cursor: pointer;
 }
 
 .text-dark {
