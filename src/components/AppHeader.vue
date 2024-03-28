@@ -40,7 +40,7 @@ export default {
                                 <i class="fa-solid fa-cart-arrow-down"></i>
                             </li>
                             <li class="user ms-3">
-                                <i class="fa-regular fa-user"></i>
+                                <a href="http://127.0.0.1:8000/login" class="text-reset"><i class="fa-regular fa-user"></i></a>
                             </li>
                         </ul>
 
