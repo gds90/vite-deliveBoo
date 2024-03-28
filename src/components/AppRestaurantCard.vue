@@ -23,7 +23,7 @@ export default {
 </script>
 
 <template>
-    <div class="col-md-6 col-lg-4 col-xxl-3 my-4 mx-auto">
+    <div class="col-md-6 col-lg-4 col-xxl-3 my-4">
         <div class="card h-100 shadow" style="width: 18rem;">
             <div class="my_image_card">
                 <img class="rounded-top-4" :src="getUrlImage()" :alt="restaurant.name">

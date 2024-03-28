@@ -89,14 +89,14 @@ export default {
         <div v-else>
             <div class="container-fluid my-5 pt-2">
                 <div class="row m-5">
-                    <div class="col-12 text-center text-white font-1 m-5">
+                    <div class="col-12 text-center text-white font-1 m-auto">
                         <h2 class="mt-5">CERCA PER TIPOLOGIA</h2>
                     </div>
                 </div>
             </div>
         
             <div class="types my-4">
-                <div class="container-fluid d-flex justify-content-between overflow-auto">
+                <div class="container-fluid d-flex justify-content-between overflow-auto types">
                     <AppTypeCard v-for="type, index in types" :key="index" :type="type" @click="toggleType(type)" class="mb-4"/>
                 </div>
             </div>
@@ -111,7 +111,7 @@ export default {
             </div>
         
             <div class="restaurants my-4">
-                <div class="container-fluid d-flex justify-content-between overflow-auto">
+                <div class="container-fluid d-flex gap-2 justify-content-center overflow-auto rest">
                     <AppRestaurantCard v-for="restaurant, index in filteredRestaurants" :key="index" :restaurant="restaurant"/>
                 </div>
             </div>
@@ -122,6 +122,32 @@ export default {
 main {
     background: rgb(28, 48, 93);
     background: linear-gradient(0deg, rgba(28, 48, 93, 1) 0%, rgba(245, 195, 68, 1) 62%);
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .types::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .types {
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none;
+        /* Firefox */
+    }
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .rest::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .rest {
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none;
+        /* Firefox */
+    }
 
 }
 </style>
