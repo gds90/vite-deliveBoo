@@ -147,7 +147,7 @@ export default {
 
 
                         <td colspan="2">
-                            <img :src="getDishImage(cartItem.cover_image)" class="rounded-4" />
+                            <i class="btn btn-lg fas fa-xmark" @click="store.removeFromCart(index)"></i>
                             {{cartItem.name}}
                         </td>
                         <td>{{cartItem.quantity}}</td>
