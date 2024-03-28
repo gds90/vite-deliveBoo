@@ -43,7 +43,7 @@ export default {
                     this.currentPage = response.data.results.current_page;
                     this.lastPage = response.data.results.last_page;
                     this.success = response.data.success;
-                }, 500);
+                }, 1000);
                 this.success = false;
             })
 
@@ -86,11 +86,11 @@ export default {
 </script>
 <template lang="">
     <main class="pt-2">
-        <!-- <div v-if="!success" class="centered-loader">
+        <div v-if="!success" class="centered-loader">
             <AppLoader />
-        </div> -->
+        </div>
          <!-- Types section -->
-        <div>
+        <div v-else>
             <div class="container-fluid my-5 pt-2">
                 <div class="row m-5">
                     <div class="col-12 text-center text-white font-1 m-5">
