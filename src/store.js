@@ -17,16 +17,18 @@ export const store = reactive({
         // }
     ],
     cart: {
-        items: JSON.parse(localStorage.getItem('cartItems')) || []
+        items: JSON.parse(localStorage.getItem('cartItems')) || [],
+        restaurantId: null
     },
     addToCart(item, restId) {
-        if (this.cart.items.length === 0 || this.cart.items.every(item => item.id === restId)) {
+        if (this.cart.items.length === 0 || this.cart.restaurantId === null || this.cart.restaurantId === restId) {
             const existingItemIndex = this.cart.items.findIndex(i => i.id === item.id);
             if (existingItemIndex !== -1) {
                 this.cart.items[existingItemIndex].quantity++;
             } else {
                 this.cart.items.push({ ...item, quantity: 1 });
             }
+            this.cart.restaurantId = restId;
             localStorage.setItem('cartItems', JSON.stringify(this.cart.items));
         } else {
             let error = document.getElementById('error');
@@ -36,6 +38,7 @@ export const store = reactive({
             }, 3000);
         }
     },
+
     removeFromCart(index) {
         this.cart.items.splice(index, 1);
         localStorage.setItem('cartItems', JSON.stringify(this.cart.items));
