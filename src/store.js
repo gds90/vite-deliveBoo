@@ -19,14 +19,22 @@ export const store = reactive({
     cart: {
         items: JSON.parse(localStorage.getItem('cartItems')) || []
     },
-    addToCart(item) {
+    addToCart(item, restId) {
         const existingItemIndex = this.cart.items.findIndex(i => i.id === item.id);
-        if (existingItemIndex !== -1) {
-            this.cart.items[existingItemIndex].quantity++;
+        if (this.cart.items.some(item => item.id === restId)) {
+            if (existingItemIndex !== -1) {
+                this.cart.items[existingItemIndex].quantity++;
+            } else {
+                this.cart.items.push({ ...item, quantity: 1 });
+            }
+            localStorage.setItem('cartItems', JSON.stringify(this.cart.items));
         } else {
-            this.cart.items.push({ ...item, quantity: 1 });
+            let error = document.getElementById('error');
+            error.innerHTML = "Puoi ordinare soltanto da un ristorante alla volta";
+            setTimeout(() => {
+                error.innerHTML = '';
+            }, 3000);
         }
-        localStorage.setItem('cartItems', JSON.stringify(this.cart.items));
     },
     removeFromCart(index) {
         this.cart.items.splice(index, 1);

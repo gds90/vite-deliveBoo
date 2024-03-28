@@ -117,7 +117,7 @@ export default {
                         </div>
                     </div>
                     <div class="col-2 mt-3 fs-1">
-                        <i class="fas fa-plus btn btn-lg" @click="store.addToCart(dish)"></i>
+                        <i class="fas fa-plus btn btn-lg" @click="store.addToCart(dish, dish.restaurant_id)"></i>
                     </div>
                 </div>
             </li>
@@ -131,6 +131,7 @@ export default {
                 <i class="btn btn-lg fas fa-xmark" @click="store.removeFromCart(index)"></i>
             </li>
         </ul>
+        <span id="error" class="text-danger"></span>
     </div>
 
 </div>
