@@ -20,15 +20,11 @@ export default {
     },
     methods: {
         getRestaurantData() {
-            console.log("Slug:", this.$route.params.slug);
-
             axios.get(`${this.store.baseUrl}/api/restaurant/${this.$route.params.slug}`).then((response) => {
                 setTimeout(() => {
                     if (response.data.success) {
-                        console.log(this.response);
                         this.restaurant = response.data.restaurant;
                         this.success = response.data.success;
-                        console.log(this.restaurant);
                     }
                     else {
                         this.$router.push({ name: 'not-found' })
@@ -82,7 +78,7 @@ export default {
                         </div>
                         <div class="col-7">
                             <div class="restaurant_info text-start">
-                                <p><i class="fa-solid fa-location-dot me-2"></i>{{ restaurant.address }}</p>
+                                <p class="fs-3 fw-bold"><i class="fa-solid fa-location-dot me-2 "></i>{{ restaurant.address }}</p>
                                 <template v-for="(type, index) in restaurant.types" :key="index">
                                     <span v-if="index !== restaurant.types.length - 1">
                                         {{ type.name }} •
@@ -158,6 +154,7 @@ export default {
     <div class="col-4">
         <!-- Carrello -->
         <div class="sticky_top">
+
             <div class="cart  bg-white rounded-4 shadow bg-body-secondary px-3">
                 <h2 class="text-center fw-bold py-3">Il tuo carrello</h2>
                 <div v-if="store.cart.items.length === 0" class="text-center p-3">
@@ -187,17 +184,18 @@ export default {
                     </tbody>
                 </table>
                 <!-- <ul class="list-unstyled">
-                    <li v-for="(cartItem, index) in store.cart.items" :key="index">
-                        {{cartItem.name}}
-                        <i class="btn btn-lg fas fa-xmark" @click="store.clearItemFromCart(index)"></i>
-                    </li>
-                </ul> -->
+                        <li v-for="(cartItem, index) in store.cart.items" :key="index">
+                            {{cartItem.name}}
+                            <i class="btn btn-lg fas fa-xmark" @click="store.clearItemFromCart(index)"></i>
+                        </li>
+                    </ul> -->
                 <p id="error" class="text-danger text-center py-2"></p>
                 <!-- Bottoni -->
             </div>
             <div class="cart_btn m-5 ">
                 <button class="btn w-100 btn-warning  " @click="store.clearCart()">Svuota il Carrello</button>
             </div>
+
         </div>
     </div>
 
@@ -228,119 +226,130 @@ export default {
     .restaurant_image {
         width: 100%;
     }
+
+    .restaurant_info {
+        color: $secondary_color;
+    }
 }
 
-.dish_container {
-
-    .dish_image {
-        width: 200px;
-
-        img {
-            width: 100%;
-            object-fit: contain;
-            object-position: center;
-        }
-    }
-
-    .dish_infos {
+.dishes {
+    h2 {
         color: $secondary_color;
-
     }
 
-    // aggiungi / rimuovi piatto
-    .CartBtn {
-        width: 100%;
-        height: 40px;
-        border-radius: 12px;
-        border: none;
-        background-color: rgb(255, 208, 0);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition-duration: .5s;
-        overflow: hidden;
-        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.103);
-        position: relative;
-    }
+    .dish_container {
 
-    .CartBtnRemove {
-        width: 100%;
-        height: 40px;
-        border-radius: 12px;
-        border: none;
-        background-color: rgb(211, 58, 48);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition-duration: .5s;
-        overflow: hidden;
-        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.103);
-        position: relative;
-    }
+        .dish_image {
+            width: 200px;
 
-    .IconContainer {
-        position: absolute;
-        left: -50px;
-        width: 30px;
-        height: 30px;
-        background-color: transparent;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        z-index: 2;
-        transition-duration: .5s;
-
-        .cart_icon_add {
-            font-size: 12px;
-            padding-right: 5px;
+            img {
+                width: 100%;
+                object-fit: contain;
+                object-position: center;
+            }
         }
+
+        .dish_infos {
+            color: $secondary_color;
+
+        }
+
+        // aggiungi / rimuovi piatto
+        .CartBtn {
+            width: 100%;
+            height: 40px;
+            border-radius: 12px;
+            border: none;
+            background-color: rgb(255, 208, 0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition-duration: .5s;
+            overflow: hidden;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.103);
+            position: relative;
+        }
+
+        .CartBtnRemove {
+            width: 100%;
+            height: 40px;
+            border-radius: 12px;
+            border: none;
+            background-color: rgb(211, 58, 48);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition-duration: .5s;
+            overflow: hidden;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.103);
+            position: relative;
+        }
+
+        .IconContainer {
+            position: absolute;
+            left: -50px;
+            width: 30px;
+            height: 30px;
+            background-color: transparent;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            z-index: 2;
+            transition-duration: .5s;
+
+            .cart_icon_add {
+                font-size: 12px;
+                padding-right: 5px;
+            }
+        }
+
+        .icon {
+            border-radius: 1px;
+        }
+
+        .text {
+            height: 100%;
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgb(17, 17, 17);
+            z-index: 1;
+            transition-duration: .5s;
+            font-size: 12px;
+            font-weight: 600;
+            padding-top: 15px;
+
+        }
+
+        .CartBtn:hover .IconContainer,
+        .CartBtnRemove:hover .IconContainer {
+            transform: translateX(58px);
+            border-radius: 40px;
+            transition-duration: .5s;
+        }
+
+        .CartBtn:hover .text,
+        .CartBtnRemove:hover .text {
+            transform: translate(10px, 0px);
+            transition-duration: .5s;
+        }
+
+        .CartBtn:active,
+        .CartBtnRemove:active {
+            transform: scale(0.95);
+            transition-duration: .5s;
+        }
+
+
+
+
+
     }
-
-    .icon {
-        border-radius: 1px;
-    }
-
-    .text {
-        height: 100%;
-        width: fit-content;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: rgb(17, 17, 17);
-        z-index: 1;
-        transition-duration: .5s;
-        font-size: 12px;
-        font-weight: 600;
-        padding-top: 15px;
-
-    }
-
-    .CartBtn:hover .IconContainer,
-    .CartBtnRemove:hover .IconContainer {
-        transform: translateX(58px);
-        border-radius: 40px;
-        transition-duration: .5s;
-    }
-
-    .CartBtn:hover .text,
-    .CartBtnRemove:hover .text {
-        transform: translate(10px, 0px);
-        transition-duration: .5s;
-    }
-
-    .CartBtn:active,
-    .CartBtnRemove:active {
-        transform: scale(0.95);
-        transition-duration: .5s;
-    }
-
-
-
-
 }
 
 .cart {

@@ -1,10 +1,28 @@
 <script>
 import AppFooter from './components/AppFooter.vue';
 import AppHeader from './components/AppHeader.vue';
+import { store } from './store.js';
 export default {
   components: {
     AppHeader,
     AppFooter
+  },
+  data() {
+    return {
+      store
+    }
+  },
+  mounted() {
+    // controllo se ci sono dati nel localStorage per il carrello
+    const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+    if (cartItems) {
+      // aggiorna lo store con i dati del carrello dal localStorage
+      this.store.cart.items = cartItems;
+
+      if (cartItems.length > 0) {
+        this.store.cart.restaurantId = cartItems[0].restaurant_id;
+      }
+    }
   }
 }
 </script>
