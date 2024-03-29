@@ -38,8 +38,19 @@ export const store = reactive({
             }, 3000);
         }
     },
+    removeFromCart(item) {
+        const existingItemIndex = this.cart.items.findIndex(i => i.id === item.id);
+        if (existingItemIndex !== -1) {
+            if (this.cart.items[existingItemIndex].quantity > 1) {
+                this.cart.items[existingItemIndex].quantity--;
+            } else {
+                this.cart.items.splice(existingItemIndex, 1);
+            }
+            localStorage.setItem('cartItems', JSON.stringify(this.cart.items));
+        }
+    },
 
-    removeFromCart(index) {
+    clearItemFromCart(index) {
         this.cart.items.splice(index, 1);
         localStorage.setItem('cartItems', JSON.stringify(this.cart.items));
     },

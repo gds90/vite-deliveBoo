@@ -36,7 +36,7 @@ export default {
                                     {{item.label}}
                                 </router-link>
                             </li>
-                            <li class="cart ms-2">
+                            <li class="cart_icon ms-2">
                                 <i class="fa-solid fa-cart-arrow-down"></i>
                             </li>
                             <li class="user ms-3">
@@ -81,7 +81,7 @@ header {
         }
     }
 
-    .cart,
+    .cart_icon,
     .user {
         color: $secondary_color;
         font-weight: 600;
