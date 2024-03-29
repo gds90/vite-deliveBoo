@@ -6,6 +6,15 @@ export default {
         return {
             store
         }
+    },
+    methods: {
+        getTotalItemsInCart() {
+            let totalItems = 0;
+            for (const item of this.store.cart.items) {
+                totalItems += item.quantity;
+            }
+            return totalItems;
+        }
     }
 }
 </script>
@@ -36,8 +45,11 @@ export default {
                                     {{item.label}}
                                 </router-link>
                             </li>
-                            <li class="cart_icon ms-2">
+                            <li class="cart_icon ms-2 position-relative ">
                                 <i class="fa-solid fa-cart-arrow-down"></i>
+                                <transition name="fade">
+                                    <span v-if="getTotalItemsInCart() > 0" class="badge bg-danger rounded-circle position-absolute top-0 text-center">{{ getTotalItemsInCart() }}</span>
+                                </transition>
                             </li>
                             <li class="user ms-3">
                                 <a href="http://127.0.0.1:8000/login" class="text-reset"><i class="fa-regular fa-user"></i></a>
@@ -93,6 +105,34 @@ header {
             transform: scale(1.05);
 
         }
+    }
+
+    /* Stili per il badge */
+    .cart-badge {
+        position: relative;
+        display: inline-block;
+
+    }
+
+    .fade-enter-active,
+    .fade-leave-active {
+        transition: opacity 0.5s;
+    }
+
+    .fade-enter,
+    .fade-leave-to {
+        opacity: 0;
+    }
+
+    .badge {
+        position: absolute;
+        top: -12px;
+        right: -10px;
+        background-color: red;
+        color: white;
+        border-radius: 50%;
+        padding: 4px 6px;
+        font-size: 10px;
     }
 }
 </style>
