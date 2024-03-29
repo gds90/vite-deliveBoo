@@ -171,15 +171,17 @@ export default {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(cartItem, index) in store.cart.items" :key="index" class="p-5">
-
-
+                        <tr v-for="(cartItem, index) in store.cart.items" :key="index">
                             <td colspan="2" class="text-start ps-1">
                                 <i class="btn btn-lg fas fa-xmark" @click="store.clearItemFromCart(index)"></i>
                                 {{cartItem.name}}
                             </td>
                             <td>{{cartItem.quantity}}</td>
-                            <td>&euro; {{cartItem.price * cartItem.quantity}}</td>
+                            <td>&euro; {{ (cartItem.price * cartItem.quantity).toFixed(2) }}</td>
+                        </tr>
+                        <tr>
+                            <th colspan="2">Totale</th>
+                            <td><b>&euro; {{ store.totalPrice }}</b></td>
                         </tr>
                     </tbody>
                 </table>

@@ -23,6 +23,15 @@ export default {
         this.store.cart.restaurantId = cartItems[0].restaurant_id;
       }
     }
+
+    this.calculateTotalPrice();
+  },
+  methods: {
+    calculateTotalPrice() {
+      // Implementa la logica per calcolare il totale qui
+      // Ad esempio:
+      store.calculateTotalPrice();
+    }
   }
 }
 </script>
