@@ -34,7 +34,7 @@ export const store = reactive({
             this.cart.restaurantId = restId;
             if (!this.cart.restaurantSlug) {
                 this.cart.restaurantSlug = restSlug;
-                localStorage.setItem('restaurantSlug', restSlug); // Salva restaurantSlug nel localStorage
+                localStorage.setItem('restaurantSlug', restSlug);
             }
             localStorage.setItem('cartItems', JSON.stringify(this.cart.items));
             this.calculateTotalPrice();
@@ -60,16 +60,27 @@ export const store = reactive({
             localStorage.setItem('cartItems', JSON.stringify(this.cart.items));
             this.calculateTotalPrice();
         }
+        if (this.cart.items.length === 0) {
+            localStorage.removeItem('restaurantSlug');
+            this.cart.restaurantSlug = null;
+        }
     },
 
     clearItemFromCart(index) {
         this.cart.items.splice(index, 1);
         localStorage.setItem('cartItems', JSON.stringify(this.cart.items));
         this.calculateTotalPrice();
+        if (this.cart.items.length === 0) {
+            localStorage.removeItem('restaurantSlug');
+            this.cart.restaurantSlug = null;
+
+        }
     },
     clearCart() {
         this.cart.items = [];
         localStorage.removeItem('cartItems');
+        localStorage.removeItem('restaurantSlug');
+        this.cart.restaurantSlug = null;
         this.cart.totalPrice = 0;
     },
     calculateTotalPrice() {
