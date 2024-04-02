@@ -15,7 +15,7 @@ export default {
     },
 }
 </script>
-<template lang="">
+<template lang="" >
     <AppJumbotron/>
     <!-- Order button -->
     <div class="container order_button mb-5">
@@ -31,7 +31,7 @@ export default {
     <AppServices/>
 
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
 @use '../styles/partials/variables' as *;
 
 button {
