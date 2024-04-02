@@ -18,7 +18,7 @@ export default {
 </script>
 <template>
     <div class="type-container text-center me-5" @click="toggleHighlight">
-        <div class="image-button rounded-image">
+        <div class="image-button rounded-image shadow ">
             <img :class="{ 'highlighted': isHighlighted }" :src="`/img/type-image/${type.slug}.jpeg`">
         </div>
 

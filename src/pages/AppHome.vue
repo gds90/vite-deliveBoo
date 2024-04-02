@@ -26,7 +26,7 @@ export default {
             </div>
         </div>
     </div>
-    <!-- <AppBecomePartner /> -->
+    <AppBecomePartner />
     <!-- Services section -->
     <AppServices/>
 

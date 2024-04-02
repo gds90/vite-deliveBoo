@@ -96,25 +96,26 @@ export default {
 <hr class="my-5">
 <!-- Piatti del ristorante -->
 <div class="row">
-    <div class="col-8 text-white dishes pe-5">
+    <div class="col-12 col-lg-8 text-white dishes pe-5">
         <h2 class="fw-bold">Menù del ristorante</h2>
 
         <ul class="list-unstyled ">
             <li v-for="(dish, index) in restaurant.dishes" :key="index"
-                class="bg-body-secondary rounded-4 shadow dish_container">
+                class="bg-body-secondary rounded-4 shadow dish_container opaque-left">
                 <div class="row my-4">
-                    <div class="col-10 d-flex">
-                        <div class="dish_image d-flex align-items-center justify-content-center">
-                            <img :src="getDishImage(dish)" class="rounded-4" />
+                    <div class="col-2">
+                        <div class="dish_image align-items-center justify-content-center">
+                            <img :src="getDishImage(dish)" class="rounded-4 w-100 h-100" />
                         </div>
-                        <div class="dish_infos ms-4 mt-3">
-                            <h3 class="fw-bold ">{{ dish.name }}</h3>
+                    </div>
+                    <div class="col-8 ">
+                        <div class="dish_infos ms-2 mt-3">
+                            <h3 class=" ">{{ dish.name }}</h3>
                             <p>{{ dish.price }}€</p>
                             <p>{{ dish.description }}</p>
                         </div>
                     </div>
-                    <div class="col-2 mt-3 fs-1 align-items-center p-0 pe-5">
-
+                    <div class="col-2 fs-1 pe-4">
                         <div>
                             <!-- <i class="fas fa-plus btn btn-lg" @click="store.addToCart(dish, dish.restaurant_id)"></i> -->
                             <button class="CartBtn my-2" @click="store.addToCart(dish, dish.restaurant_id)">
@@ -126,7 +127,7 @@ export default {
                                         </path>
                                     </svg>
                                 </span>
-                                <p class="text">Aggiungi</p>
+                                <p class="text fs-4">+</p>
                             </button>
                             <button class="CartBtnRemove" @click="store.removeFromCart(dish, dish.restaurant_id)">
                                 <span class="IconContainer">
@@ -137,7 +138,7 @@ export default {
                                         </path>
                                     </svg>
                                 </span>
-                                <p class="text">Rimuovi</p>
+                                <p class="text fs-4">-</p>
                             </button>
                         </div>
                         <!-- <div>
@@ -151,7 +152,7 @@ export default {
     </div>
 
 
-    <div class="col-4">
+    <div class="col-lg-4 d-none d-lg-block">
         <!-- Carrello -->
         <div class="sticky_top">
 
@@ -210,6 +211,12 @@ export default {
 <style lang="scss" scoped>
 @use '../styles/partials/variables' as *;
 
+.opaque-left {
+
+    backdrop-filter: blur(25px);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
 .back {
     color: $secondary_color;
 }
@@ -242,14 +249,19 @@ export default {
     .dish_container {
 
         .dish_image {
-            width: 200px;
+            width: 110%;
+            height: 200px;
 
             img {
-                width: 100%;
-                object-fit: contain;
+                width: auto;
+                height: auto;
+                max-width: 100%;
+                max-height: 100%;
+                object-fit: cover;
                 object-position: center;
             }
         }
+
 
         .dish_infos {
             color: $secondary_color;
