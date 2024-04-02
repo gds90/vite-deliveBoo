@@ -118,7 +118,8 @@ export default {
                     <div class="col-2 fs-1 pe-4">
                         <div>
                             <!-- <i class="fas fa-plus btn btn-lg" @click="store.addToCart(dish, dish.restaurant_id)"></i> -->
-                            <button class="CartBtn my-2" @click="store.addToCart(dish, dish.restaurant_id)">
+                            <button class="CartBtn my-2"
+                                @click="store.addToCart(dish, dish.restaurant_id, restaurant.slug)">
                                 <span class="IconContainer">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"
                                         fill="rgb(17, 17, 17)" class="cart_icon_add">
@@ -156,7 +157,7 @@ export default {
         <!-- Carrello -->
         <div class="sticky_top">
 
-            <div class="cart  bg-white rounded-4 shadow bg-body-secondary px-3">
+            <div class="cart  bg-white rounded-4 shadow bg-body-secondary p-3">
                 <h2 class="text-center fw-bold py-3">Il tuo carrello</h2>
                 <div v-if="store.cart.items.length === 0" class="text-center p-3">
                     <span>Non ci sono articoli nel carrello!</span>
@@ -192,9 +193,9 @@ export default {
                             <i class="btn btn-lg fas fa-xmark" @click="store.clearItemFromCart(index)"></i>
                         </li>
                     </ul> -->
-                <p id="error" class="text-danger text-center py-2"></p>
-                <!-- Bottoni -->
             </div>
+            <p id="error" class="text-danger text-center py-3"></p>
+            <!-- Bottoni -->
             <div class="cart_btn m-5 ">
                 <button class="btn w-100 btn-warning  " @click="store.clearCart()">Svuota il Carrello</button>
             </div>
@@ -210,6 +211,15 @@ export default {
 
 <style lang="scss" scoped>
 @use '../styles/partials/variables' as *;
+
+#error {
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+#error.error-show {
+    opacity: 1;
+}
 
 .opaque-left {
 
