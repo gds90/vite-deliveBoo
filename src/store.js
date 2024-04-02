@@ -40,7 +40,7 @@ export const store = reactive({
             this.calculateTotalPrice();
         } else {
             let error = document.getElementById('error');
-            error.innerHTML = `Puoi ordinare soltanto da un ristorante alla volta. Svuota il carrello o torna al <a href="http://localhost:5174/restaurants/${this.cart.restaurantSlug}">ristorante</a> in cui stavi ordinando.`;
+            error.innerHTML = `Puoi ordinare soltanto da un ristorante alla volta. Svuota il carrello o torna al <a class="text-decoration-none fw-semibold " href="http://localhost:5174/restaurants/${this.cart.restaurantSlug}">ristorante</a> in cui stavi ordinando.`;
             error.classList.add('error-show');
             setTimeout(() => {
                 error.innerHTML = '';
@@ -85,8 +85,12 @@ export const store = reactive({
     },
     calculateTotalPrice() {
         // calcola il totale sommando i prezzi di tutti gli articoli nel carrello
-        this.totalPrice = this.cart.items.reduce((total, cartItem) => {
+        const totalPrice = this.cart.items.reduce((total, cartItem) => {
             return total + (cartItem.price * cartItem.quantity);
         }, 0);
+
+        // Arrotonda il totale a due decimali e assegna il valore a this.totalPrice
+        this.totalPrice = Math.round(totalPrice * 100) / 100;
     }
+
 });

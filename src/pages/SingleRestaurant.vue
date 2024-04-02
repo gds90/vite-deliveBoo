@@ -178,8 +178,14 @@ export default {
                                 <i class="btn btn-lg fas fa-xmark" @click="store.clearItemFromCart(index)"></i>
                                 {{cartItem.name}}
                             </td>
-                            <td>{{cartItem.quantity}}</td>
-                            <td>&euro; {{ (cartItem.price * cartItem.quantity).toFixed(2) }}</td>
+                            <td><i class="btn btn-sm fas fa-minus" @click="store.removeFromCart(cartItem)">
+                                </i>
+                                {{cartItem.quantity}}
+                                <i class="btn btn-sm fas fa-plus"
+                                    @click="store.addToCart(cartItem, cartItem.restaurant_id, restaurant.slug)">
+                                </i>
+                            </td>
+                            <td>&euro;{{ (cartItem.price * cartItem.quantity).toFixed(2) }}</td>
                         </tr>
                         <tr>
                             <th colspan="2">Totale</th>
@@ -194,7 +200,8 @@ export default {
                         </li>
                     </ul> -->
             </div>
-            <p id="error" class="text-danger text-center py-3"></p>
+            <div id="error" class="text-danger text-center p-3 mt-4 rounded-4"></div>
+            <!-- <p id="error" class="text-danger text-center py-3"></p> -->
             <!-- Bottoni -->
             <div class="cart_btn m-5 ">
                 <button class="btn w-100 btn-warning  " @click="store.clearCart()">Svuota il Carrello</button>
@@ -215,6 +222,8 @@ export default {
 #error {
     opacity: 0;
     transition: opacity 1s;
+    backdrop-filter: blur(25px);
+    background-color: rgba(255, 255, 255, 0.08);
 }
 
 #error.error-show {
