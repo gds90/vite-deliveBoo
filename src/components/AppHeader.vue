@@ -4,16 +4,44 @@ export default {
     name: 'AppHeader',
     data() {
         return {
-            store
+            store,
+            cartVisible: false,
+            hoveringCart: false
         }
     },
     methods: {
+        pauseTimeout() {
+            if (this.cartVisible) {
+                clearTimeout(this.timeout);
+            }
+            this.hoveringCart = true;
+        },
+        // Al puntatore del mouse fuori dal cart_container
+        resumeTimeout() {
+            if (this.cartVisible) {
+                this.timeout = setTimeout(() => {
+                    this.cartVisible = false;
+                }, 1500);
+            }
+            this.hoveringCart = false;
+        },
         getTotalItemsInCart() {
             let totalItems = 0;
             for (const item of this.store.cart.items) {
                 totalItems += item.quantity;
             }
             return totalItems;
+        },
+        // visualizza  o nascondi il carrello
+        toggleCartVisibility() {
+            this.cartVisible = !this.cartVisible;
+            if (this.cartVisible && !this.hoveringCart) {
+                // Se il carrello è visibile e il mouse non è sopra di esso,
+                // avvia il timeout per nascondere il carrello
+                this.timeout = setTimeout(() => {
+                    this.cartVisible = false;
+                }, 1500);
+            }
         }
     }
 }
@@ -45,12 +73,60 @@ export default {
                                     {{item.label}}
                                 </router-link>
                             </li>
-                            <li class="cart_icon ms-2 position-relative ">
+                            <li class="cart_icon ms-2 position-relative" @click="toggleCartVisibility">
                                 <i class="fa-solid fa-cart-arrow-down"></i>
                                 <transition name="fade">
                                     <span v-if="getTotalItemsInCart() > 0" class="badge bg-danger rounded-circle position-absolute top-0 text-center">{{ getTotalItemsInCart() }}</span>
                                 </transition>
                             </li>
+                            <!-- Carrello -->
+                            <transition name="fade" >
+                                <div v-if="cartVisible" class="cart_container rounded-4 shadow" @mouseenter="pauseTimeout" @mouseleave="resumeTimeout"> 
+
+                                    <div class="cart p-3">
+                                        <h2 class="text-center fw-bold py-2">Il tuo carrello</h2>
+                                        <div v-if="store.cart.items.length === 0" class="text-center p-3">
+                                            <span>Non ci sono articoli nel carrello!</span>
+                        
+                                        </div>
+                        
+                                        <table class="w-100 text-center" v-if="store.cart.items.length > 0">
+                                            <thead class="border-bottom">
+                                                <tr class="">
+                                                    <th colspan="2" class="text-start">Articolo</th>
+                                                    <th>Quantità</th>
+                                                    <th>Prezzo</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="(cartItem, index) in store.cart.items" :key="index">
+                                                    <td colspan="2" class="text-start ps-1">
+                                                        <i class="btn btn-lg fas fa-xmark" @click="store.clearItemFromCart(index)"></i>
+                                                        {{cartItem.name}}
+                                                    </td>
+                                                    <td><i class="btn btn-sm fas fa-minus" @click="store.removeFromCart(cartItem)">
+                                                        </i>
+                                                        {{cartItem.quantity}}
+                                                        <i class="btn btn-sm fas fa-plus"
+                                                            @click="store.addToCart(cartItem, cartItem.restaurant_id)">
+                                                        </i>
+                                                    </td>
+                                                    <td>&euro;{{ (cartItem.price * cartItem.quantity).toFixed(2) }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="2">Totale</th>
+                                                    <td><b>&euro; {{ store.totalPrice }}</b></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- Bottoni -->
+                                    <div class="cart_btn m-5 ">
+                                        <button class="btn w-100 btn-warning  " @click="store.clearCart()">Svuota il Carrello</button>
+                                    </div>
+                                </div>
+                            </transition>
+                            
                             <li class="user ms-3">
                                 <a href="http://127.0.0.1:8000/login" class="text-reset"><i class="fa-regular fa-user"></i></a>
                             </li>
@@ -62,7 +138,7 @@ export default {
         </div>
     </header>
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
 @use '../styles/partials/variables' as *;
 
 header {
@@ -116,7 +192,7 @@ header {
 
     .fade-enter-active,
     .fade-leave-active {
-        transition: opacity 0.5s;
+        transition: opacity 1s;
     }
 
     .fade-enter,
@@ -133,6 +209,47 @@ header {
         border-radius: 50%;
         padding: 4px 6px;
         font-size: 10px;
+    }
+
+    .cart_container {
+        position: absolute;
+        top: calc(100% + 20px); // Posizione rispetto all'icona del carrello
+        right: 5%;
+        backdrop-filter: blur(50px);
+        background-color: rgba(255, 255, 255, 0.9);
+        z-index: 999;
+        font-size: 1rem;
+
+        .cart {
+
+            h2,
+            th {
+                color: $secondary_color;
+            }
+
+            // border: 1px solid $secondary_color;
+
+            table tr {
+                border-bottom: 1px solid gray;
+            }
+
+            table tr:last-child {
+                border: none;
+            }
+
+            table img {
+                width: 35px;
+                height: auto;
+            }
+
+        }
+
+        .cart_btn {
+            position: sticky;
+            top: 400px;
+            margin-top: 80px;
+        }
+
     }
 }
 </style>

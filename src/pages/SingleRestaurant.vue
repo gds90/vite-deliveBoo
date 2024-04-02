@@ -12,7 +12,15 @@ export default {
         return {
             store,
             restaurant: null,
-            success: false
+            success: false,
+            categoryIcons: {
+                Pizza: '/img/pizza-icon.png',
+                Pasta: '/img/pasta-icon.svg',
+                Burger: '/img/burger-icon.svg',
+                Pesce: '/img/fish-icon.svg',
+                Sushi: '/img/sushi-icon.svg',
+                Bevanda: '/img/paper-cup.svg'
+            }
         }
     },
     created() {
@@ -110,8 +118,14 @@ export default {
                     </div>
                     <div class="col-8 ">
                         <div class="dish_infos ms-2 mt-3">
-                            <h3 class=" ">{{ dish.name }}</h3>
+                            <div class="d-flex align-items-center">
+                                <h3 class=" ">{{ dish.name }} </h3>
+                                <img v-if="dish.category && categoryIcons[dish.category.name]"
+                                    :src="categoryIcons[dish.category.name]" alt="Icona categoria"
+                                    class="category-icon ms-2" />
+                            </div>
                             <p>{{ dish.price }}€</p>
+                            <p></p>
                             <p>{{ dish.description }}</p>
                         </div>
                     </div>
@@ -193,12 +207,7 @@ export default {
                         </tr>
                     </tbody>
                 </table>
-                <!-- <ul class="list-unstyled">
-                        <li v-for="(cartItem, index) in store.cart.items" :key="index">
-                            {{cartItem.name}}
-                            <i class="btn btn-lg fas fa-xmark" @click="store.clearItemFromCart(index)"></i>
-                        </li>
-                    </ul> -->
+
             </div>
             <div id="error" class="text-danger text-center p-3 mt-4 rounded-4"></div>
             <!-- <p id="error" class="text-danger text-center py-3"></p> -->
@@ -285,6 +294,14 @@ export default {
         .dish_infos {
             color: $secondary_color;
 
+            .category-icon {
+                width: 20px;
+                height: 20px;
+
+                img {
+                    width: 100%;
+                }
+            }
         }
 
         // aggiungi / rimuovi piatto
