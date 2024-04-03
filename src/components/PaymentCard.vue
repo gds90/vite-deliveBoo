@@ -14,8 +14,8 @@ export default {
             cardYear: "",
             cardCvv: "",
             minCardYear: new Date().getFullYear(),
-            amexCardMask: "#### ###### #####",
-            otherCardMask: "#### #### #### ####",
+            // amexCardMask: "#### ###### #####",
+            // otherCardMask: "#### #### #### ####",
             cardNumberTemp: "",
             isCardFlipped: false,
             focusElementStyle: null,
@@ -23,7 +23,6 @@ export default {
         };
     },
     mounted() {
-        this.cardNumberTemp = this.otherCardMask;
 
         document.getElementById("cardNumber").focus();
 
@@ -48,27 +47,9 @@ export default {
             if (number.match(re) != null) return 'troy'
 
             return "visa"; // default type
-        },
-        generateCardNumberMask() {
-            return this.getCardType === "amex" ? this.amexCardMask : this.otherCardMask;
-        },
-        minCardMonth() {
-            if (this.cardYear === this.minCardYear) return new Date().getMonth() + 1;
-            return 1;
-        }
-    },
-    watch: {
-        cardYear() {
-            if (this.cardMonth < this.minCardMonth) {
-                this.cardMonth = "";
-            }
         }
     },
     methods: {
-
-        flipCard(status) {
-            this.isCardFlipped = status;
-        },
         focusInput(e) {
             this.isInputFocused = true;
             let targetRef = e.target.dataset.ref;
@@ -89,12 +70,11 @@ export default {
             vm.isInputFocused = false;
         },
         loadCart() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            this.store.cart = cart;
-            console.log(cart);
+            const cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+            this.store.cart.items = cart;
         },
         getClientToken() {
-            axios.get('http://127.0.0.1:8000/api/braintree/client-token')
+            axios.get(`${this.store.baseUrl}/api/payment/token`)
                 .then(response => {
                     const clientToken = response.data.clientToken;
                     this.initializeBraintree(clientToken);
@@ -147,28 +127,39 @@ export default {
                         hostedFieldsInstance.tokenize((tokenizeErr, payload) => {
                             if (tokenizeErr) {
                                 console.error('Error tokenizing:', tokenizeErr);
+                                localStorage.orderErrorMessage = tokenizeErr.message;
                                 return;
                             }
                             this.loadCart();
                             this.processPayment(payload.nonce);
+
                         });
                     });
                 });
             });
         },
         processPayment(nonce) {
-            axios.post('http://127.0.0.1:8000/api/braintree/process-payment', {
+            axios.post(`${this.store.baseUrl}/api/payment/process`, {
                 paymentMethodNonce: nonce,
-                cart: this.store.cart
+                cart: this.store.cart.items,
+
             })
                 .then(response => {
-                    // Gestisci la risposta dal server dopo il pagamento
-                    console.log('Risposta dal server:', response.data);
-                    console.log(nonce);
+                    const responseString = response.data;
+                    const startIndex = responseString.indexOf('{');
+                    const jsonString = responseString.substring(startIndex);
+                    const responseObject = JSON.parse(jsonString);
+
+                    if (responseObject.success == true) {
+                        this.$router.push({ name: 'home' }); // Reindirizza alla pagina di conferma pagamento
+                    } else {
+                        this.$router.push({ name: 'home' }); // Reindirizza alla pagina di errore pagamento
+                    }
                 })
                 .catch(error => {
                     // Gestisci gli errori durante la richiesta al server
                     console.error('Errore durante il pagamento:', error);
+                    this.$router.push({ name: 'home' }); // Reindirizza alla pagina di errore pagamento
                 });
         }
     }
@@ -216,24 +207,30 @@ export default {
                                 </template>
 
                                 <template v-else>
-                                    <span v-for="(n, $index) in otherCardMask" :key="$index">
-                                        <transition name="slide-fade-up">
-                                            <div class="card-item__numberItem"
-                                                v-if="$index > 4 && $index < 15 && cardNumber.length > $index && n.trim() !== ''">
-                                                *</div>
-                                            <div class="card-item__numberItem" :class="{ '-active': n.trim() === '' }"
-                                                :key="$index" v-else-if="cardNumber.length > $index">
-                                                {{ cardNumber[$index] }}
-                                            </div>
-                                            <div class="card-item__numberItem" :class="{ '-active': n.trim() === '' }"
-                                                v-else :key="$index + 1">{{ n }}</div>
-                                        </transition>
-                                    </span>
+                                    <!-- <span v-for="(n, $index) in otherCardMask" :key="$index">
+                    <transition name="slide-fade-up">
+                      <div
+                        class="card-item__numberItem"
+                        v-if="$index > 4 && $index < 15 && cardNumber.length > $index && n.trim() !== ''"
+                      >*</div>
+                      <div class="card-item__numberItem"
+                        :class="{ '-active' : n.trim() === '' }"
+                        :key="$index" v-else-if="cardNumber.length > $index">
+                        {{cardNumber[$index]}}
+                      </div>
+                      <div
+                        class="card-item__numberItem"
+                        :class="{ '-active' : n.trim() === '' }"
+                        v-else
+                        :key="$index + 1"
+                      >{{n}}</div>
+                    </transition>
+                  </span> -->
                                 </template>
                             </label>
                             <div class="card-item__content">
                                 <label for="cardName" class="card-item__info" ref="cardName">
-                                    <div class="card-item__holder">Titolare</div>
+                                    <div class="card-item__holder"></div>
                                     <transition name="slide-fade-up">
                                         <div class="card-item__name" v-if="cardName.length" key="1">
                                             <transition-group name="slide-fade-right">
@@ -242,23 +239,23 @@ export default {
                                                     :key="index">{{ n }}</span>
                                             </transition-group>
                                         </div>
-                                        <div class="card-item__name" v-else key="2">Nome Cognome</div>
+                                        <div class="card-item__name" v-else key="2"></div>
                                     </transition>
                                 </label>
                                 <div class="card-item__date" ref="cardDate">
-                                    <label for="cardMonth" class="card-item__dateTitle">Scadenza</label>
+                                    <label for="cardMonth" class="card-item__dateTitle"></label>
                                     <label for="cardMonth" class="card-item__dateItem">
                                         <transition name="slide-fade-up">
                                             <span v-if="cardMonth" :key="cardMonth">{{ cardMonth }}</span>
-                                            <span v-else key="2">MM</span>
+                                            <span v-else key="2"></span>
                                         </transition>
                                     </label>
-                                    /
+
                                     <label for="cardYear" class="card-item__dateItem">
                                         <transition name="slide-fade-up">
                                             <span v-if="cardYear" :key="cardYear">{{ String(cardYear).slice(2, 4)
                                                 }}</span>
-                                            <span v-else key="2">YY</span>
+                                            <span v-else key="2"></span>
                                         </transition>
                                     </label>
                                 </div>
@@ -292,47 +289,39 @@ export default {
             <form action="/" method="POST" id="cardForm">
                 <div class="card-form__inner">
                     <div class="card-input">
-                        <div class="form-control" id="cardNumber"></div>
                         <label for="cardNumber" class="card-input__label">Numero Carta</label>
-                        <input type="text" id="cardNumber" class="card-input__input" v-mask="generateCardNumberMask"
-                            v-model="cardNumber" @focus="focusInput" @blur="blurInput" data-ref="cardNumber"
-                            autocomplete="off">
+                        <div class="form-control" id="cardNumber"></div>
+                        <!-- <input type="text" id="cardNumber" class="card-input__input" v-mask="generateCardNumberMask" v-model="cardNumber" @focus="focusInput" @blur="blurInput" data-ref="cardNumber" autocomplete="off"> -->
                     </div>
                     <div class="card-input">
-
                         <label for="cardName" class="card-input__label">Nome e Cognome</label>
                         <div class="form-control" id="cardName"></div>
-                        <input type="text" id="cardName" class="card-input__input" v-model="cardName"
-                            @focus="focusInput" @blur="blurInput" data-ref="cardName" autocomplete="off">
+                        <!-- <input type="text" id="cardName" class="card-input__input" v-model="cardName" @focus="focusInput" @blur="blurInput" data-ref="cardName" autocomplete="off"> -->
                     </div>
                     <div class="card-form__row">
                         <div class="card-form__col">
                             <div class="card-form__group">
-                                <div class="form-control" id="cardMonth"></div>
                                 <label for="cardMonth" class="card-input__label">Data di scadenza</label>
-                                <select class="card-input__input -select" id="cardMonth" v-model="cardMonth"
-                                    @focus="focusInput" @blur="blurInput" data-ref="cardDate">
-                                    <option value="" disabled selected>Mese</option>
-                                    <option :value="n < 10 ? '0' + n : n" v-for="n in 12" :disabled="n < minCardMonth"
-                                        :key="n">
-                                        {{ n < 10 ? '0' + n : n }} </option>
-                                </select>
-                                <select class="card-input__input -select" id="cardYear" v-model="cardYear"
-                                    @focus="focusInput" @blur="blurInput" data-ref="cardDate">
-                                    <option value="" disabled selected>Anno</option>
-                                    <option :value="$index + minCardYear" v-for="(n, $index) in 12" :key="n">
-                                        {{ $index + minCardYear }}
-                                    </option>
-                                </select>
+                                <div class="form-control" id="cardMonth"></div>
+                                <!-- <select class="card-input__input -select" id="cardMonth" v-model="cardMonth" @focus="focusInput" @blur="blurInput" data-ref="cardDate">
+                  <option value="" disabled selected>Mese</option>
+                  <option :value="n < 10 ? '0' + n : n" v-for="n in 12" :disabled="n < minCardMonth" :key="n">
+                      {{n < 10 ? '0' + n : n}}
+                  </option>
+                </select>
+                <select class="card-input__input -select" id="cardYear" v-model="cardYear" @focus="focusInput" @blur="blurInput" data-ref="cardDate">
+                  <option value="" disabled selected>Anno</option>
+                  <option :value="$index + minCardYear" v-for="(n, $index) in 12" :key="n">
+                      {{$index + minCardYear}}
+                  </option>
+                </select> -->
                             </div>
                         </div>
                         <div class="card-form__col -cvv">
                             <div class="card-input">
-                                <div class="form-control" id="cardCvv"></div>
                                 <label for="cardCvv" class="card-input__label">CVV</label>
-                                <input type="text" class="card-input__input" id="cardCvv" v-mask="'####'" maxlength="4"
-                                    v-model="cardCvv" @focus="flipCard(true)" @blur="flipCard(false)"
-                                    autocomplete="off">
+                                <div class="form-control" id="cardCvv"></div>
+                                <!-- <input type="text" class="card-input__input" id="cardCvv" v-mask="'####'" maxlength="4" v-model="cardCvv" @focus="flipCard(true)" @blur="flipCard(false)" autocomplete="off"> -->
                             </div>
                         </div>
                     </div>
@@ -352,6 +341,7 @@ export default {
     min-height: 100vh;
     display: flex;
     padding: 50px 15px;
+    width: 100%;
 }
 
 @media screen and (max-width: 700px),
@@ -376,7 +366,7 @@ export default {
 
 .card-form__inner {
     background: #fff;
-    box-shadow: 0 30px 60px 0 rgba(90, 116, 148, 0.4);
+    box-shadow: 0 30px 60px 0 #da643f66;
     border-radius: 10px;
     padding: 35px;
     padding-top: 180px;
@@ -1015,5 +1005,12 @@ export default {
     opacity: 0;
     transform: translateX(-10px) rotate(45deg);
     pointer-events: none;
+}
+
+div#cardNumber,
+div#cardName,
+div#cardMonth,
+div#cardCvv {
+    height: 50px;
 }
 </style>
