@@ -48,7 +48,7 @@ export default {
 </script>
 <template lang="">
     <!-- Header -->
-    <header class="fixed-top shadow bg-warning">
+    <header  v-if="$route.path  !== '/checkout' && $route.path !== '/confirmed_payment' && $route.path !== '/payment-error'" class="fixed-top shadow bg-warning">
         <div class="container">
             <div class="row pt-1">
                 <!-- Left -->

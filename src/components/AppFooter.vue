@@ -10,7 +10,7 @@ export default {
 </script>
 <template lang="">
 <!-- Footer -->
-<footer class="text-center text-lg-start bg_footer text-muted">
+<footer v-if="$route.path  !== '/checkout' && $route.path !== '/confirmed_payment' && $route.path !== '/payment-error'" class="text-center text-lg-start bg_footer text-muted">
     <!-- Section: Social media -->
     <section class="d-flex justify-content-lg-start justify-content-center p-4 border-bottom">
         <!-- Left -->

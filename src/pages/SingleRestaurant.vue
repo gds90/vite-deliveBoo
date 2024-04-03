@@ -209,12 +209,19 @@ export default {
                 </table>
 
             </div>
+            <router-link to="/checkout" class="">
+                <div class="cart_btn m-5 ">
+                    <button class="btn w-100 btn-warning  ">Svuota il Carrello</button>
+                </div>
+            </router-link>
+
             <div id="error" class="text-danger text-center p-3 mt-4 rounded-4"></div>
             <!-- <p id="error" class="text-danger text-center py-3"></p> -->
             <!-- Bottoni -->
             <div class="cart_btn m-5 ">
                 <button class="btn w-100 btn-warning  " @click="store.clearCart()">Svuota il Carrello</button>
             </div>
+
 
         </div>
     </div>
