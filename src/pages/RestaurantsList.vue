@@ -58,8 +58,28 @@ export default {
                 // agggiungo la tipologia selezionata all'array
                 this.selectedTypes.push(type.id);
             }
+        },
+
+        // scroll laterale types 
+        scrollTypes(amount) {
+        const container = document.querySelector('.types .container-fluid');
+        container.scrollBy({
+            left: amount,
+            behavior: 'smooth'
+        });
+        },
+        
+        // scroll laterale restaurants
+        scrollRestaurants(amount) {
+        const container = document.querySelector('.rest');
+        container.scrollBy({
+            left: amount,
+            behavior: 'smooth'
+        });
         }
     },
+
+    
     computed: {
         filteredRestaurants() {
             let filtered = this.restaurants;
@@ -92,9 +112,11 @@ export default {
             </div>
         
             <div class="types my-4">
-                <div class="container-fluid d-flex justify-content-between overflow-auto types">
+                <button class="scroll-btn prev-btn" @click="scrollTypes(-500)">&lt;</button>
+                <div class="container-fluid d-flex justify-content-between overflow-auto types ms-3">
                     <AppTypeCard v-for="type, index in types" :key="index" :type="type" @click="toggleType(type)" class="mb-4"/>
                 </div>
+                <button class="scroll-btn next-btn" @click="scrollTypes(500)">&gt;</button>
             </div>
 
             <!--  Restaurants section -->
@@ -108,16 +130,19 @@ export default {
 
             <div class="container-fluid">
                 <div class="row justify-content-center">
-                    <div class="restaurants my-4">
+                    <div class="restaurants my-4 position-relative">
+                        <button class="scroll-btn prev-btn" @click="scrollRestaurants(-500)">&lt;</button>
                         <div v-if="filteredRestaurants.length === 0" class="text-center">
                             <p class="text-white fs-5">Nessun ristorante disponibile le tipologie scelte.</p>
                         </div>
-                        <div v-else class="ps-5 d-flex overflow-auto rest">
+                        <div class="ps-5 d-flex overflow-auto rest">
                             <AppRestaurantCard v-for="restaurant, index in filteredRestaurants" :key="index" :restaurant="restaurant"/>
                         </div>
+                        <button class="scroll-btn next-btn" @click="scrollRestaurants(500)">&gt;</button>
                     </div>
                 </div>
             </div>
+
         </div>
     </main>
 </template>
@@ -137,6 +162,8 @@ main {
         /* IE and Edge */
         scrollbar-width: none;
         /* Firefox */
+
+        position: relative;
     }
 
     /* Hide scrollbar for Chrome, Safari and Opera */
@@ -152,5 +179,28 @@ main {
         /* Firefox */
     }
 
+    
+
+    .prev-btn {
+    left: 5px;
+    }
+
+    .next-btn {
+    right: 5px;
+    }
+    
+    .scroll-btn {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+    color: #000;
+    font-size: 20px;
+}
 }
 </style>
