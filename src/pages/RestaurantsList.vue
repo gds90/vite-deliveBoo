@@ -128,12 +128,12 @@ export default {
                 <div class="container-fluid d-flex justify-content-between overflow-auto types">
                     <AppTypeCard v-for="type, index in types" :key="index" :type="type" @click="toggleType(type)" class="mb-4"/>
                 </div>
-                
+
                 <div class="button-container">
                     <!-- Pulsante sinistro -->
-                    <button class="scroll-btn prev-btn" @mouseenter="startTypeScrolling(-10)" @mouseleave="stopTypeScrolling">&lt;</button>
+                    <button class="scroll-btn prev-btn" @mouseenter="startTypeScrolling(-10)" @mouseleave="stopTypeScrolling"><i class="fa-solid fa-angle-left"></i></button>
                     <!-- Pulsante destro -->
-                    <button class="scroll-btn next-btn" @mouseenter="startTypeScrolling(10)" @mouseleave="stopTypeScrolling">&gt;</button>
+                    <button class="scroll-btn next-btn" @mouseenter="startTypeScrolling(10)" @mouseleave="stopTypeScrolling"><i class="fa-solid fa-angle-right"></i></button>
                 </div>
             </div>
 
@@ -157,9 +157,9 @@ export default {
                         </div>
                         <div class="button-container">
                             <!-- Pulsante sinistro -->
-                            <button class="scroll-btn restaurant prev-btn" @mouseenter="startRestaurantScrolling(-10)" @mouseleave="stopRestaurantScrolling">&lt;</button>
+                            <button class="scroll-btn restaurant prev-btn" @mouseenter="startRestaurantScrolling(-10)" @mouseleave="stopRestaurantScrolling"><i class="fa-solid fa-angle-left"></i></button>
                             <!-- Pulsante destro -->
-                            <button class="scroll-btn restaurant next-btn" @mouseenter="startRestaurantScrolling(10)" @mouseleave="stopRestaurantScrolling">&gt;</button>
+                            <button class="scroll-btn restaurant next-btn" @mouseenter="startRestaurantScrolling(10)" @mouseleave="stopRestaurantScrolling"><i class="fa-solid fa-angle-right"></i></button>
                         </div>
                     </div>
                 </div>
