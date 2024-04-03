@@ -59,27 +59,23 @@ export default {
                 this.selectedTypes.push(type.id);
             }
         },
-
         // scroll laterale types 
         scrollTypes(amount) {
-        const container = document.querySelector('.types .container-fluid');
-        container.scrollBy({
-            left: amount,
-            behavior: 'smooth'
-        });
+            const container = document.querySelector('.types .container-fluid');
+            container.scrollBy({
+                left: amount,
+                behavior: 'smooth'
+            });
         },
-        
         // scroll laterale restaurants
         scrollRestaurants(amount) {
-        const container = document.querySelector('.rest');
-        container.scrollBy({
-            left: amount,
-            behavior: 'smooth'
-        });
+            const container = document.querySelector('.rest');
+            container.scrollBy({
+                left: amount,
+                behavior: 'smooth'
+            });
         }
     },
-
-    
     computed: {
         filteredRestaurants() {
             let filtered = this.restaurants;
@@ -93,7 +89,6 @@ export default {
             return filtered;
         }
     }
-
 }
 </script>
 <template lang="">
@@ -151,8 +146,7 @@ export default {
 </template>
 <style lang="scss">
 main {
-    background: rgb(28, 48, 93);
-    background: linear-gradient(0deg, rgba(28, 48, 93, 1) 0%, rgba(245, 195, 68, 1) 62%);
+    background: rgba(28, 48, 93, 0.1);
 
     /* Hide scrollbar for Chrome, Safari and Opera */
     .types::-webkit-scrollbar {
@@ -182,7 +176,7 @@ main {
         /* Firefox */
     }
 
-    
+
 
     .prev-btn {
         left: 5px;
@@ -191,36 +185,19 @@ main {
     .next-btn {
         right: 5px;
     }
-    
+
     .scroll-btn {
         position: absolute;
         top: 40%;
         transform: translateY(-50%);
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background-color:rgba(245, 195, 68, 0.5);
+        width: 30px;
+        height: 30px;
+        background-color: rgba(255, 255, 255, 0.5);
         border: none;
         cursor: pointer;
         z-index: 1;
-        color: white;
+        color: #000;
         font-size: 20px;
     }
-
-    .restaurant-scroll-btn{
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background-color: rgba(245, 195, 68);
-        border: none;
-        cursor: pointer;
-        z-index: 1;
-        color: rgba(28, 48, 93, 1);
-        font-size: 20px;
-    }
-
 }
 </style>
