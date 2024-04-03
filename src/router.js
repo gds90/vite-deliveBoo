@@ -4,6 +4,8 @@ import AppHome from './pages/AppHome.vue';
 import RestaurantsList from './pages/RestaurantsList.vue';
 import SingleRestaurant from './pages/SingleRestaurant.vue';
 import Checkout from './pages/Checkout.vue';
+import AppNotFound from './pages/AppNotFound.vue';
+
 
 const router = createRouter({
     history: createWebHistory(),
@@ -28,6 +30,11 @@ const router = createRouter({
             name: 'checkout',
             component: Checkout
         },
+        {
+            path: '/:patchMatch(.*)*',
+            name: 'not-found',
+            component: AppNotFound
+        }
     ]
 });
 
