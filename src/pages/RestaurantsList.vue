@@ -60,20 +60,38 @@ export default {
             }
         },
         // scroll laterale types 
-        scrollTypes(amount) {
-            const container = document.querySelector('.types .container-fluid');
-            container.scrollBy({
-                left: amount,
-                behavior: 'smooth'
-            });
+        startTypeScrolling(amount) {
+            this.typeScrollInterval = setInterval(() => {
+                const container = document.querySelector('.types .container-fluid');
+                if (amount < 0 && container.scrollLeft <= 0) {
+                    clearInterval(this.typeScrollInterval);
+                } else if (amount > 0 && container.scrollLeft >= container.scrollWidth - container.clientWidth) {
+                    clearInterval(this.typeScrollInterval);
+                } else {
+                    container.scrollLeft += amount;
+                }
+            }, 20); // Imposta un intervallo maggiore per rallentare lo scorrimento
         },
+        stopTypeScrolling() {
+            clearInterval(this.typeScrollInterval);
+        },
+
         // scroll laterale restaurants
-        scrollRestaurants(amount) {
-            const container = document.querySelector('.rest');
-            container.scrollBy({
-                left: amount,
-                behavior: 'smooth'
-            });
+        startRestaurantScrolling(amount) {
+            this.restaurantScrollInterval = setInterval(() => {
+                const container = document.querySelector('.rest');
+                if (amount < 0 && container.scrollLeft <= 0) {
+                    clearInterval(this.restaurantScrollInterval);
+                } else if (amount > 0 && container.scrollLeft >= container.scrollWidth - container.clientWidth) {
+                    clearInterval(this.restaurantScrollInterval);
+                } else {
+                    container.scrollLeft += amount;
+                }
+            }, 20); // Imposta la velocità dello scorrimento regolando il valore dell'intervallo
+        },
+
+        stopRestaurantScrolling() {
+            clearInterval(this.restaurantScrollInterval);
         }
     },
     computed: {
@@ -107,11 +125,16 @@ export default {
             </div>
         
             <div class="types my-4">
-                <button class="scroll-btn prev-btn" @click="scrollTypes(-500)">&lt;</button>
                 <div class="container-fluid d-flex justify-content-between overflow-auto types">
                     <AppTypeCard v-for="type, index in types" :key="index" :type="type" @click="toggleType(type)" class="mb-4"/>
                 </div>
-                <button class="scroll-btn next-btn" @click="scrollTypes(500)">&gt;</button>
+                
+                <div class="button-container">
+                    <!-- Pulsante sinistro -->
+                    <button class="scroll-btn prev-btn" @mouseenter="startTypeScrolling(-10)" @mouseleave="stopTypeScrolling">&lt;</button>
+                    <!-- Pulsante destro -->
+                    <button class="scroll-btn next-btn" @mouseenter="startTypeScrolling(10)" @mouseleave="stopTypeScrolling">&gt;</button>
+                </div>
             </div>
 
             <!--  Restaurants section -->
@@ -132,10 +155,11 @@ export default {
                         <div class="ps-md-5 d-flex overflow-auto rest gap-5 gap-md-0">
                             <AppRestaurantCard v-for="restaurant, index in filteredRestaurants" :key="index" :restaurant="restaurant"/>
                         </div>
-                        <div class="button-container text-center">
-
-                            <button class="scroll-btn restaurant prev-btn" @click="scrollRestaurants(-500)">&lt;</button>
-                            <button class="scroll-btn restaurant next-btn" @click="scrollRestaurants(500)">&gt;</button>
+                        <div class="button-container">
+                            <!-- Pulsante sinistro -->
+                            <button class="scroll-btn restaurant prev-btn" @mouseenter="startRestaurantScrolling(-10)" @mouseleave="stopRestaurantScrolling">&lt;</button>
+                            <!-- Pulsante destro -->
+                            <button class="scroll-btn restaurant next-btn" @mouseenter="startRestaurantScrolling(10)" @mouseleave="stopRestaurantScrolling">&gt;</button>
                         </div>
                     </div>
                 </div>
@@ -179,11 +203,11 @@ main {
 
 
     .prev-btn {
-        left: 5px;
+        left: 1rem;
     }
 
     .next-btn {
-        right: 5px;
+        right: 1rem;
     }
 
     .scroll-btn {
@@ -197,12 +221,25 @@ main {
         border-radius: 50%;
         cursor: pointer;
         z-index: 1;
-        color: #000;
+        color: white;
         font-size: 20px;
+        transition: all 0.3s ease-in-out;
+        
+
+
+        &:hover {
+            background-color: rgba(245, 195, 68, 1);
+            opacity: 1;
+            transform: scale(1.5);
+            transform: translateY(-50%) scale(1.5); 
+            box-shadow: 0 0 0 2px transparent;
+        }
     }
 
     .restaurant{
         top: 50%;
     }
+
+   
 }
 </style>
