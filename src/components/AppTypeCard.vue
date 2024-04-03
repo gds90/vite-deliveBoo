@@ -50,7 +50,7 @@ export default {
 }
 
 .rounded-image img.highlighted {
-    border: 5px solid $secondary_color; // Cambia il colore del bordo quando l'immagine è evidenziata
+    border: 5px solid $primary_color; // Cambia il colore del bordo quando l'immagine è evidenziata
 }
 
 .type-container {
