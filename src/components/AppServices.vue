@@ -7,7 +7,7 @@
         </div>
         <div class="row justify-content-center align-items-stretch mb-5">
             <!-- Single Service -->
-            <div class="col-12 col-sm-6 col-xl-4">
+            <div class="col-9 col-md-6 col-xl-4 mb-4 mb-md-0">
                 <div class="service pb-3">
                     <div class="card text-center">
                         <div class="card-info d-flex flex-column ">
@@ -18,7 +18,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-sm-6 col-xl-4">
+            <div class="col-9 col-md-6 col-xl-4 mb-4 mb-md-0">
                 <div class="service pb-3">
                     <div class="card text-center">
                         <div class="card-info d-flex flex-column ">
@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-sm-6 col-xl-4">
+            <div class="col-9 col-md-6 col-xl-4 mb-4 mb-md-0">
                 <div class="service pb-3">
                     <div class="card text-center">
                         <div class="card-info d-flex flex-column ">
