@@ -16,72 +16,35 @@ export default {
     height: 100vh;
 
     .loader {
-        color: #fff;
-        font-size: 10px;
-        width: 1em;
-        height: 1em;
-        border-radius: 50%;
+        box-sizing: border-box;
         position: relative;
-        text-indent: -9999em;
-        animation: mulShdSpin 1.3s infinite linear;
-        transform: translateZ(0);
+        width: 48px;
+        height: 48px;
+        animation: spin 1s linear infinite;
     }
 
-    @keyframes mulShdSpin {
+    .loader:after,
+    .loader:before {
+        content: "";
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        border-radius: 50%;
+        background: rgb(245, 195, 68);
+        animation: spin 1s linear infinite;
+        transform-origin: 0px 100%;
+    }
 
-        0%,
-        100% {
-            box-shadow: 0 -3em 0 0.2em,
-                2em -2em 0 0em, 3em 0 0 -1em,
-                2em 2em 0 -1em, 0 3em 0 -1em,
-                -2em 2em 0 -1em, -3em 0 0 -1em,
-                -2em -2em 0 0;
-        }
+    .loader:before {
+        transform-origin: 0 50%;
+        background: #fff;
+    }
 
-        12.5% {
-            box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em,
-                3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em,
-                -2em 2em 0 -1em, -3em 0 0 -1em,
-                -2em -2em 0 -1em;
-        }
-
-        25% {
-            box-shadow: 0 -3em 0 -0.5em,
-                2em -2em 0 0, 3em 0 0 0.2em,
-                2em 2em 0 0, 0 3em 0 -1em,
-                -2em 2em 0 -1em, -3em 0 0 -1em,
-                -2em -2em 0 -1em;
-        }
-
-        37.5% {
-            box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
-                3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em,
-                -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
-        }
-
-        50% {
-            box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
-                3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em,
-                -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
-        }
-
-        62.5% {
-            box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
-                3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0,
-                -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
-        }
-
-        75% {
-            box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em,
-                3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em,
-                -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
-        }
-
-        87.5% {
-            box-shadow: 0em -3em 0 0, 2em -2em 0 -1em,
-                3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em,
-                -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
         }
     }
+
 }
 </style>
