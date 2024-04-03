@@ -134,8 +134,8 @@ export default {
                         </div>
                         <div class="button-container text-center">
 
-                            <button class="restaurant-scroll-btn prev-btn" @click="scrollRestaurants(-500)">&lt;</button>
-                            <button class="restaurant-scroll-btn next-btn" @click="scrollRestaurants(500)">&gt;</button>
+                            <button class="scroll-btn restaurant prev-btn" @click="scrollRestaurants(-500)">&lt;</button>
+                            <button class="scroll-btn restaurant next-btn" @click="scrollRestaurants(500)">&gt;</button>
                         </div>
                     </div>
                 </div>
@@ -190,14 +190,19 @@ main {
         position: absolute;
         top: 40%;
         transform: translateY(-50%);
-        width: 30px;
-        height: 30px;
-        background-color: rgba(255, 255, 255, 0.5);
+        width: 40px;
+        height: 40px;
+        background-color: rgb(245, 195, 68, 0.5);
         border: none;
+        border-radius: 50%;
         cursor: pointer;
         z-index: 1;
         color: #000;
         font-size: 20px;
+    }
+
+    .restaurant{
+        top: 50%;
     }
 }
 </style>
