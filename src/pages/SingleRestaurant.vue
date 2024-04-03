@@ -14,14 +14,6 @@ export default {
             restaurant: null,
             dishes: null,
             success: false,
-            categoryIcons: {
-                Pizza: '/img/pizza-icon.png',
-                Pasta: '/img/pasta-icon.svg',
-                Burger: '/img/burger-icon.svg',
-                Pesce: '/img/fish-icon.svg',
-                Sushi: '/img/sushi-icon.svg',
-                Bevanda: '/img/paper-cup.svg'
-            }
         }
     },
     computed: {
@@ -150,9 +142,6 @@ export default {
                             <div class="dish_infos ms-2 mt-2">
                                 <div class="d-flex align-items-center">
                                     <h3 class=" ">{{ dish.name }} </h3>
-                                    <!-- <img v-if="dish.category && categoryIcons[dish.category.name]"
-                                        :src="categoryIcons[dish.category.name]" alt="Icona categoria"
-                                        class="category-icon ms-2" /> -->
                                 </div>
                                 <p>{{ dish.price }}€</p>
                                 <p></p>
@@ -190,58 +179,6 @@ export default {
                 </li>
             </ul>
         </div>
-        <!-- <ul class="list-unstyled ">
-            <li v-for="(dish, index) in restaurant.dishes" :key="index"
-                class="bg-body-secondary rounded-4 shadow dish_container opaque-left">
-                <div class="row my-4">
-                    <div class="col-2">
-                        <div class="dish_image align-items-center justify-content-center">
-                            <img :src="getDishImage(dish)" class="rounded-4 w-100 h-100" />
-                        </div>
-                    </div>
-                    <div class="col-8 ">
-                        <div class="dish_infos ms-2 mt-3">
-                            <div class="d-flex align-items-center">
-                                <h3 class=" ">{{ dish.name }} </h3>
-                                <img v-if="dish.category && categoryIcons[dish.category.name]"
-                                    :src="categoryIcons[dish.category.name]" alt="Icona categoria"
-                                    class="category-icon ms-2" />
-                            </div>
-                            <p>{{ dish.price }}€</p>
-                            <p></p>
-                            <p>{{ dish.description }}</p>
-                        </div>
-                    </div>
-                    <div class="col-2 fs-1 pe-4">
-                        <div>
-                            <button class="CartBtn my-2"
-                                @click="store.addToCart(dish, dish.restaurant_id, restaurant.slug)">
-                                <span class="IconContainer">
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"
-                                        fill="rgb(17, 17, 17)" class="cart_icon_add">
-                                        <path
-                                            d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z">
-                                        </path>
-                                    </svg>
-                                </span>
-                                <p class="text fs-4">+</p>
-                            </button>
-                            <button class="CartBtnRemove" @click="store.removeFromCart(dish, dish.restaurant_id)">
-                                <span class="IconContainer">
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"
-                                        fill="rgb(17, 17, 17)" class="cart_icon_add">
-                                        <path
-                                            d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z">
-                                        </path>
-                                    </svg>
-                                </span>
-                                <p class="text fs-4">-</p>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        </ul> -->
     </div>
 
 
