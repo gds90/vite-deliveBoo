@@ -15,9 +15,12 @@
                             <div>
                                 <h1>a portata di CLICK!</h1>
                             </div>
+                            <div class="mt-4">
+                                <h4>Sapore e comodità, consegnati a domicilio.</h4>
+                            </div>
                         </div>
                         <!-- Searchbar -->
-                        <div class="searchbar">
+                        <!-- <div class="searchbar">
                             <div class="group">
                                 <svg class="icon" aria-hidden="true" viewBox="0 0 24 24">
                                     <g>
@@ -26,7 +29,7 @@
                                 </svg>
                                 <input placeholder="Cerca ristorante o categoria" type="search" class="input">
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -39,7 +42,7 @@ export default {
 
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .jumbotron {
     margin-top: 82px;
     height: 400px;

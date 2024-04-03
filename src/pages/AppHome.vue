@@ -15,7 +15,7 @@ export default {
     },
 }
 </script>
-<template lang="" >
+<template lang="">
     <AppJumbotron/>
     <!-- Order button -->
     <div class="container order_button mb-5">
@@ -36,7 +36,7 @@ export default {
 
 button {
     position: relative;
-    top: -80%;
+    top: -120%;
     background-color: rgb(245, 195, 68);
     border-radius: 5px;
     box-shadow: #fff 0px 4px 0px 0px;

@@ -48,7 +48,7 @@ export default {
 </script>
 <template lang="">
     <!-- Header -->
-    <header  v-if="$route.path  !== '/checkout' && $route.path !== '/confirmed_payment' && $route.path !== '/payment-error'" class="fixed-top shadow bg-warning">
+    <header  v-if="$route.path  !== '/checkout' && $route.path !== '/confirmed_payment' && $route.path !== '/payment-error'" class="fixed-top shadow">
         <div class="container">
             <div class="row pt-1">
                 <!-- Left -->
@@ -143,6 +143,8 @@ export default {
 
 header {
     height: 100px;
+    backdrop-filter: blur(25px);
+    background-color: rgba(245, 195, 68);
 
     .logo {
         img {
