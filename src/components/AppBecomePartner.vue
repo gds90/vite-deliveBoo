@@ -9,13 +9,13 @@ export default {
         <hr class="text-white mb-5">
         <div class="row gap-0 text-white">
             <div class="row">
-                <div class="left-column col-lg-6 p-5 rounded-start-4">
+                <div class="left-column col-lg-6 p-5">
                     <h2 class="mb-4">Porta il tuo ristorante al successo con noi!</h2>
                     <p class="pe-md-5 fs-6">Se sei un ristoratore appassionato, desideroso di ampliare la tua visibilità e raggiungere nuovi clienti, sei nel posto giusto. Unisciti alla nostra piattaforma e scopri come possiamo aiutarti a crescere il tuo business. Sfrutta le nostre soluzioni innovative e raggiungi nuove vette di successo con il tuo ristorante!</p>
                 </div>
                 <div class="right-column col-lg-6 p-0">
                     <div class="image-container">
-                        <img src="/img/work_with_us.jpg" alt="Lavora con noi" class="img-fluid rounded-end-4">
+                        <img src="/img/work_with_us.jpg" alt="Lavora con noi" class="img-fluid">
                     </div>
                 </div>
             </div>
@@ -91,5 +91,39 @@ button::before {
 
 button:hover::before {
     width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .left-column {
+        border-top-left-radius: 0.75rem;
+        border-top-right-radius: 0.75rem;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .right-column img {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 0.75rem;
+        border-bottom-right-radius: 0.75rem;
+    }
+}
+
+@media only screen and (min-width: 769px) {
+
+    .left-column {
+        border-top-left-radius: 0.75rem;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 0.75rem;
+        border-bottom-right-radius: 0;
+    }
+
+    .right-column img {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0.75rem;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0.75rem;
+    }
 }
 </style>
