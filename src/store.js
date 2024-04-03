@@ -11,10 +11,10 @@ export const store = reactive({
         //     name: 'login',
         //     label: 'Accedi'
         // },
-        // {
-        //     name: 'contacts',
-        //     label: 'Contatti'
-        // }
+        {
+            name: 'contacts',
+            label: 'Contatti'
+        }
     ],
     cart: {
         items: JSON.parse(localStorage.getItem('cartItems')) || [],
