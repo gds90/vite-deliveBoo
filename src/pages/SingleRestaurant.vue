@@ -129,8 +129,8 @@ export default {
 <hr class="my-5">
 <!-- Piatti del ristorante -->
 <div class="row">
-    <div class="col-12 col-lg-8 text-white dishes pe-5">
-        <h2 class="fw-bold text-center ">Menù del ristorante</h2>
+    <div class="col-12 col-lg-8 text-white dishes pe-md-5">
+        <h2 class="fw-bold text-center text-white ">Menù del ristorante</h2>
 
         <div v-for="(category, index) in uniqueCategories" :key="index" class="col-12 text-white dishes">
             <div class="category_name">
