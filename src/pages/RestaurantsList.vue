@@ -113,7 +113,7 @@ export default {
         
             <div class="types my-4">
                 <button class="scroll-btn prev-btn" @click="scrollTypes(-500)">&lt;</button>
-                <div class="container-fluid d-flex justify-content-between overflow-auto types ms-3">
+                <div class="container-fluid d-flex justify-content-between overflow-auto types">
                     <AppTypeCard v-for="type, index in types" :key="index" :type="type" @click="toggleType(type)" class="mb-4"/>
                 </div>
                 <button class="scroll-btn next-btn" @click="scrollTypes(500)">&gt;</button>
@@ -131,14 +131,17 @@ export default {
             <div class="container-fluid">
                 <div class="row justify-content-center">
                     <div class="restaurants my-4 position-relative">
-                        <button class="scroll-btn prev-btn" @click="scrollRestaurants(-500)">&lt;</button>
                         <div v-if="filteredRestaurants.length === 0" class="text-center">
                             <p class="text-white fs-5">Nessun ristorante disponibile le tipologie scelte.</p>
                         </div>
                         <div class="ps-5 d-flex overflow-auto rest">
                             <AppRestaurantCard v-for="restaurant, index in filteredRestaurants" :key="index" :restaurant="restaurant"/>
                         </div>
-                        <button class="scroll-btn next-btn" @click="scrollRestaurants(500)">&gt;</button>
+                        <div class="button-container text-center">
+
+                            <button class="restaurant-scroll-btn prev-btn" @click="scrollRestaurants(-500)">&lt;</button>
+                            <button class="restaurant-scroll-btn next-btn" @click="scrollRestaurants(500)">&gt;</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -182,25 +185,42 @@ main {
     
 
     .prev-btn {
-    left: 5px;
+        left: 5px;
     }
 
     .next-btn {
-    right: 5px;
+        right: 5px;
     }
     
     .scroll-btn {
-    position: absolute;
-    top: 40%;
-    transform: translateY(-50%);
-    width: 30px;
-    height: 30px;
-    background-color: rgba(255, 255, 255, 0.5);
-    border: none;
-    cursor: pointer;
-    z-index: 1;
-    color: #000;
-    font-size: 20px;
-}
+        position: absolute;
+        top: 40%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color:rgba(245, 195, 68, 0.5);
+        border: none;
+        cursor: pointer;
+        z-index: 1;
+        color: white;
+        font-size: 20px;
+    }
+
+    .restaurant-scroll-btn{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: rgba(245, 195, 68);
+        border: none;
+        cursor: pointer;
+        z-index: 1;
+        color: rgba(28, 48, 93, 1);
+        font-size: 20px;
+    }
+
 }
 </style>
