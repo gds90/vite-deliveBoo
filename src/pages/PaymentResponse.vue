@@ -1,15 +1,35 @@
 <script>
+import { store } from '../store';
 export default {
     name: 'PaymentResponse',
     data() {
         return {
+            store,
             success: false
         };
     },
     mounted() {
         // Accesso al parametro success dalla rotta
         this.success = this.$route.params.success; // Supponendo che il parametro success sia una stringa rappresentante un valore booleano
-    }
+        if (this.success) {
+            // Svuota il carrello
+            store.cart.items = [];
+            store.cart.totalPrice = 0;
+
+            // Rimuovi eventuali altri dati relativi al ristorante (se necessario)
+            store.cart.restaurantId = null;
+            store.cart.restaurantSlug = null;
+
+            // Salva il carrello aggiornato nel local storage
+            localStorage.setItem('cartItems', JSON.stringify(store.cart.items));
+            localStorage.removeItem('restaurantSlug');
+
+            // Reindirizzo alla homepage
+            setTimeout(() => {
+                this.$router.push('/');
+            }, 5000);
+        }
+    },
 };
 </script>
 
