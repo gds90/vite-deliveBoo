@@ -24,12 +24,8 @@ export default {
     },
     mounted() {
         document.getElementById("cardNumber").focus();
-<<<<<<< HEAD
-        this.getClientToken();
-=======
 
         // this.getClientToken();
->>>>>>> 5966b57 (Fixed button in header, change email with address in Checkout page)
     },
     computed: {
         getCardType() {

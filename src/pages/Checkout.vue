@@ -91,7 +91,6 @@ export default {
                     this.loading = false;
                 });
         },
-<<<<<<< HEAD
         getClientToken() {
             axios.get(`${this.store.baseUrl}/api/payment/token`)
                 .then(response => {
@@ -107,8 +106,6 @@ export default {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return emailRegex.test(email);
         },
-=======
->>>>>>> 5966b57 (Fixed button in header, change email with address in Checkout page)
         validatePhone(phone) {
             // phone number validation
             const phoneRegex = /^[0-9]{10}$/;
