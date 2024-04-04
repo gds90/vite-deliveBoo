@@ -4,14 +4,7 @@ import { store } from '../store.js';
 import axios from 'axios';
 export default {
     name: 'AppCard',
-    props: {
-        clientToken: String
-    },
-    watch: {
-        clientToken: function (newVal, oldVal) {
-            this.initializeBraintree(newVal);
-        }
-    },
+
     data() {
         return {
             store,
@@ -32,7 +25,7 @@ export default {
     },
     mounted() {
         document.getElementById("cardNumber").focus();
-
+        this.getClientToken()
     },
     computed: {
         getCardType() {
@@ -78,6 +71,16 @@ export default {
         loadCart() {
             const cart = JSON.parse(localStorage.getItem('cartItems')) || [];
             this.store.cart.items = cart;
+        },
+        getClientToken() {
+            axios.get(`${this.store.baseUrl}/api/payment/token`)
+                .then(response => {
+                    this.clientToken = response.data.clientToken;
+                    this.initializeBraintree(this.clientToken)
+                })
+                .catch(error => {
+                    console.error('Error fetching client token:', error);
+                });
         },
         initializeBraintree(clientToken) {
             braintree.client.create({
@@ -128,7 +131,7 @@ export default {
                             }
                             this.loadCart();
                             this.processPayment(payload.nonce);
-
+                            console.log(payload.nonce);
                         });
                     });
                 });
@@ -141,20 +144,18 @@ export default {
 
             })
                 .then(response => {
-                    const responseString = response.data;
-                    const startIndex = responseString.indexOf('{');
-                    const jsonString = responseString.substring(startIndex);
-                    const responseObject = JSON.parse(jsonString);
+                    const success = response.data.success;
+                    console.log(success);
+                    this.$router.push({ name: 'payment-response', params: success }); // Reindirizza alla pagina di conferma pagamento
 
-                    this.$router.push({ name: '/payment-response', params: responseObject.success  }); // Reindirizza alla pagina di conferma pagamento
-                    
                 })
                 .catch(error => {
                     // Gestisci gli errori durante la richiesta al server
                     console.error('Errore durante il pagamento:', error);
                     this.$router.push({ name: 'home' }); // Reindirizza alla pagina di errore pagamento
                 });
-        }
+        },
+
     }
 }
 </script>

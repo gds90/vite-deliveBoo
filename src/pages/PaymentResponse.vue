@@ -1,11 +1,18 @@
 <script>
 export default {
     props: {
-        responseObject: {
-            type: Object,
-           
+        success: {
+            type: Boolean,
+            required: true
         }
-    }
+    },
+    data() {
+        return {
+
+        },
+            console.log(this.success)
+    },
+
 }
 </script>
 
@@ -14,7 +21,7 @@ export default {
         <div class="row">
             <div class="col-12">
                 <div class="container-card">
-                    <div class="card" v-if="responseObject.success">
+                    <div class="card" v-if="success">
                         <div class="card-header bg-success d-flex justify-content-center py-4">
                             <i class="fa-regular fa-circle-check"></i>
                         </div>
@@ -29,7 +36,8 @@ export default {
                         </div>
                         <div class="card-body text-center py-5">
                             <h1 class="mb-3">Oops!</h1>
-                            <h2>It seems there was an issue processing your payment. Please check your payment details and try again.</h2>
+                            <h2>It seems there was an issue processing your payment. Please check your payment details
+                                and try again.</h2>
                         </div>
                     </div>
                 </div>
@@ -40,25 +48,24 @@ export default {
 
 <style lang="scss" scoped>
 .container-card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; /* Imposta l'altezza al 100% della viewport per centrare verticalmente */
-} 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* Imposta l'altezza al 100% della viewport per centrare verticalmente */
+}
 
-.card{
+.card {
     width: 70%;
     border: none;
 }
 
-.card-header{
+.card-header {
     font-size: 70px;
     color: white;
 }
 
-.card-body{
-    height:100%;
+.card-body {
+    height: 100%;
 }
-
-
 </style>

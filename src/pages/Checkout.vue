@@ -92,15 +92,6 @@ export default {
                     this.loading = false;
                 });
         },
-        getClientToken() {
-            axios.get(`${this.store.baseUrl}/api/payment/token`)
-                .then(response => {
-                    this.clientToken = response.data.clientToken;
-                })
-                .catch(error => {
-                    console.error('Error fetching client token:', error);
-                });
-        },
         validateEmail(email) {
             // email validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
