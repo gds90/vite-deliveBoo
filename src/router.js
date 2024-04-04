@@ -52,11 +52,11 @@ const router = createRouter({
             component: AppThankYouPage
         },
         {
-            path: '/payment-response',
+            path: '/payment-response/:success',
             name: 'payment-response',
             component: PaymentResponse,
             meta: { layout: BasicLayout },
-            props: true,
+
         },
     ]
 });

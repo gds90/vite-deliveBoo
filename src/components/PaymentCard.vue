@@ -146,7 +146,7 @@ export default {
                 .then(response => {
                     const success = response.data.success;
                     console.log(success);
-                    this.$router.push({ name: 'payment-response', params: success }); // Reindirizza alla pagina di conferma pagamento
+                    this.$router.push({ name: 'payment-response', params: { success: success } }); // Reindirizza alla pagina di conferma pagamento
 
                 })
                 .catch(error => {

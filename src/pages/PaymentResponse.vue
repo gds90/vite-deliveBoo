@@ -1,19 +1,16 @@
 <script>
 export default {
-    props: {
-        success: {
-            type: Boolean,
-            required: true
-        }
-    },
+    name: 'PaymentResponse',
     data() {
         return {
-
-        },
-            console.log(this.success)
+            success: false
+        };
     },
-
-}
+    mounted() {
+        // Accesso al parametro success dalla rotta
+        this.success = this.$route.params.success; // Supponendo che il parametro success sia una stringa rappresentante un valore booleano
+    }
+};
 </script>
 
 <template>
