@@ -14,10 +14,10 @@ export default {
 }
 </script>
 <template lang="">
-    <div class="container-fluid contact_us_container text-white">
+    <div class="container-fluid contact_us_container text-white p-4">
         <div class="row mt-5">
-            <div class="col-md-6 offset-md-3 contact_us_form rounded-4">
-                <h1 class="mt-5 text-uppercase ">Contattaci</h1>
+            <div class="col-12 col-md-8 offset-md-4 contact_us_form rounded-4">
+                <h1 class=" text-uppercase font-1 text-warning ">Contattaci</h1>
                 <p>Benvenuti nel nostro modulo di contatto. Se avete domande, commenti o richieste, non esitate a contattarci compilando il modulo sottostante. Saremo lieti di rispondervi nel più breve tempo possibile. Grazie per il vostro interesse!</p>
                 <!-- Form -->
                 <AppContactForm/>
@@ -32,7 +32,6 @@ export default {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: calc(100vh - 110px); // -110px di header
 
     .contact_us_form {
         margin: 110px auto 10px;
