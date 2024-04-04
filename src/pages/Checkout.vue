@@ -15,7 +15,8 @@ export default {
             phone: '',
             content: '',
             loading: false,
-            errors: {}
+            errors: {},
+            clientToken: ''
         }
     },
     methods: {
@@ -94,8 +95,7 @@ export default {
         getClientToken() {
             axios.get(`${this.store.baseUrl}/api/payment/token`)
                 .then(response => {
-                    const clientToken = response.data.clientToken;
-                    this.initializeBraintree(clientToken);
+                    this.clientToken = response.data.clientToken;
                 })
                 .catch(error => {
                     console.error('Error fetching client token:', error);
@@ -201,7 +201,7 @@ export default {
             </div>
         </div>
         <div class="col-12 col-md-6">
-            <PaymentCard />
+            <PaymentCard :clientToken='this.clientToken'/>
         </div>
     </div>
 </div>

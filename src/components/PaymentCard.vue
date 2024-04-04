@@ -4,6 +4,14 @@ import { store } from '../store.js';
 import axios from 'axios';
 export default {
     name: 'AppCard',
+    props: {
+        clientToken: String
+    },
+    watch: {
+        clientToken: function (newVal, oldVal) {
+            this.initializeBraintree(newVal);
+        }
+    },
     data() {
         return {
             store,
@@ -25,7 +33,6 @@ export default {
     mounted() {
         document.getElementById("cardNumber").focus();
 
-        // this.getClientToken();
     },
     computed: {
         getCardType() {
