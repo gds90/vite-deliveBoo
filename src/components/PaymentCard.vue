@@ -131,30 +131,41 @@ export default {
                             }
                             this.loadCart();
                             this.processPayment(payload.nonce);
-                            console.log(payload.nonce);
                         });
                     });
                 });
             });
         },
         processPayment(nonce) {
+            // Ottieni i dati utente dal localStorage
+            const userData = JSON.parse(localStorage.getItem('userData'));
+
+            // Controlla se userData è valido prima di inviare la richiesta
+            if (!userData) {
+                console.error('Dati utente non trovati nel localStorage');
+                return;
+            }
+
+            // Effettua la richiesta Axios includendo paymentMethodNonce, cart e userData
             axios.post(`${this.store.baseUrl}/api/payment/process`, {
                 paymentMethodNonce: nonce,
                 cart: this.store.cart.items,
 
             })
                 .then(response => {
-                    const success = response.data.success;
-                    console.log(success);
-                    this.$router.push({ name: 'payment-response', params: { success: success } }); // Reindirizza alla pagina di conferma pagamento
-
+                    const paymentEvent = response.data.success;
+                    if (paymentEvent) {
+                        this.$router.push({ name: 'home' }); // Reindirizza alla pagina di conferma pagamento
+                    } else {
+                        this.$router.push({ name: 'home' }); // Reindirizza alla pagina di errore pagamento
+                    }
                 })
                 .catch(error => {
                     // Gestisci gli errori durante la richiesta al server
                     console.error('Errore durante il pagamento:', error);
                     this.$router.push({ name: 'home' }); // Reindirizza alla pagina di errore pagamento
                 });
-        },
+        }
 
     }
 }
