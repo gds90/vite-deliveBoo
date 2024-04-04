@@ -200,7 +200,7 @@ export default {
             </div>
             <div>
                 <p class="mt-4 fs-5 m-auto ">Vuoi aggiungere altri piatti? Torna al <a class="text-decoration-none fw-semibold text-warning " :href="'http://localhost:5174/restaurants/' + getRestaurantSlugFromLocalStorage()">menù</a> del ristorante.</p>
-                <button  class="btn btn-warning float-right" @click="this.getClientToken();">{{loading ? 'Invio in corso..' : 'Invia'}}</
+                <button  class="btn btn-warning float-right" @click="this.getClientToken();">{{loading ? 'Invio in corso..' : 'Invia'}}</button>
             </div>
         </div>
         <div class="col-12 col-md-6">
