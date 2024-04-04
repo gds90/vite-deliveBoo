@@ -22,6 +22,11 @@ export default {
             // Ottieni le categorie univoche, inclusi i piatti senza categoria
             return Array.from(new Set(this.dishes.map(dish => dish.category ? dish.category.name : null)))
                 .sort((a, b) => (a && b) ? a.localeCompare(b) : (a ? -1 : 1)); // Ordina le categorie, spostando null alla fine
+        },
+
+        // Funzione per verificare se ci sono piatti senza categoria
+        hasDishesWithoutCategory() {
+            return this.filteredDishes(null).length > 0;
         }
     },
     created() {
@@ -45,12 +50,12 @@ export default {
         },
         // Metodo per filtrare i piatti per categoria
         filteredDishes(category) {
-            // Se category è null, mostra tutti i piatti
-            if (!category) {
-                return this.dishes;
-            }
             // Filtra i piatti per categoria
-            return this.dishes.filter(dish => dish.category && dish.category.name === category);
+            if (category === null) {
+                return this.dishes.filter(dish => dish.category === null);
+            } else {
+                return this.dishes.filter(dish => dish.category && dish.category.name === category);
+            }
         },
         getUrlImage() {
             let image = null;
@@ -186,6 +191,19 @@ export default {
                 </li>
             </ul>
         </div>
+
+        <!-- Div per i piatti senza categoria -->
+        <!-- <div v-if="hasDishesWithoutCategory" class="col-12 text-white dishes">
+            <div class="category_name">
+                <h2 class="text-white fs-4">Nessuna Categoria</h2>
+            </div>
+            <ul class="list-unstyled">
+                <li v-for="(dish, dishIndex) in filteredDishes(null)" :key="dishIndex"
+                    class="bg-body-secondary rounded-4 shadow dish_container opaque-left">
+                    
+                </li>
+            </ul>
+        </div> -->
     </div>
 
 
