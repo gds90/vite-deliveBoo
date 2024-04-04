@@ -18,8 +18,9 @@ export default {
     },
     computed: {
         uniqueCategories() {
-            // le categorie univoche dai piatti
-            return Array.from(new Set(this.dishes.map(dish => dish.category.name)))
+            // Ottieni le categorie univoche solo se dish.category è presente e non è null
+            return Array.from(new Set(this.dishes.map(dish => dish.category && dish.category.name ? dish.category.name : null)))
+                .filter(category => category !== null) // Filtra eventuali valori null
                 .sort((a, b) => a.localeCompare(b));
         }
     },
@@ -44,7 +45,12 @@ export default {
         },
         // Metodo per filtrare i piatti per categoria
         filteredDishes(category) {
-            return this.dishes.filter(dish => dish.category.name === category);
+            // Se category è null, mostra tutti i piatti
+            if (!category) {
+                return this.dishes;
+            }
+            // Filtra i piatti per categoria
+            return this.dishes.filter(dish => dish.category && dish.category.name === category);
         },
         getUrlImage() {
             let image = null;
