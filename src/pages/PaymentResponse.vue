@@ -10,22 +10,26 @@ export default {
     },
     mounted() {
         // Accesso al parametro success dalla rotta
-        this.success = this.$route.params.success === 'true'; // Converte la stringa in un valore booleano
-
-        // Se success è true, reindirizza alla home dopo 5 secondi
+        this.success = this.$route.params.success; // Supponendo che il parametro success sia una stringa rappresentante un valore booleano
         if (this.success) {
+            // Svuota il carrello
+            store.cart.items = [];
+            store.cart.totalPrice = 0;
+
+            // Rimuovi eventuali altri dati relativi al ristorante (se necessario)
+            store.cart.restaurantId = null;
+            store.cart.restaurantSlug = null;
+
+            // Salva il carrello aggiornato nel local storage
+            localStorage.setItem('cartItems', JSON.stringify(store.cart.items));
+            localStorage.removeItem('restaurantSlug');
+
+            // Reindirizzo alla homepage
             setTimeout(() => {
-                this.$router.push({ name: 'home' });
-            }, 5000);
-        } else {
-            // Se success è false, reindirizza alla pagina del pagamento dopo 5 secondi
-            setTimeout(() => {
-                this.$router.push({ name: 'checkout' });
+                this.$router.push('/');
             }, 5000);
         }
-
-
-    }
+    },
 };
 </script>
 
@@ -49,7 +53,8 @@ export default {
                         </div>
                         <div class="card-body text-center py-5">
                             <h1 class="mb-3">Oops!</h1>
-                            <h2>Sembra ci sia stato un problema nell'elaborare il tuo pagamento. Controlla i dettagli del pagamento e riprova.</h2>
+                            <h2>Sembra ci sia stato un problema nell'elaborare il tuo pagamento. Controlla i dettagli
+                                del pagamento e riprova.</h2>
                         </div>
                     </div>
                 </div>
