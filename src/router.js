@@ -7,6 +7,7 @@ import Checkout from './pages/Checkout.vue';
 import AppNotFound from './pages/AppNotFound.vue';
 import AppContactUs from './pages/AppContactUs.vue';
 import AppThankYouPage from './pages/AppThankYouPage.vue';
+import PaymentResponse from "./pages/PaymentResponse.vue";
 
 
 const router = createRouter({
@@ -46,6 +47,11 @@ const router = createRouter({
             path: '/thank-you',
             name: 'thank-you',
             component: AppThankYouPage
+        },
+        {
+            path: '/payment-response',
+            name: 'payment-response',
+            component: PaymentResponse
         },
     ]
 });

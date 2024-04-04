@@ -90,6 +90,7 @@ export default {
             }, 20); // Imposta la velocità dello scorrimento regolando il valore dell'intervallo
         },
 
+        //stoppa lo scorrimento
         stopRestaurantScrolling() {
             clearInterval(this.restaurantScrollInterval);
         }
