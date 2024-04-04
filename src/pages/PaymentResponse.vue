@@ -10,7 +10,21 @@ export default {
     },
     mounted() {
         // Accesso al parametro success dalla rotta
-        this.success = this.$route.params.success; // Supponendo che il parametro success sia una stringa rappresentante un valore booleano
+        this.success = this.$route.params.success === 'true'; // Converte la stringa in un valore booleano
+
+        // Se success è true, reindirizza alla home dopo 5 secondi
+        if (this.success) {
+            setTimeout(() => {
+                this.$router.push({ name: 'home' });
+            }, 5000);
+        } else {
+            // Se success è false, reindirizza alla pagina del pagamento dopo 5 secondi
+            setTimeout(() => {
+                this.$router.push({ name: 'checkout' });
+            }, 5000);
+        }
+
+
     }
 };
 </script>
