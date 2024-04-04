@@ -5,13 +5,13 @@ export default {
     data() {
         return {
             store,
-            success: false
+            paymentEvent: false
         };
     },
     mounted() {
         // Accesso al parametro success dalla rotta
-        this.success = this.$route.params.success; // Supponendo che il parametro success sia una stringa rappresentante un valore booleano
-        if (this.success) {
+        this.paymentEvent = this.$route.params.paymentEvent; // Supponendo che il parametro success sia una stringa rappresentante un valore booleano
+        if (this.paymentEvent) {
             // Svuota il carrello
             store.cart.items = [];
             store.cart.totalPrice = 0;
@@ -23,6 +23,7 @@ export default {
             // Salva il carrello aggiornato nel local storage
             localStorage.setItem('cartItems', JSON.stringify(store.cart.items));
             localStorage.removeItem('restaurantSlug');
+            localStorage.removeItem('userData');
 
             // Reindirizzo alla homepage
             setTimeout(() => {
@@ -38,7 +39,7 @@ export default {
         <div class="row">
             <div class="col-12">
                 <div class="container-card">
-                    <div class="card" v-if="success">
+                    <div class="card" v-if="paymentEvent">
                         <div class="card-header bg-success d-flex justify-content-center py-4">
                             <i class="fa-regular fa-circle-check"></i>
                         </div>
