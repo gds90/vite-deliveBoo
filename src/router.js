@@ -52,11 +52,10 @@ const router = createRouter({
             component: AppThankYouPage
         },
         {
-            path: '/payment-response/:success',
+            path: '/payment-response/:paymentEvent',
             name: 'payment-response',
             component: PaymentResponse,
-            meta: { layout: BasicLayout },
-            props: true
+            meta: { layout: BasicLayout }
 
         },
     ]

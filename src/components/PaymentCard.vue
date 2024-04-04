@@ -4,7 +4,6 @@ import { store } from '../store.js';
 import axios from 'axios';
 export default {
     name: 'AppCard',
-
     data() {
         return {
             store,
@@ -150,14 +149,15 @@ export default {
             axios.post(`${this.store.baseUrl}/api/payment/process`, {
                 paymentMethodNonce: nonce,
                 cart: this.store.cart.items,
-
+                userData: userData
             })
                 .then(response => {
                     const paymentEvent = response.data.success;
                     if (paymentEvent) {
-                        this.$router.push({ name: 'home' }); // Reindirizza alla pagina di conferma pagamento
+                        console.log(response)
+                        this.$router.push({ name: 'payment-response', params: { paymentEvent: paymentEvent } }); // Reindirizza alla pagina di conferma pagamento
                     } else {
-                        this.$router.push({ name: 'home' }); // Reindirizza alla pagina di errore pagamento
+                        this.$router.push({ name: 'payment-response', params: { paymentEvent: paymentEvent } }); // Reindirizza alla pagina di errore pagamento
                     }
                 })
                 .catch(error => {

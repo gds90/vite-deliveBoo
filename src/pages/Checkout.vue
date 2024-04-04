@@ -16,7 +16,7 @@ export default {
             content: '',
             loading: false,
             errors: {},
-            clientToken: ''
+
         }
     },
     methods: {
@@ -53,9 +53,7 @@ export default {
                 this.errors.phone = ['Il campo Telefono non è valido'];
             }
 
-            if (!this.content) {
-                this.errors.content = ['Il campo Messaggio è obbligatorio'];
-            }
+
 
             // se ci sono errori  ritorna senza inviare il form
             if (Object.keys(this.errors).length > 0) {
@@ -63,34 +61,20 @@ export default {
             }
             this.loading = true;
 
-            const data = {
+            const userData = {
                 name: this.name,
                 surname: this.surname,
-                email: this.email,
+                address: this.address,
                 phone: this.phone,
-                content: this.content
             }
 
-            axios.post(`${this.store.baseUrl}/api/contacts`, data)
-                .then(response => {
-                    if (response.data.success) {
-                        // svuoto i campi della form
-                        this.name = '';
-                        this.surname = '';
-                        this.email = '';
-                        this.phone = '';
-                        this.content = '';
+            // Convertire l'oggetto in formato JSON
+            const userDataJSON = JSON.stringify(userData);
 
-                        // redirect pagina Thank-you
-                        this.$router.push('/thank-you');
-                    }
-                }).catch(error => {
-                    console.error('Error sending form:', error);
-                    this.errors.server = ['Si è verificato un errore durante l\'invio del modulo. Si prega di riprovare più tardi.'];
-                })
-                .finally(() => {
-                    this.loading = false;
-                });
+            // Memorizzare l'oggetto JSON nel localStorage
+            localStorage.setItem('userData', userDataJSON);
+
+
         },
         validateEmail(email) {
             // email validation
@@ -146,9 +130,9 @@ export default {
                             <p v-for="(error, index) in errors.phone" :key="`message-error-$(index)`" class="text-danger">{{ error }}</p>
                         </div>
                     </div>
-                    <!-- <div class="col-12 mt-5">
+                   <div class="col-12 mt-5">
                         <button  type="submit" class="btn btn-warning float-right" :disabled="loading">{{loading ? 'Invio in corso..' : 'Invia'}}</button>
-                    </div>  -->
+                    </div>  
                 </div>
             </form>
             <div class="cart rounded-4 shadow bg-white p-3 mt-5">
@@ -192,7 +176,7 @@ export default {
             </div>
         </div>
         <div class="col-12 col-md-6">
-            <PaymentCard :clientToken='this.clientToken'/>
+            <PaymentCard />
         </div>
     </div>
 </div>
