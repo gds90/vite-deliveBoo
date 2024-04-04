@@ -340,7 +340,7 @@ export default {
 .wrapper {
     min-height: 100vh;
     display: flex;
-    padding: 50px 15px;
+    padding: 0px 15px;
     width: 100%;
 }
 
