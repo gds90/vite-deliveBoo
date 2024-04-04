@@ -32,14 +32,20 @@ export default {
       // Ad esempio:
       store.calculateTotalPrice();
     }
+  },
+  computed: {
+    isCustomLayout() {
+      // Controlla se la rotta attiva ha un layout personalizzato
+      return this.$route.meta.layout !== undefined;
+    }
   }
 }
 </script>
 <template lang="">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <AppHeader/>
+  <AppHeader v-if="!isCustomLayout"/> <!-- Renderizza l'header solo se non è presente un layout personalizzato -->
   <router-view></router-view>
-  <AppFooter/>
+  <AppFooter v-if="!isCustomLayout"/> <!-- Renderizza il footer solo se non è presente un layout personalizzato -->
 </template>
 <style lang="scss">
 @use './styles/general.scss' as *;

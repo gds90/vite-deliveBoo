@@ -146,11 +146,8 @@ export default {
                     const jsonString = responseString.substring(startIndex);
                     const responseObject = JSON.parse(jsonString);
 
-                    if (responseObject.success == true) {
-                        this.$router.push({ name: 'home' }); // Reindirizza alla pagina di conferma pagamento
-                    } else {
-                        this.$router.push({ name: 'home' }); // Reindirizza alla pagina di errore pagamento
-                    }
+                    this.$router.push({ name: '/payment-response', params: responseObject.success  }); // Reindirizza alla pagina di conferma pagamento
+                    
                 })
                 .catch(error => {
                     // Gestisci gli errori durante la richiesta al server

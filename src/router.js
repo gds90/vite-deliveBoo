@@ -8,6 +8,9 @@ import AppNotFound from './pages/AppNotFound.vue';
 import AppContactUs from './pages/AppContactUs.vue';
 import AppThankYouPage from './pages/AppThankYouPage.vue';
 import PaymentResponse from "./pages/PaymentResponse.vue";
+import BasicLayout from "./pages/BasicLayout.vue";
+
+
 
 
 const router = createRouter({
@@ -51,7 +54,9 @@ const router = createRouter({
         {
             path: '/payment-response',
             name: 'payment-response',
-            component: PaymentResponse
+            component: PaymentResponse,
+            meta: { layout: BasicLayout },
+            props: true,
         },
     ]
 });
