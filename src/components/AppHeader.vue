@@ -121,8 +121,17 @@ export default {
                                         </table>
                                     </div>
                                     <!-- Bottoni -->
-                                    <div class="cart_btn m-5 ">
-                                        <button class="btn w-100 btn-warning  " @click="store.clearCart()">Svuota il Carrello</button>
+                                    <div class="cart_btn mx-3">
+                                        <button class="btn btn-sm w-100 btn-warning  " @click="store.clearCart()">Svuota il Carrello</button>
+                                        
+                                    </div>
+                                    <div>
+                                        <router-link :to="store.cart.items.length > 0 ? '/checkout' : ''" class="">
+                                            <div class="cart_btn mx-3 my-3">
+                                                <button class="btn btn-sm w-100 btn-warning  " :disabled="store.cart.items.length === 0">Effettua il
+                                                    check-out</button>
+                                            </div>
+                                        </router-link>
                                     </div>
                                 </div>
                             </transition>
@@ -246,11 +255,7 @@ header {
 
         }
 
-        .cart_btn {
-            position: sticky;
-            top: 400px;
-            margin-top: 80px;
-        }
+
 
     }
 }

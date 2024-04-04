@@ -11,7 +11,7 @@ export default {
             store,
             name: '',
             surname: '',
-            email: '',
+            address: '',
             phone: '',
             content: '',
             loading: false,
@@ -42,10 +42,8 @@ export default {
                 this.errors.surname = ['Il campo Cognome è obbligatorio'];
             }
 
-            if (!this.email) {
-                this.errors.email = ['Il campo E-mail è obbligatorio'];
-            } else if (!this.validateEmail(this.email)) {
-                this.errors.email = ['Il campo E-mail non è valido'];
+            if (!this.address) {
+                this.errors.address = ['Il campo Indirizzo è obbligatorio'];
             }
 
             if (!this.phone) {
@@ -93,6 +91,7 @@ export default {
                     this.loading = false;
                 });
         },
+<<<<<<< HEAD
         getClientToken() {
             axios.get(`${this.store.baseUrl}/api/payment/token`)
                 .then(response => {
@@ -108,6 +107,8 @@ export default {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return emailRegex.test(email);
         },
+=======
+>>>>>>> 5966b57 (Fixed button in header, change email with address in Checkout page)
         validatePhone(phone) {
             // phone number validation
             const phoneRegex = /^[0-9]{10}$/;
@@ -144,10 +145,10 @@ export default {
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
-                        <label for="email" class="control-label my-1"><strong>Indirizzo:</strong> </label>
-                        <input type="text" id="email" v-model="email" class="form-control" placeholder="Inserisci il tuo indirizzo" :class="errors.email ? 'is-invalid' : ''" required/>
-                        <div v-if="errors && errors.email" class="mt-1">
-                            <p v-for="(error, index) in errors.email" :key="`message-error-$(index)`" class="text-danger">{{ error }}</p>
+                        <label for="address" class="control-label my-1"><strong>Indirizzo:</strong> </label>
+                        <input type="text" id="address" v-model="address" class="form-control" placeholder="Inserisci il tuo indirizzo" :class="errors.address ? 'is-invalid' : ''" required/>
+                        <div v-if="errors && errors.address" class="mt-1">
+                            <p v-for="(error, index) in errors.address" :key="`message-error-$(index)`" class="text-danger">{{ error }}</p>
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
@@ -198,12 +199,12 @@ export default {
 
             </div>
             <div>
-                <p class="mt-4 fs-5 m-auto ">Vuoi aggiungere altri piatti? Torna al <a class="text-decoration-none fw-semibold" :href="'http://localhost:5174/restaurants/' + getRestaurantSlugFromLocalStorage()">menù</a> del ristorante.</p>
-
+                <p class="mt-4 fs-5 m-auto ">Vuoi aggiungere altri piatti? Torna al <a class="text-decoration-none fw-semibold text-warning " :href="'http://localhost:5174/restaurants/' + getRestaurantSlugFromLocalStorage()">menù</a> del ristorante.</p>
+                <button  class="btn btn-warning float-right" @click="this.getClientToken();">{{loading ? 'Invio in corso..' : 'Invia'}}</
             </div>
         </div>
         <div class="col-12 col-md-6">
-            <PaymentCard/>
+            <PaymentCard />
         </div>
     </div>
 </div>
@@ -216,14 +217,8 @@ export default {
 <style lang="scss" scoped>
 @use '../styles/partials/variables' as *;
 
-
 .cart {
     color: $secondary_color;
-}
-
-
-.spacer {
-    margin-top: 20px;
 }
 
 .btn {

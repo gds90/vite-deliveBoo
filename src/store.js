@@ -40,7 +40,7 @@ export const store = reactive({
             this.calculateTotalPrice();
         } else {
             let error = document.getElementById('error');
-            error.innerHTML = `Puoi ordinare soltanto da un ristorante alla volta. Svuota il carrello o torna al <a class="text-decoration-none fw-semibold " href="http://localhost:5174/restaurants/${this.cart.restaurantSlug}">ristorante</a> in cui stavi ordinando.`;
+            error.innerHTML = `Puoi ordinare soltanto da un ristorante alla volta. Svuota il carrello o torna al <a class="text-decoration-none fw-semibold text-warning" href="http://localhost:5174/restaurants/${this.cart.restaurantSlug}">ristorante</a> in cui stavi ordinando.`;
             error.classList.add('error-show');
             setTimeout(() => {
                 error.innerHTML = '';

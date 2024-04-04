@@ -230,9 +230,10 @@ export default {
             <!-- Bottoni -->
             <div class="cart_btn m-5 ">
                 <button class="btn w-100 btn-warning  " @click="store.clearCart()">Svuota il Carrello</button>
-                <router-link to="/checkout" class="">
+                <router-link :to="store.cart.items.length > 0 ? '/checkout' : ''" class="">
                     <div class="cart_btn m-5 ">
-                        <button class="btn w-100 btn-warning  ">Effettua il check-out</button>
+                        <button class="btn w-100 btn-warning  " :disabled="store.cart.items.length === 0">Effettua il
+                            check-out</button>
                     </div>
                 </router-link>
             </div>
