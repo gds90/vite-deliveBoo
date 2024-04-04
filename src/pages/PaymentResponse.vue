@@ -11,25 +11,7 @@ export default {
     mounted() {
         // Accesso al parametro success dalla rotta
         this.success = this.$route.params.success; // Supponendo che il parametro success sia una stringa rappresentante un valore booleano
-        if (this.success) {
-            // Svuota il carrello
-            store.cart.items = [];
-            store.cart.totalPrice = 0;
-
-            // Rimuovi eventuali altri dati relativi al ristorante (se necessario)
-            store.cart.restaurantId = null;
-            store.cart.restaurantSlug = null;
-
-            // Salva il carrello aggiornato nel local storage
-            localStorage.setItem('cartItems', JSON.stringify(store.cart.items));
-            localStorage.removeItem('restaurantSlug');
-
-            // Reindirizzo alla homepage
-            setTimeout(() => {
-                this.$router.push('/');
-            }, 5000);
-        }
-    },
+    }
 };
 </script>
 
@@ -43,8 +25,8 @@ export default {
                             <i class="fa-regular fa-circle-check"></i>
                         </div>
                         <div class="card-body text-center py-5">
-                            <h1 class="mb-3">Congratulations!</h1>
-                            <h2>Your payment has been successfully processed.</h2>
+                            <h1 class="mb-3">Congratulazioni!</h1>
+                            <h2> Il tuo pagamento è stato elaborato con successo.</h2>
                         </div>
                     </div>
                     <div class="card" v-else>
@@ -53,8 +35,7 @@ export default {
                         </div>
                         <div class="card-body text-center py-5">
                             <h1 class="mb-3">Oops!</h1>
-                            <h2>It seems there was an issue processing your payment. Please check your payment details
-                                and try again.</h2>
+                            <h2>Sembra ci sia stato un problema nell'elaborare il tuo pagamento. Controlla i dettagli del pagamento e riprova.</h2>
                         </div>
                     </div>
                 </div>

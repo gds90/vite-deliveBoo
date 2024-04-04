@@ -56,6 +56,7 @@ const router = createRouter({
             name: 'payment-response',
             component: PaymentResponse,
             meta: { layout: BasicLayout },
+            props: true
 
         },
     ]
