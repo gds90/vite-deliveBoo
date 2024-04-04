@@ -23,9 +23,7 @@ export default {
         };
     },
     mounted() {
-
         document.getElementById("cardNumber").focus();
-
         this.getClientToken();
     },
     computed: {
@@ -72,16 +70,6 @@ export default {
         loadCart() {
             const cart = JSON.parse(localStorage.getItem('cartItems')) || [];
             this.store.cart.items = cart;
-        },
-        getClientToken() {
-            axios.get(`${this.store.baseUrl}/api/payment/token`)
-                .then(response => {
-                    const clientToken = response.data.clientToken;
-                    this.initializeBraintree(clientToken);
-                })
-                .catch(error => {
-                    console.error('Error fetching client token:', error);
-                });
         },
         initializeBraintree(clientToken) {
             braintree.client.create({

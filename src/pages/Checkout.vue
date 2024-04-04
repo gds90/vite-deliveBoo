@@ -93,6 +93,16 @@ export default {
                     this.loading = false;
                 });
         },
+        getClientToken() {
+            axios.get(`${this.store.baseUrl}/api/payment/token`)
+                .then(response => {
+                    const clientToken = response.data.clientToken;
+                    this.initializeBraintree(clientToken);
+                })
+                .catch(error => {
+                    console.error('Error fetching client token:', error);
+                });
+        },
         validateEmail(email) {
             // email validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
