@@ -17,11 +17,11 @@ export default {
         }
     },
     computed: {
+
         uniqueCategories() {
-            // Ottieni le categorie univoche solo se dish.category è presente e non è null
-            return Array.from(new Set(this.dishes.map(dish => dish.category && dish.category.name ? dish.category.name : null)))
-                .filter(category => category !== null) // Filtra eventuali valori null
-                .sort((a, b) => a.localeCompare(b));
+            // Ottieni le categorie univoche, inclusi i piatti senza categoria
+            return Array.from(new Set(this.dishes.map(dish => dish.category ? dish.category.name : null)))
+                .sort((a, b) => (a && b) ? a.localeCompare(b) : (a ? -1 : 1)); // Ordina le categorie, spostando null alla fine
         }
     },
     created() {
@@ -117,6 +117,7 @@ export default {
                                         {{ type.name }}
                                     </span>
                                 </template>
+
 </div>
 
 </div>
