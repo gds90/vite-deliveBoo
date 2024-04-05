@@ -11,28 +11,34 @@ export default {
     mounted() {
         // Accesso al parametro success dalla rotta
         this.paymentEvent = this.$route.params.paymentEvent; // Supponendo che il parametro success sia una stringa rappresentante un valore booleano
-        if (this.paymentEvent) {
-            // Svuota il carrello
-            store.cart.items = [];
-            store.cart.totalPrice = 0;
 
-            // Rimuovi eventuali altri dati relativi al ristorante (se necessario)
-            store.cart.restaurantId = null;
-            store.cart.restaurantSlug = null;
-
-            // Salva il carrello aggiornato nel local storage
-            localStorage.setItem('cartItems', JSON.stringify(store.cart.items));
-            localStorage.removeItem('restaurantSlug');
-            localStorage.removeItem('userData');
-
-        }else{
-            
-            // Reindirizzo al checkout
+        // Controlla se il pagamento non è avvenuto con successo
+        if (!this.paymentEvent) {
+            // Reindirizzo al checkout dopo 5 secondi
             setTimeout(() => {
                 this.$router.push('/checkout');
             }, 5000);
         }
     },
+    methods: {
+        clearCartAndRedirectToHome() {
+        // Svuota il carrello
+        this.store.cart.items = [];
+        this.store.cart.totalPrice = 0;
+
+        // Rimuovi eventuali altri dati relativi al ristorante (se necessario)
+        this.store.cart.restaurantId = null;
+        this.store.cart.restaurantSlug = null;
+
+        // Salva il carrello aggiornato nel local storage
+        localStorage.setItem('cartItems', JSON.stringify(this.store.cart.items));
+        localStorage.removeItem('restaurantSlug');
+        localStorage.removeItem('userData');
+
+        // Reindirizza alla home
+        this.$router.push('/');
+    },
+    }
 };
 </script>
 
@@ -42,12 +48,47 @@ export default {
             <div class="col-12">
                 <div class="container-card">
                     <div class="card" v-if="paymentEvent">
-                        <div class="card-header bg-success d-flex justify-content-center py-4">
+                        <div class="card-header bg-success text-center py-4">
                             <i class="fa-regular fa-circle-check"></i>
-                        </div>
-                        <div class="card-body text-center py-5">
                             <h1 class="mb-3">Congratulazioni!</h1>
-                            <h2> Il tuo pagamento è stato elaborato con successo.</h2>
+                            <h5> Il tuo pagamento è stato elaborato con successo.</h5>
+                        </div>
+                        
+                        <div class="card-body payment-receipt">
+                            <div class="cart rounded-4 shadow bg-white p-3">
+                                <h2 class="text-center fw-bold py-5">Riepilogo del tuo ordine:</h2>
+                                
+                                <table class="w-100 text-center">
+                                    <thead class="border-bottom">
+                                        <tr class="">
+                                            <th colspan="1" class="text-start">Articolo</th>
+                                            <th>Quantità</th>
+                                            <th>Prezzo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="(cartItem, index) in store.cart.items" :key="index">
+                                            <td colspan="1" class="text-start">
+                                                {{cartItem.name}}
+                                            </td>
+                                            <td>
+                                                {{cartItem.quantity}}
+                                            </td>
+                                            <td>&euro;{{ (cartItem.price * cartItem.quantity).toFixed(2) }}</td>
+                                        </tr>
+                                        
+                                        <tr class="pt-5">
+                                            
+                                            <td colspan="1" class="text-start fs-5 fw-bold ">Totale</td>
+                                            <td colspan="2" class="text-end fs-5"><b>&euro; {{ store.totalPrice }}</b></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="text-center mt-5">
+    
+                                    <button @click="clearCartAndRedirectToHome" class="btn btn-outline-success">Torna alla Home</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="card" v-else>
@@ -73,11 +114,13 @@ export default {
     align-items: center;
     height: 100vh;
     /* Imposta l'altezza al 100% della viewport per centrare verticalmente */
+    
 }
 
 .card {
     width: 70%;
     border: none;
+    
 }
 
 .card-header {
