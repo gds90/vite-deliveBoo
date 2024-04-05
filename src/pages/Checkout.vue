@@ -100,8 +100,8 @@ export default {
     </div>
     <div class="row">
         <div class="col-12 col-md-6 mt-5">
-            <div class="cart rounded-4 shadow bg-white p-3 mt-5">
-                <h2 class="text-center fw-bold py-5">Riepilogo del tuo ordine:</h2>
+            <div class="cart rounded-4 shadow bg-white p-3">
+                <h2 class="text-center fw-bold pb-5">Riepilogo del tuo ordine:</h2>
                 <!-- <div v-if="store.cart.items.length === 0" class="text-center p-3">
                     <span>Non ci sono articoli nel carrello!</span>
 
