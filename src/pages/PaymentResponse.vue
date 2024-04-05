@@ -25,9 +25,11 @@ export default {
             localStorage.removeItem('restaurantSlug');
             localStorage.removeItem('userData');
 
-            // Reindirizzo alla homepage
+        }else{
+            
+            // Reindirizzo al checkout
             setTimeout(() => {
-                this.$router.push('/');
+                this.$router.push('/checkout');
             }, 5000);
         }
     },
