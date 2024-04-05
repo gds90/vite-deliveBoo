@@ -100,7 +100,42 @@ export default {
     </div>
     <div class="row">
         <div class="col-12 col-md-6 mt-5">
-            <form @submit.prevent="SendForm()" method="post">
+            <div class="cart rounded-4 shadow bg-white p-3 mt-5">
+                <h2 class="text-center fw-bold py-5">Riepilogo del tuo ordine:</h2>
+                <!-- <div v-if="store.cart.items.length === 0" class="text-center p-3">
+                    <span>Non ci sono articoli nel carrello!</span>
+
+                </div> -->
+
+                <table class="w-100 text-center" v-if="store.cart.items.length > 0">
+                    <thead class="border-bottom">
+                        <tr class="">
+                            <th colspan="1" class="text-start">Articolo</th>
+                            <th>Quantità</th>
+                            <th>Prezzo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(cartItem, index) in store.cart.items" :key="index">
+                            <td colspan="1" class="text-start">
+                                {{cartItem.name}}
+                            </td>
+                            <td>
+                                {{cartItem.quantity}}
+                            </td>
+                            <td>&euro;{{ (cartItem.price * cartItem.quantity).toFixed(2) }}</td>
+                        </tr>
+                        
+                        <tr class="">
+                            
+                            <td colspan="1" class="text-start fs-5 fw-bold ">Totale</td>
+                            <td colspan="2" class="text-end fs-5"><b>&euro; {{ store.totalPrice }}</b></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <form @submit.prevent="SendForm()" method="post" class="mt-5">
                 <div class="row">
                     <div class="col-12 col-md-6 my-3">
                         <label for="surname" class="control-label my-1"><strong>Nome:</strong> </label>
@@ -135,44 +170,9 @@ export default {
                     </div>  
                 </div>
             </form>
-            <div class="cart rounded-4 shadow bg-white p-3 mt-5">
-                <h2 class="text-center fw-bold py-3">Riepilogo del tuo ordine:</h2>
-                <!-- <div v-if="store.cart.items.length === 0" class="text-center p-3">
-                    <span>Non ci sono articoli nel carrello!</span>
-
-                </div> -->
-
-                <table class="w-100 text-center" v-if="store.cart.items.length > 0">
-                    <thead class="border-bottom">
-                        <tr class="">
-                            <th colspan="1" class="text-start">Articolo</th>
-                            <th>Quantità</th>
-                            <th>Prezzo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="(cartItem, index) in store.cart.items" :key="index">
-                            <td colspan="1" class="text-start">
-                                {{cartItem.name}}
-                            </td>
-                            <td>
-                                {{cartItem.quantity}}
-                            </td>
-                            <td>&euro;{{ (cartItem.price * cartItem.quantity).toFixed(2) }}</td>
-                        </tr>
-                        
-                        <tr class="">
-                            
-                            <td colspan="1" class="text-start fs-5 fw-bold ">Totale</td>
-                            <td colspan="2" class="text-end fs-5"><b>&euro; {{ store.totalPrice }}</b></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-            </div>
+            
             <div>
                 <p class="mt-4 fs-5 m-auto ">Vuoi aggiungere altri piatti? Torna al <a class="text-decoration-none fw-semibold text-warning " :href="'http://localhost:5174/restaurants/' + getRestaurantSlugFromLocalStorage()">menù</a> del ristorante.</p>
-                <button  class="btn btn-warning float-right" @click="this.getClientToken();">{{loading ? 'Invio in corso..' : 'Invia'}}</button>
             </div>
         </div>
         <div class="col-12 col-md-6">
