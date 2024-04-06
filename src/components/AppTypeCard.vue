@@ -17,7 +17,7 @@ export default {
 }
 </script>
 <template>
-    <div class="type-container text-center me-5" @click="toggleHighlight">
+    <div class="type-container text-center me-4 h-100 " @click="toggleHighlight">
         <div class="image-button rounded-image shadow ">
             <img :class="{ 'highlighted': isHighlighted }" :src="`/img/type-image/${type.slug}.jpeg`">
         </div>
@@ -29,6 +29,15 @@ export default {
 </template>
 <style lang="scss">
 @use '../styles/partials/variables' as *;
+
+.type-container {
+    transition: 0.3s all;
+    position: relative;
+
+    &:hover {
+        transform: scale(1.2)
+    }
+}
 
 .rounded-image {
     position: relative;

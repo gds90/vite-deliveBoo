@@ -23,7 +23,7 @@ export default {
             <div class="col-12  text-center my-5">
                 <div class="register-wwu">
                     <!-- Link alla registrazione -->
-                    <a href="http://127.0.0.1:8000/register" class=""><button class="font-1 ">REGISTRATI</button></a>
+                    <a href="http://127.0.0.1:8000/register" class=""><button class="font-1 text_secondary">REGISTRATI</button></a>
                     
                 </div>
             </div>
@@ -34,6 +34,7 @@ export default {
 </template>
 <style lang="scss" scoped>
 @use '../styles/partials/variables' as *;
+@use '../styles/general' as *;
 
 .container {
 
@@ -78,7 +79,7 @@ button {
 
 button::before {
     content: "";
-    background-color: rgb(245, 173, 68);
+    background-color: #fff;
     width: 0;
     height: 100%;
     position: absolute;

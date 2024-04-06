@@ -127,7 +127,7 @@ export default {
         
             <div class="types my-4">
                 <div class="container-fluid d-flex justify-content-between overflow-auto types">
-                    <AppTypeCard v-for="type, index in types" :key="index" :type="type" @click="toggleType(type)" class="mb-4"/>
+                    <AppTypeCard v-for="type, index in types" :key="index" :type="type" @click="toggleType(type)" class="my-4"/>
                 </div>
 
                 <div class="button-container">
@@ -169,7 +169,7 @@ export default {
         </div>
     </main>
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
 main {
     background: rgba(28, 48, 93, 0.1);
 
@@ -225,22 +225,22 @@ main {
         color: white;
         font-size: 20px;
         transition: all 0.3s ease-in-out;
-        
+
 
 
         &:hover {
             background-color: rgba(245, 195, 68, 1);
             opacity: 1;
             transform: scale(1.5);
-            transform: translateY(-50%) scale(1.5); 
+            transform: translateY(-50%) scale(1.5);
             box-shadow: 0 0 0 2px transparent;
         }
     }
 
-    .restaurant{
+    .restaurant {
         top: 50%;
     }
 
-   
+
 }
 </style>

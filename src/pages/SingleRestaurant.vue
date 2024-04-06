@@ -229,17 +229,24 @@ export default {
                     <tbody>
                         <tr v-for="(cartItem, index) in store.cart.items" :key="index">
                             <td colspan="1" class="text-start ps-1 item_name">
-                                <i class="btn btn-sm fas fa-xmark px-1" @click="store.clearItemFromCart(index)"></i>
+                                <div class="btn btn-sm btn-outline-danger m-2" @click="store.clearItemFromCart(index)">
+                                    <i class="fas fa-xmark"></i>
+                                </div>
                                 {{cartItem.name}}
                             </td>
-                            <td><i class="btn btn-sm fas fa-minus" @click="store.removeFromCart(cartItem)">
-                                </i>
+                            <td>
+                                <div class="btn btn-sm btn-danger me-1">
+                                    <i class="fas fa-minus" @click="store.removeFromCart(cartItem)">
+                                    </i>
+                                </div>
                                 {{cartItem.quantity}}
-                                <i class="btn btn-sm fas fa-plus"
-                                    @click="store.addToCart(cartItem, cartItem.restaurant_id, restaurant.slug)">
-                                </i>
+                                <div class="btn btn-sm btn-warning ms-1 text_secondary">
+                                    <i class="fas fa-plus"
+                                        @click="store.addToCart(cartItem, cartItem.restaurant_id, restaurant.slug)">
+                                    </i>
+                                </div>
                             </td>
-                            <td>&euro;{{ (cartItem.price * cartItem.quantity).toFixed(2) }}</td>
+                            <td>&euro; {{ (cartItem.price * cartItem.quantity).toFixed(2) }}</td>
                         </tr>
                         <tr>
                             <th colspan="1">Totale</th>
@@ -253,12 +260,13 @@ export default {
             <div id="error" class="text-danger text-center p-3 mt-4 rounded-4"></div>
             <!-- <p id="error" class="text-danger text-center py-3"></p> -->
             <!-- Bottoni -->
-            <div class="cart_btn m-5 ">
-                <button class="btn w-100 btn-warning  " @click="store.clearCart()">Svuota il Carrello</button>
+            <div class="cart_btn my-5 ">
+                <button class="w-100 btn-warning text_secondary font-1" @click="store.clearCart()">SVUOTA IL
+                    CARRELLO</button>
                 <router-link :to="store.cart.items.length > 0 ? '/checkout' : ''" class="">
-                    <div class="cart_btn m-5 ">
-                        <button class="btn w-100 btn-warning  " :disabled="store.cart.items.length === 0">Effettua il
-                            check-out</button>
+                    <div class="cart_btn my-3 ">
+                        <button class="w-100 btn-warning text_secondary font-1"
+                            :disabled="store.cart.items.length === 0">EFFETTUA IL CHECKOUT</button>
                     </div>
                 </router-link>
             </div>
@@ -275,6 +283,7 @@ export default {
 
 <style lang="scss" scoped>
 @use '../styles/partials/variables' as *;
+@use '../styles/general' as *;
 
 td {
     font-size: 14px;
@@ -490,7 +499,7 @@ td {
 
 button {
     position: relative;
-    top: -120%;
+    top: -80%;
     background-color: rgb(245, 195, 68);
     border-radius: 5px;
     box-shadow: #fff 0px 4px 0px 0px;
@@ -514,7 +523,7 @@ button {
 
 button::before {
     content: "";
-    background-color: rgb(245, 173, 68);
+    background-color: #fff;
     width: 0;
     height: 100%;
     position: absolute;

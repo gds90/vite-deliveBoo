@@ -81,9 +81,9 @@ export default {
                             </li>
                             <!-- Carrello -->
                             <transition name="fade" >
-                                <div v-if="cartVisible" class="cart_container rounded-4 shadow" @mouseenter="pauseTimeout" @mouseleave="resumeTimeout"> 
+                                <div v-if="cartVisible" class="cart_container rounded-4 shadow p-2" @mouseenter="pauseTimeout" @mouseleave="resumeTimeout"> 
 
-                                    <div class="cart p-3">
+                                    <div class="cart p-1">
                                         <h2 class="text-center fw-bold py-2">Il tuo carrello</h2>
                                         <div v-if="store.cart.items.length === 0" class="text-center p-3">
                                             <span>Non ci sono articoli nel carrello!</span>
@@ -93,25 +93,32 @@ export default {
                                         <table class="w-100 text-center" v-if="store.cart.items.length > 0">
                                             <thead class="border-bottom">
                                                 <tr class="">
-                                                    <th colspan="2" class="text-start">Articolo</th>
+                                                    <th colspan="1" class="text-start">Articolo</th>
                                                     <th>Quantità</th>
                                                     <th>Prezzo</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr v-for="(cartItem, index) in store.cart.items" :key="index">
-                                                    <td colspan="2" class="text-start ps-1">
-                                                        <i class="btn btn-lg fas fa-xmark" @click="store.clearItemFromCart(index)"></i>
+                                                    <td colspan="1" class="text-start item_name">
+                                                        <div class="btn btn-sm btn-outline-danger m-2" @click="store.clearItemFromCart(index)">
+                                                            <i class="fas fa-xmark"></i>
+                                                        </div>
                                                         {{cartItem.name}}
                                                     </td>
-                                                    <td><i class="btn btn-sm fas fa-minus" @click="store.removeFromCart(cartItem)">
-                                                        </i>
+                                                    <td>
+                                                        <div class="btn btn-sm btn-danger me-1">
+                                                            <i class="fas fa-minus" @click="store.removeFromCart(cartItem)">
+                                                            </i>
+                                                        </div>
                                                         {{cartItem.quantity}}
-                                                        <i class="btn btn-sm fas fa-plus"
-                                                            @click="store.addToCart(cartItem, cartItem.restaurant_id)">
-                                                        </i>
+                                                        <div class="btn btn-sm btn-warning ms-1 text_secondary">
+                                                            <i class="fas fa-plus"
+                                                                @click="store.addToCart(cartItem, cartItem.restaurant_id, restaurant.slug)">
+                                                            </i>
+                                                        </div>
                                                     </td>
-                                                    <td>&euro;{{ (cartItem.price * cartItem.quantity).toFixed(2) }}</td>
+                                                    <td>&euro; {{ (cartItem.price * cartItem.quantity).toFixed(2) }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th colspan="2">Totale</th>
@@ -121,17 +128,17 @@ export default {
                                         </table>
                                     </div>
                                     <!-- Bottoni -->
-                                    <div class="cart_btn mx-3">
-                                        <button class="btn btn-sm w-100 btn-warning  " @click="store.clearCart()">Svuota il Carrello</button>
+                                    <div class="cart_btn d-flex mt-2">
+                                        <button class="btn btn-sm btn-warning font-1 text_secondary w-75 fs-5" @click="store.clearCart()">Svuota il Carrello</button>
                                         
-                                    </div>
-                                    <div>
                                         <router-link :to="store.cart.items.length > 0 ? '/checkout' : ''" class="">
-                                            <div class="cart_btn mx-3 my-3">
-                                                <button class="btn btn-sm w-100 btn-warning  " :disabled="store.cart.items.length === 0">Effettua il
+                                            <div class="cart_btn ms-3">
+                                                <button class="btn btn-sm btn-warning font-1 text_secondary fs-5" :disabled="store.cart.items.length === 0">Effettua il
                                                     check-out</button>
                                             </div>
                                         </router-link>
+                                    <!-- </div>
+                                    <div> -->
                                     </div>
                                 </div>
                             </transition>
@@ -149,6 +156,7 @@ export default {
 </template>
 <style lang="scss" scoped>
 @use '../styles/partials/variables' as *;
+@use '../styles/general' as *;
 
 header {
     height: 100px;
@@ -253,10 +261,19 @@ header {
                 height: auto;
             }
 
+
+        }
+
+        td {
+            font-size: 14px;
         }
 
 
 
     }
+}
+
+button:hover {
+    transform: scale(1.01)
 }
 </style>

@@ -22,7 +22,7 @@ export default {
         <div class="row">
             <div class="col-12 d-flex justify-content-center">
                 <!-- Router link a lista Progetti -->
-                <router-link to="/restaurants" class=""><button class="font-1 ">ORDINA SUBITO</button></router-link>
+                <router-link to="/restaurants" class=""><button class="font-1 text_secondary">ORDINA SUBITO</button></router-link>
             </div>
         </div>
     </div>
@@ -33,6 +33,7 @@ export default {
 </template>
 <style lang="scss" scoped>
 @use '../styles/partials/variables' as *;
+@use '../styles/general' as *;
 
 button {
     position: relative;
@@ -60,7 +61,7 @@ button {
 
 button::before {
     content: "";
-    background-color: rgb(245, 173, 68);
+    background-color: #fff;
     width: 0;
     height: 100%;
     position: absolute;

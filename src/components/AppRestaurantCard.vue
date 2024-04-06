@@ -26,31 +26,33 @@ export default {
     <div class="col-md-6 col-lg-4 col-xxl-3 my-4">
         <router-link :to="{ name: 'single-restaurant', params: { slug: restaurant.slug } }"
             class="text-decoration-none">
-            <div class="card rounded-top-2 shadow" style="width: 18rem;">
-                <div class="my_image_card">
-                    <img class="rounded-top-2" :src="getUrlImage()" :alt="restaurant.name">
+            <div class="card rounded-top-2 shadow position-relative me-1">
+                <div class="my_image_card rounded-2">
+                    <img class="rounded-2" :src="getUrlImage()" :alt="restaurant.name">
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title fw-bolder ">{{ restaurant.name }}</h5>
-                    <p class="card-text">{{ restaurant.address }}</p>
-                    <!-- <a href="#" class="btn btn-sm btn-light w-100 ">Ordina</a> -->
+                <div class="card-body position-absolute bottom-0 start-0 end-0 rounded-bottom-2 ">
+                    <h5 class="card-title fw-bolder text-white mb-0">{{ restaurant.name }}</h5>
+                    <p class="card-text text-white">{{ restaurant.address }}</p>
                 </div>
             </div>
         </router-link>
     </div>
 </template>
+
 <style lang="scss">
 .card {
+    width: 24rem;
+    height: 300px;
     cursor: pointer;
     transition: 0.3s all;
+    position: relative;
 
     &:hover {
         transform: scale(1.05)
     }
 
     .my_image_card {
-
-        height: 180px;
+        height: 100%;
 
         img {
             width: 100%;
@@ -60,9 +62,9 @@ export default {
     }
 
     .card-body {
-        height: 80px;
-        font-size: 0.8em;
-        background-color: gainsboro;
+        background: rgb(0, 0, 0);
+        background: linear-gradient(0deg, rgba(0, 0, 0, 1) 25%, rgba(255, 255, 255, 0) 100%);
+        padding: 1rem;
     }
 }
 </style>
