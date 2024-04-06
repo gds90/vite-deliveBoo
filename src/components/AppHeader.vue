@@ -42,6 +42,12 @@ export default {
                     this.cartVisible = false;
                 }, 1500);
             }
+        },
+        truncate(text, length) {
+            if (text.length > length) {
+                return text.substring(0, length) + '...';
+            }
+            return text;
         }
     }
 }
@@ -100,11 +106,11 @@ export default {
                                             </thead>
                                             <tbody>
                                                 <tr v-for="(cartItem, index) in store.cart.items" :key="index">
-                                                    <td colspan="1" class="text-start item_name">
+                                                    <td colspan="1" class="text-start item_name d-flex align-items-center ">
                                                         <div class="btn btn-sm btn-outline-danger m-2" @click="store.clearItemFromCart(index)">
                                                             <i class="fas fa-xmark"></i>
                                                         </div>
-                                                        {{cartItem.name}}
+                                                        <div class="truncate-text">{{ truncate(cartItem.name,25) }}</div>
                                                     </td>
                                                     <td>
                                                         <div class="btn btn-sm btn-danger me-1">
@@ -157,6 +163,12 @@ export default {
 <style lang="scss" scoped>
 @use '../styles/partials/variables' as *;
 @use '../styles/general' as *;
+
+.truncate-text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 
 header {
     height: 100px;
