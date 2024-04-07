@@ -21,7 +21,7 @@ export default {
             if (this.cartVisible) {
                 this.timeout = setTimeout(() => {
                     this.cartVisible = false;
-                }, 1500);
+                }, 3000);
             }
             this.hoveringCart = false;
         },
@@ -40,7 +40,7 @@ export default {
                 // avvia il timeout per nascondere il carrello
                 this.timeout = setTimeout(() => {
                     this.cartVisible = false;
-                }, 1500);
+                }, 3000);
             }
         },
         truncate(text, length) {

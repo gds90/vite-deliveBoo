@@ -106,12 +106,12 @@ export default {
                 </div>
                 <div class="col-12">
                     <div class="row">
-                        <div class="col-5">
+                        <div class="col-12 col-md-5">
                             <div class="restaurant_image">
                                 <img :src="getUrlImage()" :alt="restaurant.name" id="detail-img" class="w-100 rounded shadow"/>
                             </div>
                         </div>
-                        <div class="col-7">
+                        <div class="col-12 mt-md-0 mt-3 col-md-7">
                             <div class="restaurant_info text-start">
                                 <p class="fs-4 fw-semibold text-white">
                                     <i class="fa-solid fa-location-dot me-2 "></i>{{ restaurant.address }} 
@@ -136,10 +136,10 @@ export default {
 </div>
 
 </div>
-<hr class="my-5">
+<hr class="my-5 text-white">
 <!-- Piatti del ristorante -->
 <div class="row">
-    <div class="col-12 col-lg-8 text-white dishes pe-md-5">
+    <div class="col-12 col-xxl-8 text-white dishes pe-md-3 order-lg-1 order-xxl-0">
         <h2 class="fw-bold text-center text-white ">Menù del ristorante</h2>
 
         <div v-for="(category, index) in uniqueCategories" :key="index" class="col-12 text-white dishes">
@@ -151,13 +151,13 @@ export default {
                 <li v-for="(dish, dishIndex) in filteredDishes(category)" :key="dishIndex"
                     class="bg-body-secondary rounded-4 shadow dish_container opaque-left">
                     <div class="row my-3">
-                        <div class="col-2">
+                        <div class="col-3">
                             <div class="dish_image align-items-center justify-content-center">
                                 <img :src="getDishImage(dish)" class="rounded-4 w-100 h-100" />
                             </div>
                         </div>
-                        <div class="col-8 ">
-                            <div class="dish_infos ms-2 mt-2">
+                        <div class="col-7 ">
+                            <div class="dish_infos ms-3 mt-2">
                                 <div class="d-flex align-items-center">
                                     <h3 class=" ">{{ dish.name }} </h3>
                                 </div>
@@ -167,8 +167,8 @@ export default {
                             </div>
                         </div>
                         <div class="col-2 fs-1 pe-4">
-                            <div>
-                                <button class="CartBtn my-2"
+                            <div class="">
+                                <button class="CartBtn my-2 shadow "
                                     @click="store.addToCart(dish, dish.restaurant_id, restaurant.slug)">
                                     <span class="IconContainer">
                                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"
@@ -180,7 +180,9 @@ export default {
                                     </span>
                                     <p class="text fs-4"><i class="fa-solid fa-sm fa-plus"></i></p>
                                 </button>
-                                <button class="CartBtnRemove" @click="store.removeFromCart(dish, dish.restaurant_id)">
+
+                                <button class="CartBtnRemove shadow"
+                                    @click="store.removeFromCart(dish, dish.restaurant_id)">
                                     <span class="IconContainer">
                                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"
                                             fill="rgb(17, 17, 17)" class="cart_icon_add">
@@ -213,7 +215,7 @@ export default {
     </div>
 
 
-    <div class="col-lg-4 d-none d-lg-block">
+    <div class="col-xxl-4 d-none d-xxl-block order-lg-0 order-xxl-1">
         <!-- Carrello -->
         <div class="sticky_top">
 
@@ -386,10 +388,10 @@ td {
 // aggiungi / rimuovi piatto
 .CartBtn {
     width: 100%;
-    height: 40px;
+    height: 50%;
     border-radius: 12px;
     border: none;
-    background-color: rgb(255, 208, 0);
+    background-color: rgb(245, 195, 68);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -402,10 +404,11 @@ td {
 
 .CartBtnRemove {
     width: 100%;
-    height: 40px;
+    height: 50%;
     border-radius: 12px;
     border: none;
-    background-color: rgb(211, 58, 48);
+    // background-color: rgb(211, 58, 48);
+    background-color: rgb(245, 195, 68);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -414,6 +417,7 @@ td {
     overflow: hidden;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.103);
     position: relative;
+
 }
 
 .IconContainer {
@@ -455,6 +459,7 @@ td {
 
 }
 
+/*
 .CartBtn:hover .IconContainer,
 .CartBtnRemove:hover .IconContainer {
     transform: translateX(58px);
@@ -467,6 +472,7 @@ td {
     transform: translate(10px, 0px);
     transition-duration: .5s;
 }
+*/
 
 .CartBtn:active,
 .CartBtnRemove:active {
@@ -534,7 +540,7 @@ button {
     }
 }
 
-button::before {
+.CartBtn::before {
     content: "";
     background-color: #fff;
     width: 0;
@@ -547,7 +553,42 @@ button::before {
     display: inline-block;
 }
 
+.CartBtnRemove::before {
+    content: "";
+    background-color: rgb(211, 58, 48);
+    width: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: width 700ms ease-in-out;
+    display: inline-block;
+}
+
 button:hover::before {
     width: 100%;
+}
+
+@media only screen and (min-width: 575px) {
+
+    .CartBtn:hover .IconContainer,
+    .CartBtnRemove:hover .IconContainer {
+        transform: translateX(58px);
+        border-radius: 40px;
+        transition-duration: .5s;
+    }
+
+    .CartBtn:hover .text,
+    .CartBtnRemove:hover .text {
+        transform: translate(10px, 0px);
+        transition-duration: .5s;
+    }
+}
+
+.CartBtn:active,
+.CartBtnRemove:active {
+    transform: scale(0.95);
+    transition-duration: .5s;
 }
 </style>

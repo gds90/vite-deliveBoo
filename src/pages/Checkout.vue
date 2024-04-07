@@ -98,6 +98,9 @@ export default {
             </h2>
         </div>
     </div>
+    <div>
+        <p class="mt-4 fs-6 m-auto ">Vuoi aggiungere altri piatti? Torna al <a class="text-decoration-none fw-semibold text-warning " :href="'http://localhost:5174/restaurants/' + getRestaurantSlugFromLocalStorage()">menù</a> del ristorante.</p>
+    </div>
     <div class="row">
         <div class="col-12 col-md-6 mt-5">
             <div class="cart rounded-4 shadow bg-white p-3">
@@ -135,9 +138,11 @@ export default {
                 </table>
 
             </div>
-            <form @submit.prevent="SendForm()" method="post" class="mt-5">
+        </div>
+        <div class="col-12 col-md-6 px-3 form_container rounded-4 mt-5">
+            <form @submit.prevent="SendForm()" method="post" class="py-3">
                 <div class="row">
-                    <div class="col-12 col-md-6 my-3">
+                    <div class="col-12 col-md-6">
                         <label for="surname" class="control-label my-1"><strong>Nome:</strong> </label>
                         <input type="text" id="name" v-model="name" class="form-control" placeholder="Inserisci il tuo nome" :class="errors.name ? 'is-invalid' : ''" required/>
                         <div v-if="errors && errors.name" class="mt-1">
@@ -152,39 +157,32 @@ export default {
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
-                        <label for="address" class="control-label my-1"><strong>Indirizzo:</strong> </label>
+                        <label for="address" class="control-label my-1"><strong>Indirizzo di consegna:</strong> </label>
                         <input type="text" id="address" v-model="address" class="form-control" placeholder="Inserisci il tuo indirizzo" :class="errors.address ? 'is-invalid' : ''" required/>
                         <div v-if="errors && errors.address" class="mt-1">
                             <p v-for="(error, index) in errors.address" :key="`message-error-$(index)`" class="text-danger">{{ error }}</p>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-md-6 mt-2">
                         <label for="phone" class="control-label my-1"><strong>Telefono:</strong></label>
                         <input type="text" id="phone" v-model="phone" class="form-control" placeholder="Inserisci il tuo numero" :class="errors.phone ? 'is-invalid' : ''" required/>
-                        <div v-if="errors && errors.phone">
+                        <div v-if="errors && errors.phone" class="mt-1">
                             <p v-for="(error, index) in errors.phone" :key="`message-error-$(index)`" class="text-danger">{{ error }}</p>
                         </div>
                     </div>
-                   <div class="col-12 mt-5">
-                        <button  type="submit" class="btn btn-warning float-right" :disabled="loading">{{loading ? 'Invio in corso..' : 'Invia'}}</button>
-                    </div>  
                 </div>
+                <div class="col-12 mt-5 d-none">
+                    <button  type="submit" class="btn btn-warning float-right" :disabled="loading">{{loading ? 'Invio in corso..' : 'Invia'}}</button>
+                </div>  
             </form>
             
-            <div>
-                <p class="mt-4 fs-5 m-auto ">Vuoi aggiungere altri piatti? Torna al <a class="text-decoration-none fw-semibold text-warning " :href="'http://localhost:5174/restaurants/' + getRestaurantSlugFromLocalStorage()">menù</a> del ristorante.</p>
-            </div>
+            
         </div>
-        <div class="col-12 col-md-6">
+        <div class="col-12 m-auto mt-4">
             <PaymentCard />
         </div>
     </div>
 </div>
-    <div>
-    </div>
-    <div class="container">
-        
-    </div>
 </template>
 <style lang="scss" scoped>
 @use '../styles/partials/variables' as *;
@@ -232,4 +230,10 @@ export default {
     width: 100%;
 }
 */
+
+.form_container {
+    backdrop-filter: blur(25px);
+    background-color: rgba(245, 195, 68, 0.05);
+
+}
 </style>
