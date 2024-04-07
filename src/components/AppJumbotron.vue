@@ -130,7 +130,7 @@ export default {
     }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 668px) {
     .jumbotron .background {
         padding-top: 50px;
     }
