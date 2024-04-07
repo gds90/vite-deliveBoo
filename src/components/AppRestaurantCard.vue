@@ -32,6 +32,15 @@ export default {
                 </div>
                 <div class="card-body position-absolute bottom-0 start-0 end-0 rounded-bottom-2 ">
                     <h5 class="card-title fw-bolder text-white mb-0">{{ restaurant.name }}</h5>
+
+                    <template v-for="(type, index) in restaurant.types" :key="index">
+                        <span v-if="index !== restaurant.types.length - 1" class="text-white fs_10">
+                            {{ type.name }} •
+                        </span>
+                        <span v-else class="text-white fs_10">
+                            {{ type.name }}
+                        </span>
+                    </template>
                     <p class="card-text text-white">{{ restaurant.address }}</p>
                 </div>
             </div>
@@ -65,6 +74,10 @@ export default {
         background: rgb(0, 0, 0);
         background: linear-gradient(0deg, rgba(0, 0, 0, 1) 25%, rgba(255, 255, 255, 0) 100%);
         padding: 1rem;
+
+        .fs_10 {
+            font-size: 12px;
+        }
     }
 }
 </style>

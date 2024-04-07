@@ -71,13 +71,13 @@ export default {
             }
             return image ? `${this.store.baseUrl}/${image}` : '';
         },
-        getRandomNumber(min, max) {
-            return Math.floor(Math.random() * (max - min + 1) + min);
-        },
-        getRandomStars() {
-            const numStars = this.getRandomNumber(3, 5);
-            return '★'.repeat(numStars);
-        },
+        // getRandomNumber(min, max) {
+        //     return Math.floor(Math.random() * (max - min + 1) + min);
+        // },
+        // getRandomStars() {
+        //     const numStars = this.getRandomNumber(3, 5);
+        //     return '★'.repeat(numStars);
+        // },
         truncate(text, length) {
             if (text.length > length) {
                 return text.substring(0, length) + '...';
@@ -117,9 +117,9 @@ export default {
                                     <i class="fa-solid fa-location-dot me-2 "></i>{{ restaurant.address }} 
                                 </p>
                                 <!-- stelle delle recensioni -->
-                                <p class="stars text-white">{{ getRandomStars() }}
+                                <!-- <p class="stars text-white">{{ getRandomStars() }} -->
                                 <!-- numero finto di recensioni -->
-                                ({{ getRandomNumber(150, 250) }} recensioni)</p> 
+                                <!-- ({{ getRandomNumber(150, 250) }} recensioni)</p>  -->
                                 <template v-for="(type, index) in restaurant.types" :key="index">
                                     <span v-if="index !== restaurant.types.length - 1" class="text-white">
                                         {{ type.name }} •
@@ -257,7 +257,7 @@ export default {
                         </tr>
                         <tr>
                             <th colspan="1">Totale</th>
-                            <td><b>&euro; {{ store.totalPrice }}</b></td>
+                            <td class="text_secondary"><b>&euro; {{ store.totalPrice }}</b></td>
                         </tr>
                     </tbody>
                 </table>

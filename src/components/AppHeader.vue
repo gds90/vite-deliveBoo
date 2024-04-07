@@ -120,7 +120,7 @@ export default {
                                                         {{cartItem.quantity}}
                                                         <div class="btn btn-sm btn-warning ms-1 text_secondary">
                                                             <i class="fas fa-plus"
-                                                                @click="store.addToCart(cartItem, cartItem.restaurant_id, restaurant.slug)">
+                                                                @click="store.addToCart(cartItem, cartItem.restaurant_id)">
                                                             </i>
                                                         </div>
                                                     </td>
