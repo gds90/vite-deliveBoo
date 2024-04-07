@@ -23,7 +23,7 @@ export default {
 </script>
 
 <template>
-    <div class="col-md-6 col-lg-4 col-xxl-3 my-4">
+    <div class="col-4 col-md-3 col-xl-2">
         <router-link :to="{ name: 'single-restaurant', params: { slug: restaurant.slug } }"
             class="text-decoration-none">
             <div class="card rounded-top-2 shadow position-relative me-1">
@@ -50,7 +50,7 @@ export default {
 
 <style lang="scss">
 .card {
-    width: 24rem;
+    width: 100%;
     height: 300px;
     cursor: pointer;
     transition: 0.3s all;
@@ -80,4 +80,11 @@ export default {
         }
     }
 }
+
+
+@media only screen and (max-width: 991px) {}
+
+@media only screen and (max-width: 720px) {}
+
+@media only screen and (max-width: 540px) {}
 </style>

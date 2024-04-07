@@ -119,8 +119,8 @@ export default {
         <div v-else>
             <div class="container-fluid my-5 pt-2">
                 <div class="row mt-5">
-                    <div class="col-12 text-center text-white font-1 m-auto">
-                        <h2 class="mt-5">CERCA PER TIPOLOGIA</h2>
+                    <div class="col-12 text-center text-white m-auto">
+                        <h2 class="mt-5  fw-bold">CERCA PER TIPOLOGIA</h2>
                     </div>
                 </div>
             </div>
@@ -141,8 +141,8 @@ export default {
             <!--  Restaurants section -->
             <div class="container-fluid my-5">
                 <div class="row m-5">
-                    <div class="col-12 text-center text-white font-1 m-auto">
-                        <h2 class="">RISTORANTI DISPONIBILI</h2>
+                    <div class="col-12 text-center text-white m-auto">
+                        <h2 class=" fw-bold">RISTORANTI DISPONIBILI</h2>
                     </div>
                 </div>
             </div>
@@ -153,7 +153,7 @@ export default {
                         <div v-if="filteredRestaurants.length === 0" class="text-center">
                             <p class="text-white fs-5">Nessun ristorante disponibile le tipologie scelte.</p>
                         </div>
-                        <div class="ps-md-5 d-flex overflow-auto rest gap-5 gap-md-0">
+                        <div class="d-flex overflow-auto rest gap-3 py-3">
                             <AppRestaurantCard v-for="restaurant, index in filteredRestaurants" :key="index" :restaurant="restaurant"/>
                         </div>
                         <div class="button-container">
