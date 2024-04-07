@@ -126,6 +126,12 @@ export default {
 
 @media only screen and (max-width: 925px) {
     .jumbotron .background {
+        padding-top: 200px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .jumbotron .background {
         padding-top: 50px;
     }
 }

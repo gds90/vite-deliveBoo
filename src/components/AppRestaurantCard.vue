@@ -23,7 +23,7 @@ export default {
 </script>
 
 <template>
-    <div class="col-4 col-md-3 col-xl-2">
+    <div class="col-5 col-md-3 col-xl-2">
         <router-link :to="{ name: 'single-restaurant', params: { slug: restaurant.slug } }"
             class="text-decoration-none">
             <div class="card rounded-top-2 shadow position-relative me-1">

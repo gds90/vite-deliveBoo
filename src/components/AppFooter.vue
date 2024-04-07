@@ -62,10 +62,10 @@ export default {
             <!-- Grid column -->
 
             <!-- Grid column -->
-            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                 <!-- Links -->
                 <h6 class="text-uppercase text-warning mb-4 fs-5 font-1">
-                    Per i Ristoratori
+                    Ristoratori
                 </h6>
                 <ul class="list-unstyled ">
                     <li>
@@ -88,7 +88,7 @@ export default {
             <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                 <!-- Links -->
                 <h6 class="text-uppercase text-warning mb-4 fs-5 font-1">
-                    Per i Clienti
+                    Clienti
                 </h6>
                 <ul class="list-unstyled ">
                     <li>
@@ -107,7 +107,7 @@ export default {
             </div>
 
             <!-- Grid column -->
-            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                 <!-- Links -->
                 <h6 class="text-uppercase text-warning mb-4 fs-5 font-1">Contatti</h6>
                 <p><i class="fas fa-home me-3"></i> Via Roma, 123 - 00100 Roma (RM)</p>
