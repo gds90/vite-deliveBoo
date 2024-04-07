@@ -37,7 +37,6 @@ export default {
 
 button {
     position: relative;
-    top: -120%;
     background-color: rgb(245, 195, 68);
     border-radius: 5px;
     box-shadow: #fff 0px 4px 0px 0px;

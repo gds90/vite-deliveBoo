@@ -3,12 +3,12 @@
     <div class="jumbotron">
         <div class="container-fluid">
             <div class="row justify-content-center text-white pt-5 bg-sm-img">
-                <div class="col-6 d-xl-block d-none">
+                <!-- <div class="col-6 d-xl-block d-none">
                     <div class="content_jumbo_left">
                         <img src="/img/jumbo_hamburger.png" alt="Deliveboo">
                     </div>
-                </div>
-                <div class="col-12 col-xl-6 m-auto pt-5">
+                </div> -->
+                <div class="col-12 m-auto  background">
                     <div class="content_jumbo_right pt-5">
                         <div class="jumbo_text text-center font-1 pt-5">
                             <h2>Scopri il GUSTO</h2>
@@ -59,7 +59,7 @@ export default {
 
         position: relative;
         top: 100px;
-        left: -150px;
+        left: -10px;
     }
 
     .jumbo_text {
@@ -112,14 +112,21 @@ export default {
         width: 1rem;
         height: 1rem;
     }
+
+    .background {
+        background-image: url('/img/jumbo_hamburger.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        padding-top: 250px;
+        width: 100%;
+    }
 }
 
-@media only screen and (max-width: 1200px) {
 
-    .bg-sm-img {
-        background-image: url("/img/jumbo_hamburger.png");
-        background-size: cover;
-        background-repeat: no-repeat;
+@media only screen and (max-width: 925px) {
+    .jumbotron .background {
+        padding-top: 50px;
     }
 }
 </style>

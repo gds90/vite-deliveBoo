@@ -10,8 +10,8 @@
             <div class="col-9 col-md-6 col-xl-4 mb-4 mb-md-0">
                 <div class="service pb-3">
                     <div class="card text-center">
-                        <div class="card-info d-flex flex-column ">
-                          <p class="title fs-3 font-1 fw-light ">Consegna ultra-veloce</p>
+                        <div class="card-info d-flex flex-column p-3">
+                          <p class="title fs-3 font-1 fw-light ">Consegna veloce</p>
                           <img src="/img/services/delivery.png" alt="Delivery" class="w-25"/>
                           <p class="description text-white fw-bold mt-3 ">Consegna del cibo in pochi minuti.</p>
                         </div>
@@ -32,7 +32,7 @@
             <div class="col-9 col-md-6 col-xl-4 mb-4 mb-md-0">
                 <div class="service pb-3">
                     <div class="card text-center">
-                        <div class="card-info d-flex flex-column ">
+                        <div class="card-info d-flex flex-column p-2">
                             <p class="title fs-3 font-1 fw-light">Assistenza clienti 24/7</p>
                             <img src="/img/services/assistance.png" alt="Assistance" class="w-25"/>
                             <p class="description text-white fw-bold mt-3 ">Supporto clienti sempre disponibile.</p>
@@ -59,6 +59,7 @@ export default {
     background: var(--background);
     position: relative;
     z-index: 1;
+    width: auto;
 }
 
 .card::after {

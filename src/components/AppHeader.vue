@@ -65,7 +65,7 @@ export default {
                         </div>
                     </a>
                     <a href="/" class="text-decoration-none text-danger">
-                        <div class="logo_text">
+                        <div class="logo_text d-none d-md-block">
                             <img src="/img/logo_text.png" alt="Deliveboo">
                         </div>
                     </a>
