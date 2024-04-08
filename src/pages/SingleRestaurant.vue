@@ -2,11 +2,13 @@
 import axios from 'axios';
 import { store } from '../store';
 import AppLoader from '../components/AppLoader.vue';
+import ErrorModal from '../components/ErrorModal.vue';
 
 export default {
     name: 'SingleRestaurant',
     components: {
-        AppLoader
+        AppLoader,
+        ErrorModal
     },
     data() {
         return {
@@ -285,6 +287,8 @@ export default {
     </div>
 
 </div>
+
+<ErrorModal />
 
 </div>
 </main>

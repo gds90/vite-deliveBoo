@@ -139,46 +139,51 @@ export default {
 
             </div>
         </div>
-        <div class="col-12 col-md-6 px-3 form_container rounded-4 mt-5">
-            <form @submit.prevent="SendForm()" method="post" class="py-3">
-                <div class="row">
-                    <div class="col-12 col-md-6">
-                        <label for="surname" class="control-label my-1"><strong>Nome:</strong> </label>
-                        <input type="text" id="name" v-model="name" class="form-control" placeholder="Inserisci il tuo nome" :class="errors.name ? 'is-invalid' : ''" required/>
-                        <div v-if="errors && errors.name" class="mt-1">
-                            <p v-for="(error, index) in errors.name" :key="`message-error-$(index)`" class="text-danger">{{ error }}</p>
+        <div class="col-12 col-md-6 p-4 p-md-0 rounded-4 ">
+            <div class="row">
+                <div class="col-12 ms-md-3 px-3 form_container rounded-4 mt-5">
+                    <form @submit.prevent="SendForm()" method="post" class="py-3" id="paymentForm">
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <label for="surname" class="control-label my-1"><strong>Nome:</strong> </label>
+                                <input type="text" id="name" v-model="name" class="form-control" placeholder="Inserisci il tuo nome" :class="errors.name ? 'is-invalid' : ''" required/>
+                                <div v-if="errors && errors.name" class="mt-1">
+                                    <p v-for="(error, index) in errors.name" :key="`message-error-$(index)`" class="text-danger">{{ error }}</p>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="surname" class="control-label my-1"><strong>Cognome:</strong> </label>
+                                <input type="text" id="surname" v-model="surname" class="form-control" placeholder="Inserisci il tuo cognome" :class="errors.surname ? 'is-invalid' : ''"  required/>
+                                <div v-if="errors && errors.surname" class="mt-1">
+                                    <p v-for="(error, index) in errors.surname" :key="`message-error-$(index)`" class="text-danger">{{ error }}</p>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 mt-md-3">
+                                <label for="address" class="control-label my-1"><strong>Indirizzo di consegna:</strong> </label>
+                                <input type="text" id="address" v-model="address" class="form-control" placeholder="Inserisci il tuo indirizzo" :class="errors.address ? 'is-invalid' : ''" required/>
+                                <div v-if="errors && errors.address" class="mt-1">
+                                    <p v-for="(error, index) in errors.address" :key="`message-error-$(index)`" class="text-danger">{{ error }}</p>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 mt-md-3">
+                                <label for="phone" class="control-label my-1"><strong>Telefono:</strong></label>
+                                <input type="text" id="phone" v-model="phone" class="form-control" placeholder="Inserisci il tuo numero" :class="errors.phone ? 'is-invalid' : ''" required/>
+                                <div v-if="errors && errors.phone" class="mt-1">
+                                    <p v-for="(error, index) in errors.phone" :key="`message-error-$(index)`" class="text-danger">{{ error }}</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-md-6 my-3">
-                        <label for="surname" class="control-label my-1"><strong>Cognome:</strong> </label>
-                        <input type="text" id="surname" v-model="surname" class="form-control" placeholder="Inserisci il tuo cognome" :class="errors.surname ? 'is-invalid' : ''"  required/>
-                        <div v-if="errors && errors.surname" class="mt-1">
-                            <p v-for="(error, index) in errors.surname" :key="`message-error-$(index)`" class="text-danger">{{ error }}</p>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <label for="address" class="control-label my-1"><strong>Indirizzo di consegna:</strong> </label>
-                        <input type="text" id="address" v-model="address" class="form-control" placeholder="Inserisci il tuo indirizzo" :class="errors.address ? 'is-invalid' : ''" required/>
-                        <div v-if="errors && errors.address" class="mt-1">
-                            <p v-for="(error, index) in errors.address" :key="`message-error-$(index)`" class="text-danger">{{ error }}</p>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 mt-2">
-                        <label for="phone" class="control-label my-1"><strong>Telefono:</strong></label>
-                        <input type="text" id="phone" v-model="phone" class="form-control" placeholder="Inserisci il tuo numero" :class="errors.phone ? 'is-invalid' : ''" required/>
-                        <div v-if="errors && errors.phone" class="mt-1">
-                            <p v-for="(error, index) in errors.phone" :key="`message-error-$(index)`" class="text-danger">{{ error }}</p>
-                        </div>
-                    </div>
+                        <div class="col-12 mt-5 d-none">
+                            <button  type="submit" class="btn btn-warning float-right" :disabled="loading">{{loading ? 'Invio in corso..' : 'Invia'}}</button>
+                        </div>  
+                    </form>
+                    
+                    
                 </div>
-                <div class="col-12 mt-5 d-none">
-                    <button  type="submit" class="btn btn-warning float-right" :disabled="loading">{{loading ? 'Invio in corso..' : 'Invia'}}</button>
-                </div>  
-            </form>
-            
-            
+
+            </div>
         </div>
-        <div class="col-12 m-auto mt-4">
+        <div class="col-12 m-auto my-4">
             <PaymentCard />
         </div>
     </div>
