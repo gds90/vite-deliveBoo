@@ -331,7 +331,7 @@ export default {
                         </div>
                     </div>
 
-                    <button class="card-form__button" type="submit">
+                    <button class="card-form__button" type="submit" @click="store.paymentFormSubmit()">
                         Prosegui
                     </button>
                 </div>

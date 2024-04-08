@@ -39,13 +39,12 @@ export const store = reactive({
             localStorage.setItem('cartItems', JSON.stringify(this.cart.items));
             this.calculateTotalPrice();
         } else {
-            let error = document.getElementById('error');
-            error.innerHTML = `Puoi ordinare soltanto da un ristorante alla volta. Svuota il carrello o torna al <a class="text-decoration-none fw-semibold text-warning" href="http://localhost:5174/restaurants/${this.cart.restaurantSlug}">ristorante</a> in cui stavi ordinando.`;
-            error.classList.add('error-show');
+            const errorMessage = `Puoi ordinare soltanto da un ristorante alla volta. Svuota il carrello o torna al ristorante in cui stavi ordinando.`;
+            document.getElementById('errorMessage').innerText = errorMessage;
+            document.getElementById('errorModal').style.display = 'block';
             setTimeout(() => {
-                error.innerHTML = '';
-                error.classList.remove('error-show');
-            }, 3000);
+                document.getElementById('errorModal').style.display = 'none';
+            }, 5000);
         }
 
     },
@@ -91,6 +90,14 @@ export const store = reactive({
 
         // Arrotonda il totale a due decimali e assegna il valore a this.totalPrice
         this.totalPrice = Math.round(totalPrice * 100) / 100;
+    },
+    closeModal() {
+        document.getElementById('errorModal').style.display = 'none';
+    },
+    paymentFormSubmit() {
+        let form = document.getElementById('paymentForm');
+        let cardForm = document.getElementById('cardForm');
+        form.submit();
+        cardForm.submit();
     }
-
 });

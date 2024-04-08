@@ -140,7 +140,7 @@ export default {
             </div>
         </div>
         <div class="col-12 col-md-6 px-3 form_container rounded-4 mt-5">
-            <form @submit.prevent="SendForm()" method="post" class="py-3">
+            <form @submit.prevent="SendForm()" method="post" class="py-3" id="paymentForm">
                 <div class="row">
                     <div class="col-12 col-md-6">
                         <label for="surname" class="control-label my-1"><strong>Nome:</strong> </label>
