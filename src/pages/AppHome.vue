@@ -2,13 +2,15 @@
 import AppBecomePartner from '../components/AppBecomePartner.vue';
 import AppServices from '../components/AppServices.vue';
 import AppJumbotron from '../components/AppJumbotron.vue';
+import DownloadAppBanner from '../components/DownloadAppBanner.vue';
 export default {
     name: 'AppHome',
 
     components: {
         AppServices,
         AppBecomePartner,
-        AppJumbotron
+        AppJumbotron,
+        DownloadAppBanner
     },
 
     methods: {
@@ -29,7 +31,7 @@ export default {
     <AppBecomePartner />
     <!-- Services section -->
     <AppServices/>
-
+    <DownloadAppBanner/>
 </template>
 <style lang="scss" scoped>
 @use '../styles/partials/variables' as *;

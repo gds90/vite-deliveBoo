@@ -544,6 +544,19 @@ button {
     }
 }
 
+button::before {
+    content: "";
+    background-color: #fff;
+    width: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: width 700ms ease-in-out;
+    display: inline-block;
+}
+
 .CartBtn::before {
     content: "";
     background-color: #fff;
