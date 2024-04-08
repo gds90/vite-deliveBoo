@@ -2,11 +2,13 @@
 import axios from 'axios';
 import { store } from '../store';
 import AppLoader from '../components/AppLoader.vue';
+import ErrorModal from '../components/ErrorModal.vue';
 
 export default {
     name: 'SingleRestaurant',
     components: {
-        AppLoader
+        AppLoader,
+        ErrorModal
     },
     data() {
         return {
@@ -286,25 +288,7 @@ export default {
 
 </div>
 
-<div id="errorModal" class="modal">
-    <div class="d-flex vh-100 align-items-center">
-
-        <div class="modal-content">
-            <span class="close" @click="store.closeModal()">&times;</span>
-            <p id="errorMessage" class="fw-bold my-2"></p>
-            <div class="text-center mt-2">
-                <button @click="store.clearCart()" class="my-2 mx-md-4 text_secondary font-1">Svuota il
-                    Carrello</button>
-                <a :href="'http://localhost:5174/restaurants/' + store.cart.restaurantSlug"><button
-                        class="text_secondary my-2 mx-md-4 font-1">Torna al
-                        Ristorante</button></a>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
+<ErrorModal />
 
 </div>
 </main>
@@ -610,40 +594,5 @@ button:hover::before {
 .CartBtnRemove:active {
     transform: scale(0.95);
     transition-duration: .5s;
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 50%;
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
 }
 </style>

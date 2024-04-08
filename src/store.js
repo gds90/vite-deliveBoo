@@ -96,8 +96,6 @@ export const store = reactive({
     },
     paymentFormSubmit() {
         let form = document.getElementById('paymentForm');
-        let cardForm = document.getElementById('cardForm');
         form.submit();
-        cardForm.submit();
     }
 });
