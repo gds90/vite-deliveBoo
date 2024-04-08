@@ -169,7 +169,7 @@ export default {
                         <div class="col-2 fs-1 pe-4">
                             <div class="">
                                 <button class="CartBtn my-2 shadow "
-                                    @click="store.addToCart(dish, dish.restaurant_id, restaurant.slug)">
+                                    @click="store.addToCart(dish, dish.restaurant_id, restaurant.slug, restaurant.name)">
                                     <span class="IconContainer">
                                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"
                                             fill="rgb(17, 17, 17)" class="cart_icon_add">
@@ -251,7 +251,7 @@ export default {
                                 {{cartItem.quantity}}
                                 <div class="btn btn-sm btn-warning ms-1 text_secondary">
                                     <i class="fas fa-plus"
-                                        @click="store.addToCart(cartItem, cartItem.restaurant_id, restaurant.slug)">
+                                        @click="store.addToCart(cartItem, cartItem.restaurant_id, restaurant.slug, restaurant.name)">
                                     </i>
                                 </div>
                             </td>

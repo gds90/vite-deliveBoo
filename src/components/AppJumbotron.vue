@@ -1,3 +1,8 @@
+<script>
+export default {
+
+}
+</script>
 <template lang="">
     <!-- Jumbotron -->
     <div class="jumbotron">
@@ -37,11 +42,6 @@
     </div>
     <!-- end Jumbotron -->
 </template>
-<script>
-export default {
-
-}
-</script>
 <style lang="scss" scoped>
 .jumbotron {
     margin-top: 82px;

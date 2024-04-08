@@ -20,9 +20,10 @@ export const store = reactive({
         items: JSON.parse(localStorage.getItem('cartItems')) || [],
         restaurantId: null,
         restaurantSlug: localStorage.getItem('restaurantSlug') || null,
+        restaurantName: localStorage.getItem('restaurantName') || null,
         totalPrice: 0
     },
-    addToCart(item, restId, restSlug) {
+    addToCart(item, restId, restSlug, restName) {
 
         if (this.cart.items.length === 0 || this.cart.restaurantId === null || this.cart.restaurantId === restId) {
             const existingItemIndex = this.cart.items.findIndex(i => i.id === item.id);
@@ -35,6 +36,8 @@ export const store = reactive({
             if (!this.cart.restaurantSlug) {
                 this.cart.restaurantSlug = restSlug;
                 localStorage.setItem('restaurantSlug', restSlug);
+                this.cart.restaurantName = restName;
+                localStorage.setItem('restaurantName', restName);
             }
             localStorage.setItem('cartItems', JSON.stringify(this.cart.items));
             this.calculateTotalPrice();
@@ -63,6 +66,8 @@ export const store = reactive({
         if (this.cart.items.length === 0) {
             localStorage.removeItem('restaurantSlug');
             this.cart.restaurantSlug = null;
+            localStorage.removeItem('restaurantName');
+            this.cart.restaurantName = null;
         }
     },
 
@@ -73,13 +78,14 @@ export const store = reactive({
         if (this.cart.items.length === 0) {
             localStorage.removeItem('restaurantSlug');
             this.cart.restaurantSlug = null;
-
+            this.cart.restaurantName = null;
         }
     },
     clearCart() {
         this.cart.items = [];
         localStorage.removeItem('cartItems');
         localStorage.removeItem('restaurantSlug');
+        localStorage.removeItem('restaurantName');
         this.cart.restaurantSlug = null;
         this.cart.totalPrice = 0;
     },
