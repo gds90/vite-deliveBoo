@@ -17,9 +17,9 @@ export default {
                             Goditi la comodità di ordinare e tracciare i tuoi acquisti in tempo reale
                         </p>
                     </div>
-                    <img src="/img/download_stores.png" alt="Download" class="w-25">
+                    <img src="/img/download_stores.png" alt="Download" class="w-25 py-3">
                 </div>
-                <div class="col-12 col-md-6 fs-1 text-center phone">
+                <div class="col-12 col-md-6 fs-1 text-center phone pt-5 d-none d-md-block ">
                     <img src="/img/app_phone.png" alt="Deliveboo App" class="w-50">
                 </div>
             </div>
@@ -28,6 +28,8 @@ export default {
     </div>
 </template>
 <style lang="scss" scoped>
+@use '../styles/partials/variables' as *;
+
 #download_app_banner {
     background: rgb(28, 48, 93);
     background: linear-gradient(0deg, rgba(28, 48, 93, 0.84) 0%, rgba(255, 255, 255, 0.7021183473389356) 45%, rgba(255, 255, 255, 0.7) 54%, rgba(28, 48, 93, 1) 100%);
@@ -35,7 +37,11 @@ export default {
 }
 
 .phone {
-    transform: rotate(25deg);
-    padding: 20px 0 50px 0;
+    transform: rotate(12deg);
+    padding: 10px 0 50px 0;
+}
+
+p {
+    color: $secondary_color;
 }
 </style>
