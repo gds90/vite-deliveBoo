@@ -51,8 +51,8 @@ export default {
             <div class="col-12">
                 <div class="container-card rounded-4 ">
                     <div class="card" v-if="paymentEvent">
-                        <div class="card-header bg-success text-center">
-                            <i class="fa-regular fa-circle-check"></i>
+                        <div class="card-header text-center">
+                            <i class="fa-regular fa-circle-check text-success "></i>
                             <h1 class="mb-3">Congratulazioni!</h1>
                             <h5> Il tuo pagamento è stato elaborato con successo.</h5>
                         </div>
@@ -89,9 +89,7 @@ export default {
                                 </tbody>
                             </table>
                             <div class="text-center mt-5 mb-3">
-
-                                <button @click="clearCartAndRedirectToHome" class="btn btn-outline-success">Torna alla
-                                    Home</button>
+                                <button @click="clearCartAndRedirectToHome" class="btn font-1 ">Torna alla Home</button>
                             </div>
                         </div>
                     </div>
@@ -116,6 +114,31 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@use '../styles/partials/variables' as *;
+
+button {
+    position: relative;
+    background-color: rgb(245, 195, 68);
+    border-radius: 5px;
+    box-shadow: #fff 0px 4px 0px 0px;
+    padding: 15px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 230px;
+    height: 55px;
+    color: $secondary_color;
+    border: none;
+    font-size: 20px;
+    transition: all 0.3s ease-in-out;
+    z-index: 1;
+    overflow: hidden;
+
+    &:hover {
+        transform: scale(1.1)
+    }
+}
+
 .logo {
     width: 100px;
     padding: 50px 0;
@@ -134,12 +157,13 @@ export default {
     width: 70%;
     border: none;
 
+    .card-header {
+        font-size: 70px;
+        color: $secondary_color;
+        background-color: $primary_color;
+    }
 }
 
-.card-header {
-    font-size: 70px;
-    color: white;
-}
 
 .card-body {
     height: 100%;
