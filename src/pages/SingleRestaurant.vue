@@ -15,11 +15,10 @@ export default {
             store,
             restaurant: null,
             dishes: null,
-            success: false,
+            success: false
         }
     },
     computed: {
-
         uniqueCategories() {
             // Ottieni le categorie univoche, inclusi i piatti senza categoria
             return Array.from(new Set(this.dishes.map(dish => dish.category ? dish.category.name : null)))
@@ -80,11 +79,15 @@ export default {
         //     const numStars = this.getRandomNumber(3, 5);
         //     return '★'.repeat(numStars);
         // },
+
         truncate(text, length) {
             if (text.length > length) {
                 return text.substring(0, length) + '...';
             }
             return text;
+        },
+        hideNotification() {
+            //
         }
     }
 }
@@ -97,6 +100,12 @@ export default {
         </div>
         <!-- Restaurant Details -->
         <div v-else class="container restaurant_data">
+            <transition  name="fade">
+                <div class="cart-item-notification d-xxl-none" v-if="store.notificationItemName">
+                    <span><b>1x</b>  {{ store.notificationItemName }} aggiunto al carrello!</span>
+                    <i @click="hideNotification" class="close-button fas fa-x ms-3"></i>
+                </div>
+            </transition>
             <div class="row">
                 <div class="col-12 text-start mb-5">
                     <router-link to="/restaurants" class="text-decoration-none text-reset "><span class="back fs-4 text-white"><i class="fa-solid fa-arrow-left me-3"></i>Indietro</span></router-link>
@@ -587,6 +596,48 @@ button:hover::before {
     width: 100%;
 }
 
+.cart-item-notification {
+    position: fixed;
+    top: 18%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    /* Sfondo bianco */
+    color: rgb(21, 49, 96);
+    /* Testo blu */
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+}
+
+.close-button {
+    background-color: transparent;
+    color: #ffc107;
+    /* X gialla */
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: auto;
+    outline: none;
+}
+
+.close-button:hover {
+    color: #ff9900;
+    /* X gialla più luminosa al passaggio del mouse */
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+}
+
 @media only screen and (min-width: 575px) {
 
     .CartBtn:hover .IconContainer,
@@ -610,4 +661,6 @@ button:hover::before {
     transform: scale(0.95);
     transition-duration: .5s;
 }
+
+.cart-item-notification {}
 </style>

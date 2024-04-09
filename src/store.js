@@ -1,6 +1,7 @@
 import { reactive } from 'vue';
 
 export const store = reactive({
+    notificationItemName: null,
     baseUrl: 'http://127.0.0.1:8000',
     menuItems: [
         {
@@ -39,6 +40,13 @@ export const store = reactive({
                 this.cart.restaurantName = restName;
                 localStorage.setItem('restaurantName', restName);
             }
+            // assegna il nome del piatto alla variabile notificationItemName
+            this.notificationItemName = item.name;
+
+            setTimeout(() => {
+                this.notificationItemName = null;
+            }, 3000); // nascondi la notifica dopo 3 secondi
+
             localStorage.setItem('cartItems', JSON.stringify(this.cart.items));
             this.calculateTotalPrice();
         } else {
