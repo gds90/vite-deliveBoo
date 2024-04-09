@@ -146,7 +146,7 @@ export default {
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <label for="surname" class="control-label my-1"><strong>Nome:</strong> </label>
-                                <input type="text" id="name" v-model="name" class="form-control" placeholder="Inserisci il tuo nome" :class="errors.name ? 'is-invalid' : ''" required/>
+                                <input type="text" id="name" v-model="name" class="form-control" placeholder="Inserisci il tuo nome" :class="errors.name ? 'is-invalid' : ''" required autofocus/>
                                 <div v-if="errors && errors.name" class="mt-1">
                                     <p v-for="(error, index) in errors.name" :key="`message-error-$(index)`" class="text-danger">{{ error }}</p>
                                 </div>
