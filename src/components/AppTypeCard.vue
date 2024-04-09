@@ -22,7 +22,7 @@ export default {
             <img :class="{ 'highlighted': isHighlighted }" :src="`/img/type-image/${type.slug}.jpeg`">
         </div>
 
-        <div class="text-white mt-2 fw-bold ">
+        <div class="text-white type-name mt-2 fw-bold ">
             {{ type.name }}
         </div>
     </div>
@@ -47,6 +47,20 @@ export default {
     overflow: hidden; // Assicura che l'immagine venga visualizzata correttamente all'interno del bordo arrotondato
     transition: border-color 0.3s ease; // Aggiungi una transizione per il cambio di colore del bordo
 }
+
+@media screen and (max-width: 576px) {
+    .rounded-image {
+        width: 70px;
+        /* La metà della larghezza specificata quando lo schermo è sotto i 576px */
+        height: 70px;
+        /* La metà dell'altezza specificata quando lo schermo è sotto i 576px */
+    }
+
+    .type-name {
+        font-size: 0.7rem;
+    }
+}
+
 
 .rounded-image img {
     position: absolute;

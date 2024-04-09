@@ -601,7 +601,9 @@ button:hover::before {
         transform: translate(10px, 0px);
         transition-duration: .5s;
     }
+
 }
+
 
 .CartBtn:active,
 .CartBtnRemove:active {

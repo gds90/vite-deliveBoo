@@ -81,6 +81,13 @@ export default {
     }
 }
 
+@media screen and (max-width: 576px) {
+
+    .card {
+        height: 250px;
+    }
+}
+
 
 @media only screen and (max-width: 991px) {}
 
