@@ -598,7 +598,7 @@ button:hover::before {
 
 .cart-item-notification {
     position: fixed;
-    top: 18%;
+    top: 20%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #ffffff;
@@ -610,6 +610,7 @@ button:hover::before {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
+    z-index: 99999;
 }
 
 .close-button {
@@ -661,6 +662,4 @@ button:hover::before {
     transform: scale(0.95);
     transition-duration: .5s;
 }
-
-.cart-item-notification {}
 </style>
