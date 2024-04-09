@@ -151,7 +151,7 @@ export default {
                 <div class="row justify-content-center">
                     <div class="restaurants my-4 position-relative">
                         <div v-if="filteredRestaurants.length === 0" class="text-center">
-                            <p class="text-white fs-5">Nessun ristorante disponibile le tipologie scelte.</p>
+                            <p class="text-white fs-5">Nessun ristorante disponibile per le tipologie scelte.</p>
                         </div>
                         <div class="d-flex overflow-auto rest gap-3 py-3">
                             <AppRestaurantCard v-for="restaurant, index in filteredRestaurants" :key="index" :restaurant="restaurant"/>

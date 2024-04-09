@@ -51,8 +51,11 @@ export default {
             <!-- Grid column -->
             <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                 <!-- Content -->
+                <div class="logo">
+                    <img src="/img/logo.png" alt="Deliveboo" class="w-25 d-lg-block d-none">
+                </div>
                 <h6 class="text-uppercase text-warning  mb-4 fs-5 font-1">
-                    <i class="fas fa-gem me-3 "></i>Deliveboo S.r.L.
+                    Deliveboo S.r.L.
                 </h6>
                 <p>
                     Rendi il tuo business un successo digitale: soluzioni gestionali per la tua delivery,
@@ -134,10 +137,16 @@ export default {
 </footer>
 <!-- Footer -->
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
 @use '../styles/partials/variables' as *;
 
 .bg_footer {
     background: $secondary_color;
+}
+
+.logo {
+    position: absolute;
+    left: -100px;
+    opacity: 0.4;
 }
 </style>
