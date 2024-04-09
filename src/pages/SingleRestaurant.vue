@@ -163,8 +163,8 @@ export default {
                     class="bg-body-secondary rounded-4 shadow dish_container opaque-left">
                     <div class="row my-3">
                         <div class="col-3">
-                            <div class="dish_image align-items-center justify-content-center">
-                                <img :src="getDishImage(dish)" class="rounded-4 w-100 h-100" />
+                            <div class="dish_image">
+                                <img :src="getDishImage(dish)" class="rounded-4 w-100 h-100 shadow " />
                             </div>
                         </div>
                         <div class="col-7 ">
