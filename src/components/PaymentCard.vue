@@ -48,16 +48,6 @@ export default {
         }
     },
     methods: {
-        focusInput(e) {
-            this.isInputFocused = true;
-            let targetRef = e.target.dataset.ref;
-            let target = this.$refs[targetRef];
-            this.focusElementStyle = {
-                width: `${target.offsetWidth}px`,
-                height: `${target.offsetHeight}px`,
-                transform: `translateX(${target.offsetLeft}px) translateY(${target.offsetTop}px)`
-            }
-        },
         blurInput() {
             let vm = this;
             setTimeout(() => {
