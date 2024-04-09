@@ -12,16 +12,18 @@ export default {
                 <h5 class="text-big text-center mt-3 mb-5 text-white">Lo staff di Deliveboo.com</h5>
                 <div class="text-center">
                     <!-- Router link to home -->
-                    <router-link to="/" class="btn btn-lg btn-warning text-uppercase mb-5">Torna alla home</router-link>
+                    <router-link to="/" class=""><button class="font-1 text_secondary my-5">TORNA ALLA HOME</button></router-link>
                 </div>
             </div>
         </div>
     </div>
 </template>
 <style lang="scss" scoped>
-.btn {
+@use '../styles/partials/variables' as *;
+@use '../styles/general' as *;
+
+button {
     position: relative;
-    top: -120%;
     background-color: rgb(245, 195, 68);
     border-radius: 5px;
     box-shadow: #fff 0px 4px 0px 0px;
@@ -43,9 +45,9 @@ export default {
     }
 }
 
-.btn::before {
+button::before {
     content: "";
-    background-color: rgb(245, 173, 68);
+    background-color: #fff;
     width: 0;
     height: 100%;
     position: absolute;
@@ -56,7 +58,7 @@ export default {
     display: inline-block;
 }
 
-.btn:hover::before {
+button:hover::before {
     width: 100%;
 }
 </style>

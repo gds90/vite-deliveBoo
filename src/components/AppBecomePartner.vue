@@ -7,7 +7,7 @@ export default {
 <template lang="">
     <div class="container px-5">
         <hr class="text-white mb-5">
-        <div class="row gap-0 text-white">
+        <div class="row gap-0 text-white justify-content-center">
             <div class="row">
                 <div class="left-column col-lg-6 p-5">
                     <h2 class="mb-4">Porta il tuo ristorante al successo con noi!</h2>
