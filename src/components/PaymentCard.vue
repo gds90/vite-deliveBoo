@@ -20,6 +20,8 @@ export default {
             isCardFlipped: false,
             focusElementStyle: null,
             isInputFocused: false,
+            errorMessage: "", // Proprietà per memorizzare il messaggio di errore generale
+            errorField: "", // Proprietà per memorizzare il campo specifico in errore
         };
     },
     mounted() {
@@ -112,16 +114,64 @@ export default {
                     form.addEventListener('submit', event => {
                         event.preventDefault();
 
+                        // Resettiamo i messaggi di errore ad ogni submit
+                        document.getElementById('errorMessage').textContent = "";
+                        document.getElementById('cardNumberError').textContent = "";
+                        document.getElementById('cardCvvError').textContent = "";
+                        document.getElementById('cardExpirationError').textContent = "";
+                        document.getElementById('cardNameError').textContent = "";
+
                         hostedFieldsInstance.tokenize((tokenizeErr, payload) => {
                             if (tokenizeErr) {
                                 console.error('Error tokenizing:', tokenizeErr);
-                                localStorage.orderErrorMessage = tokenizeErr.message;
+
+                                // Aggiungi il messaggio di errore specifico per l'utente nel DOM
+                                const errorMessageElement = document.getElementById('errorMessage');
+                                let errorMessage = "Si è verificato un errore durante l'elaborazione del pagamento. Si prega di controllare i dettagli della carta e riprovare.";
+
+                                // Verifica se ci sono campi non validi e imposta il messaggio di errore specifico per ognuno di essi
+                                if (tokenizeErr.details.invalidFieldKeys) {
+                                    const invalidFieldKeys = tokenizeErr.details.invalidFieldKeys;
+                                    invalidFieldKeys.forEach(field => {
+                                        switch (field) {
+                                            case 'number':
+
+                                                // Visualizza il messaggio di errore sotto il campo Numero Carta
+                                                document.getElementById('cardNumberError').textContent = " Il numero della carta non è valido.";
+                                                break;
+                                            case 'cvv':
+
+                                                // Visualizza il messaggio di errore sotto il campo CVV
+                                                document.getElementById('cardCvvError').textContent = " Il codice CVV non è valido.";
+                                                break;
+                                            case 'expirationDate':
+
+                                                // Visualizza il messaggio di errore sotto il campo Data di Scadenza
+                                                document.getElementById('cardExpirationError').textContent = " La data di scadenza non è valida.";
+                                                break;
+                                            case 'cardholderName':
+
+                                                // Visualizza il messaggio di errore sotto il campo Nome
+                                                document.getElementById('cardNameError').textContent = "  Il nome del titolare della carta non è valido.";
+                                                break;
+                                        }
+                                    });
+                                }
+
+                                errorMessageElement.textContent = errorMessage;
+
+                                // Interrompi l'esecuzione ulteriore
                                 return;
                             }
+
+                            // Se la tokenizzazione è avvenuta con successo, continua con le azioni successive
                             this.loadCart();
                             this.processPayment(payload.nonce);
                         });
                     });
+
+
+
                 });
             });
         },
@@ -283,40 +333,31 @@ export default {
 
             <form action="/" method="POST" id="cardForm">
                 <div class="card-form__inner">
+                    <div class="error-message" id="errorMessage"></div>
+
                     <div class="card-input">
                         <label for="cardNumber" class="card-input__label">Numero Carta</label>
                         <div class="form-control" id="cardNumber"></div>
-                        <!-- <input type="text" id="cardNumber" class="card-input__input" v-mask="generateCardNumberMask" v-model="cardNumber" @focus="focusInput" @blur="blurInput" data-ref="cardNumber" autocomplete="off"> -->
+                        <div class="input-error" id="cardNumberError"></div> <!-- Messaggio di errore specifico per il numero della carta -->
                     </div>
                     <div class="card-input">
                         <label for="cardName" class="card-input__label">Nome e Cognome</label>
                         <div class="form-control" id="cardName"></div>
-                        <!-- <input type="text" id="cardName" class="card-input__input" v-model="cardName" @focus="focusInput" @blur="blurInput" data-ref="cardName" autocomplete="off"> -->
+                        <div class="input-error" id="cardNameError"></div> <!-- Messaggio di errore specifico per il nome e cognome -->
                     </div>
                     <div class="card-form__row">
                         <div class="card-form__col">
                             <div class="card-form__group">
                                 <label for="cardMonth" class="card-input__label">Data di scadenza</label>
                                 <div class="form-control" id="cardMonth"></div>
-                                <!-- <select class="card-input__input -select" id="cardMonth" v-model="cardMonth" @focus="focusInput" @blur="blurInput" data-ref="cardDate">
-                  <option value="" disabled selected>Mese</option>
-                  <option :value="n < 10 ? '0' + n : n" v-for="n in 12" :disabled="n < minCardMonth" :key="n">
-                      {{n < 10 ? '0' + n : n}}
-                  </option>
-                </select>
-                <select class="card-input__input -select" id="cardYear" v-model="cardYear" @focus="focusInput" @blur="blurInput" data-ref="cardDate">
-                  <option value="" disabled selected>Anno</option>
-                  <option :value="$index + minCardYear" v-for="(n, $index) in 12" :key="n">
-                      {{$index + minCardYear}}
-                  </option>
-                </select> -->
+                                <div class="input-error" id="cardExpirationError"></div> <!-- Messaggio di errore specifico per la data di scadenza -->
                             </div>
                         </div>
                         <div class="card-form__col -cvv">
                             <div class="card-input">
                                 <label for="cardCvv" class="card-input__label">CVV</label>
                                 <div class="form-control" id="cardCvv"></div>
-                                <!-- <input type="text" class="card-input__input" id="cardCvv" v-mask="'####'" maxlength="4" v-model="cardCvv" @focus="flipCard(true)" @blur="flipCard(false)" autocomplete="off"> -->
+                                <div class="input-error" id="cardCvvError"></div> <!-- Messaggio di errore specifico per il CVV -->
                             </div>
                         </div>
                     </div>
@@ -326,12 +367,22 @@ export default {
                     </button>
                 </div>
             </form>
+
         </div>
     </div>
 </template>
 
 
 <style scoped>
+.error-message {
+    color: red;
+    margin-bottom: 20px;
+}
+
+.input-error{
+    color: red;
+    font-size: 13px;
+}
 .wrapper {
     min-height: 100vh;
     display: flex;
