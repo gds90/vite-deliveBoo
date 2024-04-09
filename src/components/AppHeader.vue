@@ -113,14 +113,13 @@ export default {
                                                         <div class="truncate-text">{{ truncate(cartItem.name,25) }}</div>
                                                     </td>
                                                     <td>
-                                                        <div class="btn btn-sm btn-danger me-1">
-                                                            <i class="fas fa-minus" @click="store.removeFromCart(cartItem)">
+                                                        <div class="btn btn-sm btn-danger me-1" @click="store.removeFromCart(cartItem)">
+                                                            <i class="fas fa-minus" >
                                                             </i>
                                                         </div>
                                                         {{cartItem.quantity}}
-                                                        <div class="btn btn-sm btn-warning ms-1 text_secondary">
-                                                            <i class="fas fa-plus"
-                                                                @click="store.addToCart(cartItem, cartItem.restaurant_id)">
+                                                        <div class="btn btn-sm btn-warning ms-1 text_secondary" @click="store.addToCart(cartItem, cartItem.restaurant_id)">
+                                                            <i class="fas fa-plus">
                                                             </i>
                                                         </div>
                                                     </td>
