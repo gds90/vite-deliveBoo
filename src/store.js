@@ -53,9 +53,9 @@ export const store = reactive({
             const errorMessage = `Puoi ordinare soltanto da un ristorante alla volta. Svuota il carrello o torna al ristorante in cui stavi ordinando.`;
             document.getElementById('errorMessage').innerText = errorMessage;
             document.getElementById('errorModal').style.display = 'block';
-            setTimeout(() => {
-                document.getElementById('errorModal').style.display = 'none';
-            }, 5000);
+            // setTimeout(() => {
+            //     document.getElementById('errorModal').style.display = 'none';
+            // }, 5000);
         }
 
     },

@@ -7,6 +7,12 @@ export default {
             store
         }
     },
+    methods: {
+        clearCartAndCloseModal() {
+            this.store.clearCart();
+            this.store.closeModal();
+        }
+    }
 }
 </script>
 <template lang="">
@@ -17,7 +23,7 @@ export default {
             <span class="close" @click="store.closeModal()">&times;</span>
             <p id="errorMessage" class="fw-bold my-2"></p>
             <div class="text-center mt-2 ">
-                <button @click="store.clearCart()" class="my-2 mx-md-4 text_secondary font-1 ">Svuota il
+                <button @click="clearCartAndCloseModal" class="my-2 mx-md-4 text_secondary font-1 ">Svuota il
                     Carrello</button>
                 <a :href="'http://localhost:5174/restaurants/' + store.cart.restaurantSlug"><button
                         class="text_secondary my-2 mx-md-4 font-1 ">Torna al
